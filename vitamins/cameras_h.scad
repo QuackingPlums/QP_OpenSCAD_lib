@@ -1,9 +1,11 @@
 //
-// QuackingPlums
+// QP_OpenSCAD_lib
 //
-// Cameras - definitions
+// GNU GPL v3
+// quackingplums@gmail.com
 //
-
+// Cameras - header definitions
+//
 
 // Camera types
 GoPro_HD_Hero3_Black = ["GoPro HD Hero3: Black Edition",		// GoPro HD Hero3	 ** VERIFIED **

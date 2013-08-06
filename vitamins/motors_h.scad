@@ -1,8 +1,12 @@
 //
-// QuackingPlums
+// QP_OpenSCAD_lib
 //
-// Motors - definitions
+// GNU GPL v3
+// quackingplums@gmail.com
 //
+// Motors - header definitions
+//
+
 include <fasteners_h.scad>;
 
 // Motor types

@@ -1,4 +1,11 @@
-// Fillets and radii
+//
+// QP_OpenSCAD_lib
+//
+// GNU GPL v3
+// quackingplums@gmail.com
+//
+// Fillets and radii for smoothing and strengthening edges
+//
 
 ff = 0.05;						// fudge factor to prevent barfing on coincident faces
 

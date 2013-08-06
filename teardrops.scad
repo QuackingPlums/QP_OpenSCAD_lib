@@ -8,6 +8,8 @@
 // For making horizontal holes that don't need support material
 // Small holes can get away without it but they print better with truncated teardrops
 //
+// Subsequent additions by quackingplums@gmail.com
+//
 module teardrop_2D(r, truncate = true) {
     difference() {
         union() {

@@ -1,7 +1,10 @@
 //
-// QuackingPlums
+// QP_OpenSCAD_lib
 //
-// Fasteners - definitions
+// GNU GPL v3
+// quackingplums@gmail.com
+//
+// Fasteners - header definitions
 //
 
 // useful references:

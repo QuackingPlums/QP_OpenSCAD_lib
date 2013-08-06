@@ -1,8 +1,12 @@
 //
-// QuackingPlums
+// QP_OpenSCAD_lib
 //
-// Fasteners
+// GNU GPL v3
+// quackingplums@gmail.com
 //
+// Fasteners - screws, nuts, washers etc.
+//
+
 include <fasteners_h.scad>;
 use <../polyholes.scad>;
 

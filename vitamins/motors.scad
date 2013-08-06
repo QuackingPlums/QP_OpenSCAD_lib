@@ -1,8 +1,12 @@
 //
-// QuackingPlums
+// QP_OpenSCAD_lib
+//
+// GNU GPL v3
+// quackingplums@gmail.com
 //
 // Motors
 //
+
 include <motors_h.scad>;
 include <fasteners_h.scad>;
 

@@ -1,8 +1,12 @@
 //
-// QuackingPlums
+// QP_OpenSCAD_lib
+//
+// GNU GPL v3
+// quackingplums@gmail.com
 //
 // Cameras
 //
+
 include <cameras_h.scad>;
 
 $fs = 0.5;
