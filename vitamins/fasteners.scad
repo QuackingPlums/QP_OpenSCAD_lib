@@ -18,18 +18,19 @@ ff = 0.05;	// fudge factor to prevent barfing on coincident faces
 ///////////
 // Screws
 
-module screw(screw_type = M3_cap_screw, length = 20, washer = false, exploded = 0)
+module screw(screw_type = M3_cap_screw, length = 20, washer = false, exploded = 0, colour = "dimgray")
 {
 	head_height = screw_head_height(screw_type);
 	washer_type = screw_washer(screw_type);
 	washer_thickness = washer_thickness(washer_type);
 
-	color("dimgray")
+	color(colour)
 		translate([0, 0, (washer ? washer_thickness(washer_type) : 0) + exploded])
 			union()
 			{
 				// head
-				cylinder(r = screw_head_radius(screw_type), h = head_height);
+				//cylinder(r = screw_head_radius(screw_type), h = head_height);
+				screw_head(screw_type);
 	
 				// thread
 				translate([0, 0, -length])
@@ -40,6 +41,31 @@ module screw(screw_type = M3_cap_screw, length = 20, washer = false, exploded = 
 	if (washer)
 		translate([0, 0, exploded / 2])
 			washer(washer_type);
+}
+
+module screw_head(screw_type = M3_cap_screw)
+{
+	head_type = screw_head_type(screw_type);
+	head_height = screw_head_height(screw_type);
+	head_radius = screw_head_radius(screw_type);
+
+	if (head_type == cap_head)
+		cylinder(h = head_height, r = head_radius);
+
+	if (head_type == btn_head)
+		intersection()
+		{
+			cylinder(h = head_height, r = head_radius);
+			translate([0, 0, -head_radius * 0.55])
+				sphere(r = head_radius * 1.2);
+		}
+
+	if (head_type == hex_head)
+		cylinder(h = head_height, r = head_radius, $fn = 6);
+
+	if (head_type == csk_head)
+		translate([0, 0, -head_height])
+			cylinder(h = head_height, r1 = screw_radius(screw_type), r2 = head_radius);
 }
 
 module screw_clearance_hole(screw_type, depth)
@@ -183,7 +209,8 @@ module BOM_stud(quantity = 1, stud_type = M3_stud, length = 25, description = "u
 	BOM(quantity, vitamin, description);
 }
 
-//screw(screw_type = M2_cap_screw, washer = true, exploded = 10);
+//screw(screw_type = M3_csk_screw, washer = false, exploded = 0, colour = "yellow");
+//BOM_screw(screw_type = M3_csk_screw);
 //nut(exploded = 10);
 //nut_trap();
 //nyloc(exploded = 10);

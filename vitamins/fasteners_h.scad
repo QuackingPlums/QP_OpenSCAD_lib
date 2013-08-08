@@ -11,6 +11,7 @@
 // http://www.csgnetwork.com/screwsochdcaptable.html
 // http://www.roymech.co.uk/Useful_Tables/Screws/cap_screws.htm
 // http://www.numberfactory.com/nf%20metric%20screws%20and%20bolts.htm
+// http://www.numberfactory.com/nf_metric.html
 
 /////////////////////
 // Metric/ISO/US sizes
@@ -31,7 +32,13 @@ function metric_clearance_radius(size) = metric_clearance_diameter(size) / 2;
 
 /////
 // Head types
-Cap_head =	["cap head screw"];
+cap_head =	["cap head screw"];
+hex_head =	["hex screw"];
+btn_head =	["button head screw"];
+csk_head =	["countersunk screw"];
+
+function screw_type(head_type) = head_type[0];
+
 function head() = cylinder([10]);
 
 
@@ -43,20 +50,24 @@ M4_washer = "defined later";
 M5_washer = "defined later";
 
 // Screw types
-M2_cap_screw = 	[M2, "cap head screw",		// aka socket screw
+M2_cap_screw =	[M2, cap_head,				// aka socket screw
 				3.8, 4.0, 2.0, M2_washer];
-M3_cap_screw =	[M3, "cap head screw",
+M3_cap_screw =	[M3, cap_head,
 				5.5, 5.8, 3.0, M3_washer];
-M4_cap_screw =	[M4, "cap head screw",
+M3_btn_screw =	[M3, btn_head,
+				5.7, 6.0, 1.65, M3_washer];
+M3_csk_screw =	[M3, csk_head,
+				6.0, 6.72, 1.86];
+M4_cap_screw =	[M4, cap_head,
 				7.0, 7.3, 4.0, M4_washer];
-M5_cap_screw =	[M5, "cap head screw",
+M5_cap_screw =	[M5, cap_head,
 				8.5, 8.8, 5.0, M5_washer];
-M3_hex =			[M3, "hex screw",				// aka hex set screw or hex bolt
-				6.35, 6.35, 2, M3_washer];
-M4_hex =			[M4, "hex screw",
-				8.08, 8.08, 2.8, M4_washer];
-M5_hex = 		[M5, "hex screw",
-				8.08, 8.08, 2.8, M5_washer];
+M3_hex_screw =	[M3, hex_head,				// aka hex set screw or hex bolt
+				6.35, 6.65, 2, M3_washer];
+M4_hex_screw =	[M4, hex_head,
+				8.08, 8.38, 2.8, M4_washer];
+M5_hex_screw =	[M5, hex_head,
+				9.24, 9.54, 3.5, M5_washer];
 
 No2_self_tapping = [No2, "self tapping screw",	// aka sheet metal screw
 				4.1, 4.3, 2.0, M2_washer];
@@ -64,7 +75,8 @@ No2_self_tapping = [No2, "self tapping screw",	// aka sheet metal screw
 function head_test(screw_type) = head();
 
 function screw_size(screw_type) = metric_name(screw_type[0]);
-function screw_name(screw_type) = screw_type[1];
+function screw_head_type(screw_type) = screw_type[1];
+function screw_name(screw_type) = screw_type(screw_type[1]);
 function screw_head_diameter(screw_type) = screw_type[2];
 function screw_head_clearance_diameter(screw_type) = screw_type[3];
 function screw_head_height(screw_type) = screw_type[4];
@@ -130,8 +142,10 @@ function nut_flat_clearance_radius(nut_type) = nut_clearance_radius(nut_type) * 
 M2_washer = [M2, "washer", metric_clearance_diameter(M2), 5.5, 0.3];
 M3_washer = [M3, "washer", metric_clearance_diameter(M3), 7, 0.6];
 M3_12mm_penny_washer = [M3, "penny washer", metric_clearance_diameter(M3), 12, 0.8];
+M4_washer = [M4, "washer", metric_clearance_diameter(M4), 9, 0.8];
 M4_washer_c = [M4, "form C washer", metric_clearance_diameter(M4), 9.8, 1];
-M5_washer_c = [M5, "form C washer", metric_clearance_diameter(M5), 12.2, 1];
+M5_washer = [M5, "washer", metric_clearance_diameter(M5), 10.0, 1.0];
+M5_washer_c = [M5, "form C washer", metric_clearance_diameter(M5), 12.0, 1];
 
 function washer_size(washer_type) = str(metric_name(washer_type[0]), washer_type[1] == "washer" ? "" : str("x", washer_type[3],"x", washer_type[4]));
 function washer_variant(washer_type) = washer_type[1];
