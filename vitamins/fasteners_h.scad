@@ -30,8 +30,10 @@ function metric_radius(size) = metric_diameter(size) / 2;
 function metric_clearance_radius(size) = metric_clearance_diameter(size) / 2;
 
 
-/////
-// Head types
+///////////
+// Screws
+
+// Screw head types
 cap_head =	["cap head screw"];
 hex_head =	["hex screw"];
 btn_head =	["button head screw"];
@@ -39,11 +41,17 @@ csk_head =	["countersunk screw"];
 
 function screw_type(head_type) = head_type[0];
 
-function head() = cylinder([10]);
+// Washer forms
+plain_washer =	["plain washer"];
+formA_washer =	plain_washer;
+formB_washer =	["form B washer"];
+formC_washer =	["form C washer"];
+formD_washer =	["form D washer"];
+penny_washer =	["penny washer"];
+spring_washer = 	["spring washer"];
 
+function washer_form(form) = form[0];
 
-///////////
-// Screws
 M2_washer = "defined later";
 M3_washer = "defined later";
 M4_washer = "defined later";
@@ -71,8 +79,6 @@ M5_hex_screw =	[M5, hex_head,
 
 No2_self_tapping = [No2, "self tapping screw",	// aka sheet metal screw
 				4.1, 4.3, 2.0, M2_washer];
-
-function head_test(screw_type) = head();
 
 function screw_size(screw_type) = metric_name(screw_type[0]);
 function screw_head_type(screw_type) = screw_type[1];
@@ -139,16 +145,16 @@ function nut_flat_clearance_radius(nut_type) = nut_clearance_radius(nut_type) * 
 // http://www.a2stainless.co.uk/Metric-Washers-Dimensional-Data_AHDHV.aspx
 
 // Washer types
-M2_washer = [M2, "washer", metric_clearance_diameter(M2), 5.5, 0.3];
-M3_washer = [M3, "washer", metric_clearance_diameter(M3), 7, 0.6];
-M3_12mm_penny_washer = [M3, "penny washer", metric_clearance_diameter(M3), 12, 0.8];
-M4_washer = [M4, "washer", metric_clearance_diameter(M4), 9, 0.8];
-M4_washer_c = [M4, "form C washer", metric_clearance_diameter(M4), 9.8, 1];
-M5_washer = [M5, "washer", metric_clearance_diameter(M5), 10.0, 1.0];
-M5_washer_c = [M5, "form C washer", metric_clearance_diameter(M5), 12.0, 1];
+M2_washer = [M2, plain_washer, metric_clearance_diameter(M2), 5.5, 0.3];
+M3_washer = [M3, plain_washer, metric_clearance_diameter(M3), 7, 0.6];
+M3_12mm_penny_washer = [M3, penny_washer, metric_clearance_diameter(M3), 12, 0.8];
+M4_washer = [M4, plain_washer, metric_clearance_diameter(M4), 9, 0.8];
+M4_washer_c = [M4, formC_washer, metric_clearance_diameter(M4), 9.8, 1];
+M5_washer = [M5, plain_washer, metric_clearance_diameter(M5), 10.0, 1.0];
+M5_washer_c = [M5, formC_washer, metric_clearance_diameter(M5), 12.0, 1];
 
-function washer_size(washer_type) = str(metric_name(washer_type[0]), washer_type[1] == "washer" ? "" : str("x", washer_type[3],"x", washer_type[4]));
-function washer_variant(washer_type) = washer_type[1];
+function washer_size(washer_type) = str(metric_name(washer_type[0]), washer_type[1] == penny_washer ? str("x", washer_type[3],"x", washer_type[4]) : "");
+function washer_variant(washer_type) = washer_form(washer_type[1]);
 function washer_bore_diameter(washer_type) = metric_clearance_diameter(washer_type[0]);
 function washer_outer_diameter(washer_type) = washer_type[3];
 function washer_thickness(washer_type) = washer_type[4];

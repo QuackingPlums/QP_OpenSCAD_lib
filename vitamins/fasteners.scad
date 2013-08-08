@@ -211,6 +211,8 @@ module BOM_stud(quantity = 1, stud_type = M3_stud, length = 25, description = "u
 
 //screw(screw_type = M3_csk_screw, washer = false, exploded = 0, colour = "yellow");
 //BOM_screw(screw_type = M3_csk_screw);
+BOM_washer(quantity = 2, washer_type = M3_12mm_penny_washer, description = "test");
+BOM_washer(quantity = 20, washer_type = M4_washer_c, description = "test");
 //nut(exploded = 10);
 //nut_trap();
 //nyloc(exploded = 10);
