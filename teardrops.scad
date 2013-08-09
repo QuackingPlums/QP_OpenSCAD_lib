@@ -46,3 +46,18 @@ module vertical_tearslot(h, r, l, center = true)
             translate([0, -l / 2, 0])
                 circle(r = r, center = true);
         }
+
+module qp_tearslot(h, r, w, center)							// corrected for actual width
+    linear_extrude(height = h, convexity = 6, center = center)
+        hull() {
+            translate([r-w/2,0,0]) teardrop_2D(r, true);
+            translate([w/2-r,0,0]) teardrop_2D(r, true);
+        }
+
+module qp_vertical_tearslot(h, r, l, center = true)				// corrected for actual length
+    linear_extrude(height = h, convexity = 6, center = center)
+        hull() {
+            translate([0, l/2-r]) teardrop_2D(r, true);
+            translate([0, r-l/2, 0])
+                circle(r = r, center = true);
+        }
