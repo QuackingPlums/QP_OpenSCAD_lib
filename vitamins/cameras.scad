@@ -28,6 +28,16 @@ module basic_camera(camera_type = GoPro_HD_Hero3_Black)
 		}
 }
 
+module FoV_frustum(FoV_angle = 114, lens_radius = camera_lens_diameter(GoPro_HD_Hero3_Black) / 2, depth = 3, debug = false)
+{
+	r1 = lens_radius;
+	r2 = r1 + depth * tan(FoV_angle / 2);
+
+	if (debug) echo(str("FoV frustum = ", r2 * 2));
+
+	cylinder(h = depth, r1 = r1, r2 = r2);
+}
+
 module GoPro_HD_Hero3_Black()
 {
 	ct = GoPro_HD_Hero3_Black;
@@ -101,5 +111,6 @@ module GoPro_mount()
 }
 
 
-basic_camera(GoPro_HD_Hero2);
+//basic_camera(GoPro_HD_Hero2);
 //GoPro_HD_Hero3_Black();
+//FoV_frustum();

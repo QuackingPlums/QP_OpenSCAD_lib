@@ -16,6 +16,7 @@ GoPro_HD_Hero3_Black = ["GoPro HD Hero3: Black Edition",		// GoPro HD Hero3	 ** 
 // CoG left/right ~ 30mm/30mm
 // CoG top/bottom ~ 22mm/18mm
 // CoG front/back ~ 12mm/9mm
+// FoV = 114mm
 
 GoPro_HD_Hero2 = ["GoPro HD Hero2",							// GoPro HD Hero2 ** VERIFIED **
 	60.1, 42.1, 30.1,			// width, height, depth
