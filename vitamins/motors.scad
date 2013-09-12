@@ -126,7 +126,7 @@ module motor_mount_slots(motor_type = iPower_GBM2208) // ** DEPRECATE ** - use m
 
 module motor_mount_slot(motor_type = iPower_GBM2208)	// ** DEPRECATE **
 {
-	echo("** DEPRECATED ** motor_mount_slot()");
+	echo("** DEPRECATED ** motor_mount_slot() - use motor_base_mount() instead");
 
 	s_min = motor_mount_holes_1(motor_type);
 	s_max = motor_mount_holes_2(motor_type);

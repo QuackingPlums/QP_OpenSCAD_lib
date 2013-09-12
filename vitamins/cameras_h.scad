@@ -21,12 +21,12 @@ GoPro_HD_Hero3_Black = ["GoPro HD Hero3: Black Edition",		// GoPro HD Hero3	 ** 
 GoPro_HD_Hero2 = ["GoPro HD Hero2",							// GoPro HD Hero2 ** VERIFIED **
 	60.1, 42.1, 30.1,					// width, height, depth
 	"None",							// mount type ** DEPRECATED **
-	20.5, 14.6, 6, 3.6, 2.0];			// lens diameter, lens x-offset, lens y-offset, lens z-offset (from center), lens dome
+	20.0, 14.6, 6, 3.6, 2.0];			// lens diameter, lens x-offset, lens y-offset, lens z-offset (from center), lens dome
 
 GoPro_HD_Hero = ["GoPro HD Hero",								// GoPro HD Hero ** VERIFIED **
 	60.1, 41.9, 30.15,				// width, height, depth
 	"None",							// mount type ** DEPRECATED **
-	20.3, 14.6, 6, 3.6, 1.5];			// lens diameter, lens x-offset, lens y-offset, lens z-offset (from center), lens dome
+	20.2, 14.6, 6, 3.6, 1.5];			// lens diameter, lens x-offset, lens y-offset, lens z-offset (from center), lens dome
 
 Panasonic_GF3 = ["Panasonic Lumix DMC-GF3",
 	107.7, 67.1, 32.5,
