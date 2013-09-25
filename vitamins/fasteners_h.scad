@@ -81,6 +81,7 @@ No2_self_tapping = [No2, "self tapping screw",	// aka sheet metal screw
 				4.1, 4.3, 2.0, M2_washer];
 
 function screw_size(screw_type) = metric_name(screw_type[0]);
+function screw_type(screw_type) = screw_type[0];
 function screw_head_type(screw_type) = screw_type[1];
 function screw_name(screw_type) = screw_type(screw_type[1]);
 function screw_head_diameter(screw_type) = screw_type[2];
