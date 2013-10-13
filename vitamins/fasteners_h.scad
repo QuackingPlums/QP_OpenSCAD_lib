@@ -20,6 +20,8 @@ M2 =		["M2", 2, 2.2];
 M3 =		["M3", 3, 3.3];
 M4 =		["M4", 4, 4.3];
 M5 =		["M5", 5, 5.3];
+M6 =		["M6", 6, 6.3];			// check!
+M8 =		["M8", 8, 8.3];			// check!
 No2 =	["No2", 1.7, 2.5];		// 2.2mm nominal, 1.7 into ABS, 
 
 function metric_name(size) = size[0];
@@ -56,6 +58,8 @@ M2_washer = "defined later";
 M3_washer = "defined later";
 M4_washer = "defined later";
 M5_washer = "defined later";
+M6_washer = "defined later";
+M8_washer = "defined later";
 
 // Screw types
 M2_cap_screw =	[M2, cap_head,				// aka socket screw
@@ -70,6 +74,10 @@ M4_cap_screw =	[M4, cap_head,
 				7.0, 7.3, 4.0, M4_washer];
 M5_cap_screw =	[M5, cap_head,
 				8.5, 8.8, 5.0, M5_washer];
+M6_cap_screw =	[M6, cap_head,				// check!
+				10, 10.3, 6.0, M6_washer];
+M8_cap_screw =	[M8, cap_head,				// check!
+				13, 13.3, 8.0, M8_washer];
 M3_hex_screw =	[M3, hex_head,				// aka hex set screw or hex bolt
 				6.35, 6.65, 2, M3_washer];
 M4_hex_screw =	[M4, hex_head,
@@ -121,6 +129,14 @@ M5_nut = 	[M5, "nut",
 			9.24, 9.44, 4.0, 4.2, 5.0];
 M5_nyloc = 	[M5, "nyloc nut", 
 			9.24, 9.44, 5.0, 5.2, 5.0];
+M6_nut =		[M6, "nut",					// check!
+			11.5, 11.7, 5.0, 5.2, 6.0];
+M6_nyloc =	[M6, "nyloc nut",				// check!
+			11.5, 11.7, 6.0, 6.2, 6.0];
+M8_nut =		[M8, "nut",					// check!
+			15.0, 15.2, 6.5, 6.7, 8.0];
+M8_nyloc =	[M8, "nyloc nut",				// check!
+			15.0, 15.0, 8.5, 8.7, 8.0];
 
 function nut_size(nut_type) = metric_name(nut_type[0]);
 function nut_variant(nut_type) = nut_type[1];
@@ -128,7 +144,7 @@ function nut_diameter(nut_type) = nut_type[2];
 function nut_clearance_diameter(nut_type) = nut_type[3];
 function nut_height(nut_type) = nut_type[4];
 function nut_clearance_height(nut_type) = nut_type[5];
-function nut_trap_depth(nut_type) = nut_type[6];	// this is the distance below the "surface"
+function nut_trap_depth(nut_type) = nut_type[6];	// this is the distance below the "surface" = usually equal to thread size
 
 function nut_thread(nut_type) = metric_diameter(nut_type[0]);
 function nut_radius(nut_type) = nut_diameter(nut_type) / 2;
@@ -153,6 +169,8 @@ M4_washer = [M4, plain_washer, metric_clearance_diameter(M4), 9, 0.8];
 M4_washer_c = [M4, formC_washer, metric_clearance_diameter(M4), 9.8, 1];
 M5_washer = [M5, plain_washer, metric_clearance_diameter(M5), 10.0, 1.0];
 M5_washer_c = [M5, formC_washer, metric_clearance_diameter(M5), 12.0, 1];
+M6_washer = [M6, plain_washer, metric_clearance_diameter(M6), 11.5, 1.45];		// check!
+M8_washer = [M8, plain_washer, metric_clearance_diameter(M8), 17.0, 1.6];		// check!
 
 function washer_size(washer_type) = str(metric_name(washer_type[0]), washer_type[1] == penny_washer ? str("x", washer_type[3],"x", washer_type[4]) : "");
 function washer_variant(washer_type) = washer_form(washer_type[1]);
