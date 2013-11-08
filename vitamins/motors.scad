@@ -67,10 +67,10 @@ module motor(motor_type = iPower_GBM2208)
 	}
 }
 
-module motor_base_mount(motor_type = iPower_GBM2208, depth = 3)
+module motor_base_mount(motor_type = iPower_GBM2208, depth = 3, hole_pattern = 4, hole_radius = metric_clearance_radius(M3))
 {
-	h_pat = 4;							// all motors have a 4-way base mount?
-	h_radius = metric_clearance_radius(M3);	// all motors have M3 base mount holes?
+	h_pat = hole_pattern;							// all motors have a 4-way base mount?
+	h_radius = hole_radius;					// all motors have M3 base mount holes?
 	h_min = motor_mount_holes_1(motor_type);	// slot min
 	h_max = motor_mount_holes_2(motor_type);	// slot max
 
