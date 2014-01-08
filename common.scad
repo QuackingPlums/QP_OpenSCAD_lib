@@ -19,3 +19,23 @@ module position(translate = [], rotate = [], colour = -1)
 				else
 					color(colour)
 						child(i);
+
+/*
+Draw build platform template for plating up objects.
+Default to Mendel90 with IKEA mirror tile.
+*/
+module show_build_area(x = 200, y = 200, corner_radius = 20)
+{
+	%	// transparency modifier - doesn't print
+	hull()
+	{
+		translate([x/2 - corner_radius, y/2 - corner_radius, -1])
+			cylinder(h = 1, r = corner_radius);
+		translate([-x/2 + corner_radius, y/2 - corner_radius, -1])
+			cylinder(h = 1, r = corner_radius);
+		translate([-x/2 + corner_radius, -y/2 + corner_radius, -1])
+			cylinder(h = 1, r = corner_radius);
+		translate([x/2 - corner_radius, -y/2 + corner_radius, -1])
+			cylinder(h = 1, r = corner_radius);
+	}
+}
