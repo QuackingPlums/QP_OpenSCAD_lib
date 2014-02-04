@@ -12,10 +12,10 @@ use <Makerbot font (Thingiverse 22730)/font_DesignerBlock_lo.scad>;
 layer_height = 0.2;
 extrusion_width = 0.3;
 
-translate([0, 30, 0])
+*translate([0, 30, 0])
 	text(text = "qp", size = 9, height = layer_height, width = extrusion_width, spacing = 1.05, align = "C");
 
-outline(text = "qp", size = 4, height = layer_height, width = extrusion_width, spacing = 1.05, align = "C");
+*outline(text = "qp", size = 4, height = layer_height, width = extrusion_width, spacing = 1.05, align = "C");
 
 module text(text, size=5.0, height=1.0, spacing=1.0, align="C")
 {
