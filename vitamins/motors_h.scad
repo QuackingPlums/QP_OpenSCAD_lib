@@ -60,11 +60,22 @@ iPower_GBM2208 = ["iFlight iPower GBM2208-80 brushless gimbal motor",				// 100-
 	3.17, 0, 0,		// shaft d, shaft h, shaft direction
 	12, 4, M2];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size
 
+GLB_GBM2208 = ["Goodluckbuy GBM2208-80 brushless gimbal motor",						// 100-200g (GoPro = 75g) ** VERIFIED **
+	22, 8, 16, 19,	// stator d, stator h, bottom mount hole centers min, max
+	25, 27.7, 5.5,	// base d1, base d2, base h
+	0, 0,			// base ring d, base ring h
+	27.7, 10.5,		// bell d, bell h
+	25, 5,			// bell cap d, bell cap h
+	0, 0,			// shaft collar d, shaft collar h
+	3.17, 0, 0,		// shaft d, shaft h, shaft direction
+	12, 4, M2];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size
+
 RCTimer_GBM5010 = ["RCTimer 5010-021-150T", 								// ???g (DSLR?!)
 	40, 8, 19, 30, 	42, 50, 6, 	50, 3, 	50, 10, 20, 1, 0, 0, 3.17, 15.5, -1, 12, 3];
 
 RCTimer_GBM2212 = ["RCTimer HP2212-015-70T brushless gimbal motor",				// 100-200g (GoPro = 75g)
 	22, 12, 16, 19, 	26, 28, 1, 	28, 6, 	28, 13, 27, 3, 10, 1, 3.17, 10, -1, 12, 3];
+
 
 /*
 name

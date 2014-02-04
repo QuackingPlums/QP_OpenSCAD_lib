@@ -142,7 +142,7 @@ module motor_mount_slot(motor_type = iPower_GBM2208)	// ** DEPRECATE **
 
 module motor_top_mount_holes(motor_type = iPower_GBM2208, hole_size = screw_clearance_diameter(M3_cap_screw))	// ** DEPRECATE ** - use motor_top_mount() instead
 {
-	echo("** DEPRECATED ** motor_top_mount_holes()");
+	echo("** DEPRECATED ** motor_top_mount_holes() - use motor_top_mount() instead");
 
 	h_pos = motor_top_mount_holes(motor_type);
 	h_pat = motor_top_mount_hole_pattern(motor_type);
@@ -173,4 +173,4 @@ module motor_screws(screw_type = M3_cap_screw, length = 12, diameter = 16, patte
 //motor_top_mount_holes(hole_size = screw_clearance_diameter(M2_cap_screw));
 //motor_top_mount_holes(RCTimer_GBM2212);
 //motor_base_mount();
-motor_top_mount();
+//motor_top_mount();
