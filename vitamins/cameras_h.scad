@@ -12,6 +12,7 @@ GoPro_HD_Hero3_Black = ["GoPro HD Hero3: Black Edition",		// GoPro HD Hero3	 ** 
 	59.1, 41, 21.1,					// width, height, depth
 	"None",							// mount type ** DEPRECATED **
 	23.0, 15.05, 7.85, 7.0, 1.2];		// lens diameter, lens x-offset, lens y-offset, lens z-offset (from center), lens dome
+
 // mass = 75g
 // CoG left/right ~ 30mm/30mm
 // CoG top/bottom ~ 22mm/18mm
