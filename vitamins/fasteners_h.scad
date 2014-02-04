@@ -22,7 +22,7 @@ M4 =		["M4", 4, 4.3];
 M5 =		["M5", 5, 5.3];
 M6 =		["M6", 6, 6.3];			// check!
 M8 =		["M8", 8, 8.3];			// check!
-No2 =	["No2", 1.7, 2.5];		// 2.2mm nominal, 1.7 into ABS, 
+No2 =	["No2", 2.2, 2.5];		// 2.2mm nominal, 1.7 into ABS, 
 
 function metric_name(size) = size[0];
 function metric_diameter(size) = size[1];

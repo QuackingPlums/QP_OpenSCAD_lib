@@ -84,7 +84,32 @@ module screw_head_clearance_hole(screw_type = M3_cap_screw)
 module self_tap_hole(screw_type = No2, depth = 10)
 {
 	translate([0, 0, -depth])
-		poly_cylinder(h = depth, r = metric_radius(screw_type), $fn = 3);
+	{
+		cylinder(h = depth, r = metric_radius(screw_type) * 1.23, $fn = 3);
+		//%cylinder(h = depth + ff, r = metric_radius(screw_type), $fn=100);
+	}
+}
+
+module self_tap_hole_test(screw_type = No2, thick = 3, )
+{
+	r = metric_radius(screw_type);
+
+	difference()
+	{
+		// plate
+		cube([60, 10, thick]);
+	
+		// holes
+		for (i = [0:10])
+			translate([i*5 + 5, 5, -ff/2])
+			{
+				// self tap holes
+				cylinder(h = thick + ff, r = i * 0.1 + r, $fn=3);
+	
+				// ghost of screw for comparison
+				%cylinder(h = thick + 1, r = r);
+			}
+	}
 }
 
 /////////
@@ -211,8 +236,8 @@ module BOM_stud(quantity = 1, stud_type = M3_stud, length = 25, description = "u
 
 //screw(screw_type = M3_csk_screw, washer = false, exploded = 0, colour = "yellow");
 //BOM_screw(screw_type = M3_csk_screw);
-BOM_washer(quantity = 2, washer_type = M3_12mm_penny_washer, description = "test");
-BOM_washer(quantity = 20, washer_type = M4_washer_c, description = "test");
+//BOM_washer(quantity = 2, washer_type = M3_12mm_penny_washer, description = "test");
+//BOM_washer(quantity = 20, washer_type = M4_washer_c, description = "test");
 //nut(exploded = 10);
 //nut_trap();
 //nyloc(exploded = 10);
@@ -220,3 +245,4 @@ BOM_washer(quantity = 20, washer_type = M4_washer_c, description = "test");
 //screw_clearance_hole(screw_type = M2, depth = 12);
 //screw_head_clearance_hole();
 //self_tap_hole(No2, 10);
+//self_tap_hole_test(No2, 3);
