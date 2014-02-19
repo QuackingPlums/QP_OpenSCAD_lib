@@ -11,16 +11,16 @@
 module position(translate = [], rotate = [], colour = -1)
 Rotate, translate and colour an arbitrary list of objects. In that order
 translate		coordinate vector
-rotate    	axis angles
+rotate    		axis angles
 colour   		any valid w3/css3 colour name
 
 module show_build_area(x = 200, y = 200, corner_radius = 20)
 Draw (non-printing) build platform template
 Useful for plating up objects.
-Default to Mendel90 with IKEA mirror tile.
-x			x dimension
-y			y dimension
-corner_radius	for IKEA mirror tiles (SÖRLI)
+Default to Mendel90 with IKEA SÖRLI mirror tile.
+x				x dimension
+y				y dimension
+corner_radius	20mm for SÖRLI
 */
 
 
