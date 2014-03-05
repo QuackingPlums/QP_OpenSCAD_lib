@@ -14,7 +14,7 @@
 // http://www.numberfactory.com/nf_metric.html
 
 /////////////////////
-// Metric/ISO/US sizes
+// Metric/ISO/US standard sizes
 
 M2 =		["M2", 2, 2.2];
 M3 =		["M3", 3, 3.3];
@@ -22,8 +22,10 @@ M4 =		["M4", 4, 4.3];
 M5 =		["M5", 5, 5.3];
 M6 =		["M6", 6, 6.3];			// check!
 M8 =		["M8", 8, 8.3];			// check!
-No2 =	["No2", 2.2, 2.5];		// 2.2mm nominal, 1.7 into ABS, 
+No2 =	["No2", 2.2, 2.5];		// 2.2mm nominal, 1.7 into ABS
+UNC_onequarter_20 = ["1/4-20 UNC", 6.35, 6.65];
 
+// ***** DEPRECATE THESE *****
 function metric_name(size) = size[0];
 function metric_diameter(size) = size[1];
 function metric_clearance_diameter(size) = size[2];
@@ -31,6 +33,13 @@ function metric_clearance_diameter(size) = size[2];
 function metric_radius(size) = metric_diameter(size) / 2;
 function metric_clearance_radius(size) = metric_clearance_diameter(size) / 2;
 
+// ***** NEW FUNCTIONS *****
+function stdscrew_name(size) = size[0];
+function stdscrew_diameter(size) = size[1];
+function stdscrew_clearance_diameter(size) = size[2];
+
+function stdscrew_radius(size) = stdscrew_diameter(size) / 2;
+function stdscrew_clearance_radius(size) = stdscrew_clearance_diameter(size) / 2;
 
 ///////////
 // Screws

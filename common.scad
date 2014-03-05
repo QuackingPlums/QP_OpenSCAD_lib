@@ -25,6 +25,7 @@ corner_radius	20mm for SÖRLI
 
 
 module position(translate = [], rotate = [], colour = -1)
+{
 	for (i = [0 : $children-1])
 		translate(translate)
 			rotate(rotate)
@@ -33,6 +34,7 @@ module position(translate = [], rotate = [], colour = -1)
 				else
 					color(colour)
 						child(i);
+}
 
 module show_build_area(x = 200, y = 200, corner_radius = 20)
 {
@@ -49,3 +51,4 @@ module show_build_area(x = 200, y = 200, corner_radius = 20)
 			cylinder(h = 1, r = corner_radius);
 	}
 }
+
