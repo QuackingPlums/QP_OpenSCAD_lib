@@ -32,7 +32,7 @@ GoPro_HD_Hero = ["GoPro HD Hero",								// GoPro HD Hero ** VERIFIED **
 Panasonic_GF3 = ["Panasonic Lumix DMC-GF3",
 	107.7, 67.1, 32.5,
 	"1/4inUNC",
-	0, 0, 0, 0, 0];
+	56, 10, 28, -3, 0];
 
 Sony_NEX5N = ["Sony NEX-5N",
 	111, 59, 38,
