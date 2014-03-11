@@ -21,6 +21,12 @@ Default to Mendel90 with IKEA SÖRLI mirror tile.
 x				x dimension
 y				y dimension
 corner_radius	20mm for SÖRLI
+
+module slot(length, width, depth)
+Subtractive rounded-end slot shape to fit within given dimensions
+length			length of slot including radii
+width			width of slot
+depth			depth of slot
 */
 
 
@@ -49,6 +55,16 @@ module show_build_area(x = 200, y = 200, corner_radius = 20)
 			cylinder(h = 1, r = corner_radius);
 		translate([x/2 - corner_radius, -y/2 + corner_radius, -1])
 			cylinder(h = 1, r = corner_radius);
+	}
+}
+
+module slot(length, width, depth)
+{
+	hull()
+	{
+		cylinder(h = depth, r = width/2);
+		translate([length - width, 0, 0])
+			cylinder(h = depth, r = width/2);
 	}
 }
 
