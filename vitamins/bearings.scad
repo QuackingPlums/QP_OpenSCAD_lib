@@ -39,5 +39,17 @@ module bearing(bearing_type = MF106zz)
 		}
 }
 
+module BOM(quantity, vitamin, description = "undefined")
+{
+	d = (description != "undefined") ? str(" [", description, "]") : "";
+	echo(str("BOM: ", quantity, "x ", vitamin, d));
+}
+
+module BOM_bearing(quantity = 1, bearing_type = MF128rs, description = "undefined")
+{
+	vitamin = str(bearing_name(bearing_type));
+	BOM(quantity, vitamin, description);
+}
+
 //bearing(MF106zz);
-bearing(MR6082rs);
+//bearing(MR6082rs);
