@@ -110,7 +110,58 @@ module GoPro_mount()
 {
 }
 
+module Panasonic_GF3()
+{
+	c = Panasonic_GF3;
+
+	width = camera_width(c);
+	depth = camera_depth(c);
+	height = camera_height(c);
+	lens = camera_lens_dy(c);
+	lens_d = camera_lens_diameter(c);
+	lens_bulge = lens_d + 10;
+
+	union()
+	{
+		// main body
+		color("dimgrey")
+		translate([-width/2, -depth/2, 0])
+			cube([width, depth, height - 12]);
+
+		// lens bulge
+		color("dimgrey")
+		translate([camera_lens_dx(c), depth/2, height/2 + camera_lens_dz(c)])
+			rotate([90, 0, 0])
+				difference()
+				{
+					cylinder(h = depth, r = lens_bulge/2);
+					translate([-lens_bulge/2, -lens_bulge, -ff/2])
+						cube([lens_bulge + ff, lens_bulge + ff, depth + ff]);
+				}
+
+		// lens
+		translate([camera_lens_dx(c), -depth/2, height/2 + camera_lens_dz(c)])
+			rotate([90, 0, 0])
+			{
+				color("dimgrey")
+				difference()
+				{
+					cylinder(h = lens, r = lens_d/2);
+					translate([0, 0, camera_lens_dy(c) - 4])
+					cylinder(h = lens, r = lens_d/2 - 2);
+				}
+				color("lightblue")
+					cylinder(h = lens -3, r = lens_d/4);
+			}
+
+		// shutter button
+		color("silver")
+		translate([-30, 0, height - 12])
+			cylinder(h = 3, r = 6);
+	}
+}
 
 //basic_camera(GoPro_HD_Hero2);
 //GoPro_HD_Hero3_Black();
 //FoV_frustum();
+Panasonic_GF3();
