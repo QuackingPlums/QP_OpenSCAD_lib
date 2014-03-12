@@ -15,6 +15,16 @@ CDW_ABS_Red = "IndianRed";
 CDW_ABS_White = "White";
 CDW_ABS_Yellow = "Gold";
 
+BF66_ABS_Black = "DimGrey";
+BF66_ABS_Blue = "DodgerBlue";//?
+BF66_ABS_White = "White";
+
+ES_ABS_Clear = "GhostWhite";//?
+ES_ABS_Green = "Lime";//?
+ES_ABS_Orange = "Orange";//?
+ES_ABS_Purple = "DarkViolet";//?
+ES_ABS_Yellow = "Yellow";//?
+
 CDW_PLA_Blue = "Blue";
 CDW_PLA_Orange = "DarkOrange";
 
