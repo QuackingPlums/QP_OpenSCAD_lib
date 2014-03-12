@@ -53,3 +53,4 @@ module BOM_bearing(quantity = 1, bearing_type = MF128rs, description = "undefine
 
 //bearing(MF106zz);
 //bearing(MR6082rs);
+//BOM_bearing(quantity = 1, bearing_type = MF128rs, description = "undefined");
