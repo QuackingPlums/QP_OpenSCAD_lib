@@ -9,8 +9,7 @@
 
 include <cameras_h.scad>;
 
-$fs = 0.5;
-$fa = 5;
+$fn = 30;
 
 ff = 0.05;	// fudge factor to prevent barfing on coincident faces
 
@@ -115,29 +114,41 @@ module Panasonic_GF3()
 	c = Panasonic_GF3;
 
 	width = camera_width(c);
-	depth = camera_depth(c);
+	depth = camera_depth(c) - 6;
 	height = camera_height(c);
 	lens = camera_lens_dy(c);
 	lens_d = camera_lens_diameter(c);
 	lens_bulge = lens_d + 10;
 
+	minkowski_sphere = 12.0;
+	minkowski_radius = minkowski_sphere/2;
+
 	union()
 	{
 		// main body
 		color("dimgrey")
-		translate([-width/2, -depth/2, 0])
-			cube([width, depth, height - 12]);
+		minkowski()
+		{
+			
+			union()
+			{
+				// cuboidal main chassis
+				translate([-(width - minkowski_sphere)/2, -(depth - minkowski_sphere)/2, minkowski_radius])
+					cube([width-minkowski_sphere, depth - minkowski_sphere, height - 12 - minkowski_sphere]);
+		
+				// lens bulge
+				translate([camera_lens_dx(c), (depth - minkowski_sphere)/2, height/2 + camera_lens_dz(c)])
+					rotate([90, 0, 0])
+						difference()
+						{
+							cylinder(h = depth - minkowski_sphere, r = (lens_bulge - minkowski_sphere)/2);
+							translate([-lens_bulge/2, -lens_bulge, -ff/2])
+								cube([lens_bulge + ff, lens_bulge + ff, depth + ff]);
+						}
+			}
 
-		// lens bulge
-		color("dimgrey")
-		translate([camera_lens_dx(c), depth/2, height/2 + camera_lens_dz(c)])
-			rotate([90, 0, 0])
-				difference()
-				{
-					cylinder(h = depth, r = lens_bulge/2);
-					translate([-lens_bulge/2, -lens_bulge, -ff/2])
-						cube([lens_bulge + ff, lens_bulge + ff, depth + ff]);
-				}
+			sphere(minkowski_radius, $fn = 8);
+		}
 
 		// lens
 		translate([camera_lens_dx(c), -depth/2, height/2 + camera_lens_dz(c)])
