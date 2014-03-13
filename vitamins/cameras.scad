@@ -13,6 +13,23 @@ $fn = 30;
 
 ff = 0.05;	// fudge factor to prevent barfing on coincident faces
 
+module camera(camera_type)
+{
+	if (exists(camera_type[0], [GoPro_HD_Hero3_Black, Panasonic_GF3]))
+	{
+		if (camera_type == GoPro_HD_Hero3_Black)
+			GoPro_HD_Hero3_Black();
+
+		if (camera_type == Panasonic_GF3)
+			Panasonic_GF3();
+	}
+	else
+		basic_camera(camera_type = camera_type);
+}
+
+function exists(match, search) =
+	len(search([match], search, 0)[0]) > 0 ? true : false;
+
 module basic_camera(camera_type = GoPro_HD_Hero3_Black)
 {
 	translate([0, 0, camera_height(camera_type) / 2])
@@ -175,4 +192,5 @@ module Panasonic_GF3()
 //basic_camera(GoPro_HD_Hero2);
 //GoPro_HD_Hero3_Black();
 //FoV_frustum();
-Panasonic_GF3();
+//Panasonic_GF3();
+camera(Panasonic_GF3);
