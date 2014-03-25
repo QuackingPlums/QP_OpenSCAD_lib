@@ -30,16 +30,17 @@ depth			depth of slot
 */
 
 
-module position(translate = [], rotate = [], colour = -1)
+module position(translate = [], rotate = [], mirror = [0, 0, 0], colour = -1)
 {
 	for (i = [0 : $children-1])
 		translate(translate)
 			rotate(rotate)
-				if (colour == -1)
-					child(i);
-				else
-					color(colour)
+				mirror(mirror)
+					if (colour == -1)
 						child(i);
+					else
+						color(colour)
+							child(i);
 }
 
 module show_build_area(x = 200, y = 200, corner_radius = 20)
