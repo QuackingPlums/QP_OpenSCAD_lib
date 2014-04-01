@@ -10,6 +10,10 @@
 // Lipo types
 PolyPower_3S_1300_20C = ["Robotbirds Poly Power 3S 1300 20C",
 	72, 36, 25];			// L, W, H
+Zippy_Compact_3S_1000_25C = ["Zippy Compact 3S 1000 25C",
+	76, 34, 15];
+Zippy_Compact_3S_1300_25C = ["Zippy Compact 3S 1300 20C",
+	76, 35, 19];
 
 function lipo_name(lipo_type) = lipo_type[0];
 function lipo_length(lipo_type) = lipo_type[1];
