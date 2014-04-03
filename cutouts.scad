@@ -1,12 +1,17 @@
 $fn = 50;
 
-//square_cutout();
-slot();
-//diagonal_cutout1(x = 12, y = 24, r = 1);
-//zigzag_cutout1 (x = 180, y = 24, r = 1, strong = true);
+x = 40;
+y = 50;
+z = 1.2;
+r = 1;
 
-//diagonal_cutout2(x = 20, y = 20, width = 3, r = 1.5);
-//zigzag_cutout2 (x = 120, y = 20, width = 3, r = 1.5);
+%cube([x, y, z]);
+//square_cutout();
+//slot();
+//diagonal_cutout1(x = x, y = y, width = 3, depth = z, r = r);
+zigzag_cutout1 (x = x, y = y, width = 3, depth = z, r = r, strong = false);
+//diagonal_cutout2(x = x, y = y, width = 3, depth = z, r = r);
+//zigzag_cutout2 (x = x, y = y, width = 3, depth = z, r = r);
 
 module triangle_cutout(x = 20, y = 10, depth = 3, r = 1)
 {
