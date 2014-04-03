@@ -4,14 +4,17 @@ $fn = 50;
 //y = 50;
 //z = 1.2;
 //r = 3;
-
+//w = 6;
+//
 //%cube([x, y, z+1]);
-//square_cutout();
-//slot();
-//diagonal_cutout1(x = x, y = y, width = 3, depth = z, r = r);
-//zigzag_cutout1 (x = x, y = y, width = 3, depth = z, r = r, strong = false);
-//diagonal_cutout2(x = x, y = y, width = 3, depth = z, r = r);
-//zigzag_cutout2 (x = x, y = y, width = 5, depth = z, r = r, strong = false);
+
+//square_cutout(x = x, y = y, width = w, depth = z, r = r);
+//slot(length = x, depth = z, r = r);
+//diagonal_cutout1(x = x, y = y, width = w, depth = z, r = r);
+//zigzag_cutout1 (x = x, y = y, width = w, depth = z, r = r, strong = false);
+//cross_cutout(x = x, y = y, width = w, depth = z, r = r);
+//diagonal_cutout2(x = x, y = y, width = w, depth = z, r = r);
+//zigzag_cutout2 (x = x, y = y, width = w, depth = z, r = r, strong = false);
 
 module triangle_cutout(x = 20, y = 10, depth = 3, r = 1)
 {
@@ -56,10 +59,6 @@ module diagonal_cutout1(x = 100, y = 30, width = 3, depth = 1.2, r = 2)
 	a = atan(y/x);					// angle of diagonal
 	h = sqrt(pow(x,2) + pow(y,2));	// length of diagonal
 
-	*rotate([0, 0, a])
-		translate([0, -width/2, 0])
-			cube([h, width, 0.1]);
-
 	hull()
 	{
 		translate([r, y - r, 0])
@@ -79,8 +78,6 @@ module diagonal_cutout1(x = 100, y = 30, width = 3, depth = 1.2, r = 2)
 		translate([width/2 / sin(a) + (r + r / cos(a)) / tan(a), r, 0])
 			cylinder(h = depth, r = r);		
 	}
-
-	//%cube([x, y, 0.5]);
 }
 
 module zigzag_cutout1(x = 100, y = 30, width = 3, depth = 1.2, r = 2, strong = true)
@@ -102,6 +99,61 @@ module zigzag_cutout1(x = 100, y = 30, width = 3, depth = 1.2, r = 2, strong = t
 
 		// mask
 		square_cutout(x = x, y = y, depth = depth, r = r);
+	}
+}
+
+module cross_cutout(x = 100, y = 30, width = 3, depth = 1.2, r = 2)
+{
+	a = atan(y/x);					// angle of diagonals
+	h = sqrt(pow(x,2) + pow(y,2));	// length of diagonals
+
+	x_inset = width/2 / sin(a) + (r + r / cos(a)) / tan(a);
+	y_inset = width/2 / cos(a) + tan(a) * (r + r / sin(a));
+	x_point = (y/2 - y_inset) / tan(a) + r;
+	y_point = (x/2 - x_inset) * tan(a) + r;
+
+	// top
+	hull()
+	{
+		translate([x_inset, y - r, 0])
+			cylinder(h = depth, r = r);
+		translate([x - x_inset, y - r, 0])
+			cylinder(h = depth, r = r);		
+		translate([x/2, y - y_point, 0])
+			cylinder(h = depth, r = r);
+	}
+
+	// right
+	hull()
+	{
+		translate([x - r, y - y_inset, 0])
+			cylinder(h = depth, r = r);
+		translate([x - r, y_inset, 0])
+			cylinder(h = depth, r = r);
+		translate([x - x_point, y/2, 0])
+			cylinder(h = depth, r = r);
+	}
+
+	// bottom
+	hull()
+	{
+		translate([x_inset, r, 0])
+			cylinder(h = depth, r = r);
+		translate([x - x_inset, r, 0])
+			cylinder(h = depth, r = r);
+		translate([x/2, y_point, 0])
+			cylinder(h = depth, r = r);
+	}
+
+	// left
+	hull()
+	{
+		translate([r, y - y_inset, 0])
+			cylinder(h = depth, r = r);
+		translate([x_point, y/2, 0])
+			cylinder(h = depth, r = r);
+		translate([r, y_inset, 0])
+			cylinder(h = depth, r = r);
 	}
 }
 
