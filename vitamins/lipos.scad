@@ -15,6 +15,7 @@ ff = 0.05;	// fudge factor to prevent barfing on coincident faces
 
 module lipo(lipo_type = PolyPower_3S_1300_20C)
 {
+	echo(lipo_name(lipo_type));
 	cube([lipo_length(lipo_type), lipo_width(lipo_type), lipo_height(lipo_type)]);
 }
 
