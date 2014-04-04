@@ -46,6 +46,7 @@ module position(translate = [], rotate = [], mirror = [0, 0, 0], colour = -1)
 
 module show_build_area(x = 196, y = 196, corner_radius = 18)
 {
+	echo("DEPRECATED: show_build_area() is now in Mendel90.scad and will be removed from common.scad in a future version.");
 	show_M90_build_area();
 }
 
@@ -58,3 +59,5 @@ module slot(length, width, depth)
 			cylinder(h = depth, r = width/2);
 	}
 }
+
+show_build_area();
