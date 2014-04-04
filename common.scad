@@ -6,6 +6,7 @@
 //
 // Useful tools and utilities
 //
+use <Mendel90.scad>;
 
 /*
 module position(translate = [], rotate = [], colour = -1)
@@ -14,7 +15,7 @@ translate		coordinate vector
 rotate    		axis angles
 colour   		any valid w3/css3 colour name
 
-module show_build_area(x = 200, y = 200, corner_radius = 20)
+module show_build_area(x = 196, y = 196, corner_radius = 18)
 Draw (non-printing) build platform template
 Useful for plating up objects.
 Default to Mendel90 with IKEA SÖRLI mirror tile.
@@ -43,20 +44,9 @@ module position(translate = [], rotate = [], mirror = [0, 0, 0], colour = -1)
 							child(i);
 }
 
-module show_build_area(x = 200, y = 200, corner_radius = 20)
+module show_build_area(x = 196, y = 196, corner_radius = 18)
 {
-	%	// transparency modifier - doesn't print
-	hull()
-	{
-		translate([x/2 - corner_radius, y/2 - corner_radius, -1])
-			cylinder(h = 1, r = corner_radius);
-		translate([-x/2 + corner_radius, y/2 - corner_radius, -1])
-			cylinder(h = 1, r = corner_radius);
-		translate([-x/2 + corner_radius, -y/2 + corner_radius, -1])
-			cylinder(h = 1, r = corner_radius);
-		translate([x/2 - corner_radius, -y/2 + corner_radius, -1])
-			cylinder(h = 1, r = corner_radius);
-	}
+	show_M90_build_area();
 }
 
 module slot(length, width, depth)
@@ -68,4 +58,3 @@ module slot(length, width, depth)
 			cylinder(h = depth, r = width/2);
 	}
 }
-
