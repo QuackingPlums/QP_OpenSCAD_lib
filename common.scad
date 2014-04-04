@@ -60,4 +60,5 @@ module slot(length, width, depth)
 	}
 }
 
-show_build_area();
+function rms(a, b) = 
+	sqrt(pow(a, 2) + pow(b, 2));
