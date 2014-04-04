@@ -100,7 +100,7 @@ module distribute(pattern = 4)
 	for (i = [0 : $children - 1])
 		for (j = [0 : pattern - 1])
 			rotate([0, 0, j * 360 / pattern])
-				child(i);
+				children(i);
 }
 
 module motor_mount_slots(motor_type = iPower_GBM2208) // ** DEPRECATE ** - use motor_base_mount() instead

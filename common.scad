@@ -38,10 +38,10 @@ module position(translate = [], rotate = [], mirror = [0, 0, 0], colour = -1)
 			rotate(rotate)
 				mirror(mirror)
 					if (colour == -1)
-						child(i);
+						children(i);
 					else
 						color(colour)
-							child(i);
+							children(i);
 }
 
 module show_build_area(x = 196, y = 196, corner_radius = 18)
