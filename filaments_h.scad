@@ -22,7 +22,7 @@ BF66_ABS_White = "White";
 ES_ABS_Clear = "GhostWhite";//?
 ES_ABS_Green = "Lime";//?
 ES_ABS_Orange = "Orange";//?
-ES_ABS_Purple = "DarkViolet";//?
+ES_ABS_Purple = "Purple";//?
 ES_ABS_Yellow = "Yellow";//?
 
 CDW_PLA_Blue = "Blue";
