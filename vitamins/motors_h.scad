@@ -76,6 +76,8 @@ RCTimer_GBM5010 = ["RCTimer 5010-021-150T", 								// ???g (DSLR?!)
 RCTimer_GBM2212 = ["RCTimer HP2212-015-70T brushless gimbal motor",				// 100-200g (GoPro = 75g)
 	22, 12, 16, 19, 	26, 28, 1, 	28, 6, 	28, 13, 27, 3, 10, 1, 3.17, 10, -1, 12, 3];
 
+HK_LD1510A = ["HobbyKing LD1510A-02-P Micro Brushless Outrunner Motor",
+	0];
 
 /*
 name
