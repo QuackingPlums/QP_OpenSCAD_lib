@@ -13,8 +13,8 @@ include <fasteners_h.scad>;
 iPower_GBM4008 = ["iFlight iPower GBM4008-150 brushless gimbal motor",				// 400-800g (NEX-6/7)	** VERIFIED **
 	40, 8, 16, 19,	// stator d, stator h, bottom mount hole centers min, max
  	25, 25, 2,		// base d1, base d2, base h
- 	13, 5,			// base ring d, base ring h
-	49.61, 11.32,	// bell d, bell h
+ 	13, 4,			// base ring d, base ring h
+	49.61, 12.8,	// bell d, bell h
  	38.93, 3.84,		// bell cap d, bell cap h
 	0, 0,			// shaft collar d, shaft collar h
 	3.17, 0, 0,		// shaft d, shaft h, shaft direction
