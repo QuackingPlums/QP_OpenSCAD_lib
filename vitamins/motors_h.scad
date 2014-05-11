@@ -90,13 +90,13 @@ RCX_ZMR1804 = ["RCX ZMR 1804 2400KV",										// QPAV250 mini-quad
 
 LD1510A = ["Hobbyking LD1510A-02-P",
 // ** AWAITING VERIFICATION **
-	0, 0, 0, 0,	// stator d, stator h, bottom mount hole centers min, max
-	18, 18, 3,		// base d1, base d2, base h
+	15, 10, 12, 12,	// stator d, stator h, bottom mount hole centers min, max
+	18, 18, 3.5,		// base d1, base d2, base h
 	0, 0,			// base ring d, base ring h
 	18, 12,			// bell d, bell h
-	11, 1,			// bell cap d, bell cap h
-	7, 3,			// shaft collar d, shaft collar h
-	2, 7, 0,		// shaft d, shaft h, shaft direction
+	10.5, 3,			// bell cap d, bell cap h
+	5, 2,			// shaft collar d, shaft collar h
+	2, 8, 0,		// shaft d, shaft h, shaft direction
 	0, 0, M2];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size
 
 /*
