@@ -9,7 +9,7 @@
 
 include <fasteners_h.scad>;
 
-// Motor types
+// Motor types - brushless gimbal
 iPower_GBM4008 = ["iFlight iPower GBM4008-150 brushless gimbal motor",				// 400-800g (NEX-6/7)	** VERIFIED **
 	40, 8, 16, 19,	// stator d, stator h, bottom mount hole centers min, max
  	25, 25, 2,		// base d1, base d2, base h
@@ -76,8 +76,28 @@ RCTimer_GBM5010 = ["RCTimer 5010-021-150T", 								// ???g (DSLR?!)
 RCTimer_GBM2212 = ["RCTimer HP2212-015-70T brushless gimbal motor",				// 100-200g (GoPro = 75g)
 	22, 12, 16, 19, 	26, 28, 1, 	28, 6, 	28, 13, 27, 3, 10, 1, 3.17, 10, -1, 12, 3];
 
-HK_LD1510A = ["HobbyKing LD1510A-02-P Micro Brushless Outrunner Motor",
-	0];
+// 'regular' motor types
+RCX_ZMR1804 = ["RCX ZMR 1804 2400KV",										// QPAV250 mini-quad
+// ** AWAITING VERIFICATION **
+	18, 4, 12.4, 12.4,
+	18.6, 20.6, 4,
+	23.6, 1.2,
+	23.6, 5,
+	20.6, 2,
+	9, 1,
+	5, 14.9, 0,
+	0, 0, M2];
+
+LD1510A = ["Hobbyking LD1510A-02-P",
+// ** AWAITING VERIFICATION **
+	15, 10, 12, 12,	// stator d, stator h, bottom mount hole centers min, max
+	18, 18, 3.5,		// base d1, base d2, base h
+	0, 0,			// base ring d, base ring h
+	18, 12,			// bell d, bell h
+	10.5, 3,			// bell cap d, bell cap h
+	5, 2,			// shaft collar d, shaft collar h
+	2, 8, 0,		// shaft d, shaft h, shaft direction
+	0, 0, M2];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size
 
 /*
 name
@@ -143,3 +163,5 @@ function motor_length(motor_type) =
 	motor_cap_h(motor_type) +
 	motor_shaft_collar_h(motor_type) +
 	motor_shaft_h(motor_type);
+
+//echo(motor_length(iPower_GBM4008));
