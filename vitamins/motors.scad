@@ -168,7 +168,7 @@ module motor_screws(screw_type = M3_cap_screw, length = 12, diameter = 16, patte
 
 //echo(str(motor_name(iPower_GBM2208), ": ", motor_length(iPower_GBM2208)));
 //motor_screws(screw_type = M2_cap_screw, pattern = 4, washer = true, exploded = 0);
-motor(RCX_ZMR1804);
+motor(QPAV250_generic);
 //motor_mount_slots();
 //motor_top_mount_holes(hole_size = screw_clearance_diameter(M2_cap_screw));
 //motor_top_mount_holes(RCTimer_GBM2212);
