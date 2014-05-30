@@ -193,4 +193,4 @@ module Panasonic_GF3()
 //GoPro_HD_Hero3_Black();
 //FoV_frustum();
 //Panasonic_GF3();
-camera(Panasonic_GF3);
+camera(Mobius);
