@@ -39,10 +39,10 @@ Sony_NEX5N = ["Sony NEX-5N",
 	"1/4inUNC",
 	0, 0, 0, 0, 0];
 
-Mobius = ["Mobius ActionCam",
-	36, 18, 50,				// width, height, depth
+Mobius = ["Mobius ActionCam",									// Mobius ActionCam ** VERIFIED **
+	35.50, 18.5, 59,					// width, height, depth
 	"None",							// mount type ** DEPRECATED **
-	16, 9, 3, 0, 1];			// lens diameter, lens x-offset, lens y-offset, lens z-offset (from center), lens dome
+	18.5, 9.25, 2.5, 0, 0];			// lens diameter, lens x-offset, lens y-offset, lens z-offset (from center), lens dome
 
 /*
 name
