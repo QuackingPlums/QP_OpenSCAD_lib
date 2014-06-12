@@ -13,8 +13,12 @@ ff = 0.05;
 //rounded_cube([20, 30, 10], corner_radius = 3);
 rounded_cube([20, 30, 10], corner_radius = 3, teardrop = true);
 
+
 function corner_centres(length, width, radius) =
 	[[radius, radius], [radius, width-radius], [length-radius, width-radius], [length-radius, radius]];
+
+function minimum_corner_radius(edge_clearance) =			// square peg/round hole problem
+	edge_clearance / (sqrt(2)-1) + edge_clearance;
 
 module rounded_rect(length, width, corner_radius, height = ff)
 {
@@ -38,7 +42,7 @@ module rounded_cube(cube, corner_radius, teardrop = false)
 	h = cube[2];
 	r = corner_radius;
 
-	corner_centres = [[r, r], [r, w-r], [l-r, w-r], [l-r, r]];
+	corner_centres = corner_centres(l, w, r);
 
 	hull()
 	{
