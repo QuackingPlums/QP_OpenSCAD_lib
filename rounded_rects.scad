@@ -22,8 +22,15 @@ function minimum_corner_radius(edge_clearance) =			// square peg/round hole prob
 
 module rounded_rect(length, width, corner_radius, height = ff)
 {
-	l = length;
-	w = width;
+	cuboid = [length, width, height];
+	rounded_cube2(cuboid, corner_radius);
+}
+
+module rounded_cube2(cuboid, corner_radius)
+{
+	l = cuboid[0];
+	w = cuboid[1];
+	h = cuboid[2];
 	r = corner_radius;
 
 	corner_centres = corner_centres(l, w, r);
@@ -31,15 +38,15 @@ module rounded_rect(length, width, corner_radius, height = ff)
 	hull()
 		for (i = [0 : len(corner_centres)-1])
 			translate(corner_centres[i])
-				cylinder(h = height, r = r);
+				cylinder(h = h, r = r);
 }
 
-module rounded_cube(cube, corner_radius, teardrop = false)
+module rounded_cube(cuboid, corner_radius, teardrop = false)
 // always draws a cube with minimum height = 2*corner_radius
 {
-	l = cube[0];
-	w = cube[1];
-	h = cube[2];
+	l = cuboid[0];
+	w = cuboid[1];
+	h = cuboid[2];
 	r = corner_radius;
 
 	corner_centres = corner_centres(l, w, r);
