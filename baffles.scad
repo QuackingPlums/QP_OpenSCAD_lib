@@ -11,8 +11,8 @@ $fn = 24;
 default_extrusion_width = 0.5;
 default_layer_height = 0.2;
 
-default_base_width = 5.0;
-default_base_height = 5.0;
+default_base_width = 4.0;
+default_base_height = 4.0;
 default_baffle_height = 8.0;
 default_distance = 1.0;
 
