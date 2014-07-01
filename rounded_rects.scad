@@ -8,10 +8,24 @@ $fn = 24;
 ff = 0.05;
 
 // ***** examples *****
+
+// 2-dimensional rounded rect
 //rounded_rect(length = 30, width = 20, corner_radius = 5);
+
+// rounded rect with height
 //rounded_rect(length = 30, width = 20, corner_radius = 5, height = 5);
+
+// regular cuboid with chamfered edges
 //rounded_cube([20, 30, 10], corner_radius = 3);
-rounded_cube([20, 30, 10], corner_radius = 3, teardrop = true);
+
+// regular cuboid with chamfered edges and teardrop base
+//rounded_cube([20, 30, 10], corner_radius = 3, teardrop = true);
+
+// 2-dimensional rounded pill
+//rounded_pill(length = 30, width = 10);
+
+// rounded pill with height
+rounded_pill(length = 30, width = 10, height = 5);
 
 
 function corner_centres(length, width, radius) =
@@ -19,6 +33,23 @@ function corner_centres(length, width, radius) =
 
 function minimum_corner_radius(edge_clearance) =			// square peg/round hole problem
 	edge_clearance / (sqrt(2)-1) + edge_clearance;
+
+module rounded_pill(length, width, height = ff)
+{
+	l = length;
+	w = width;
+	h = height;
+
+	r = w/2;
+
+	hull()
+	{
+		translate([(l-w)/2, 0, 0])
+			cylinder(h = h, r = r);
+		translate([(w-l)/2, 0, 0])
+			cylinder(h = h, r = r);
+	}
+}
 
 module rounded_rect(length, width, corner_radius, height = ff)
 {
