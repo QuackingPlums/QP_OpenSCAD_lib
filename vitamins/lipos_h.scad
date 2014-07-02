@@ -10,6 +10,8 @@
 // Lipo types
 PolyPower_3S_1300_20C = ["Robotbirds Poly Power 3S 1300 20C",
 	72, 36, 25];			// L, W, H
+PolyPower_3S_1300_30C = ["Robotbirds Poly Power 3S 1300 30C",
+	72, 36, 26];
 Zippy_Compact_3S_1000_25C = ["Zippy Compact 3S 1000 25C",
 	76, 34, 15];
 Zippy_Compact_3S_1300_25C = ["Zippy Compact 3S 1300 25C",
