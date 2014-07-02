@@ -11,6 +11,9 @@ http://en.wikipedia.org/wiki/B%C3%A9zier_curve by Wikipedia editors
 By Don B, 2011, released into the Public Domain
 */
 
+module quadratic_bezier(p0, p1, p2, steps=5)
+	conic_bezier(p0, p1, p2, steps);
+
 module conic_bezier(p0,p1,p2,steps=5) {
 
 	stepsize1 = (p1-p0)/steps;
