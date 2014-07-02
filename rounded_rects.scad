@@ -25,7 +25,7 @@ ff = 0.05;
 //rounded_pill(length = 30, width = 10);
 
 // rounded pill with height
-rounded_pill(length = 30, width = 10, height = 5);
+//rounded_pill(length = 30, width = 10, height = 5);
 
 
 function corner_centres(length, width, radius) =
