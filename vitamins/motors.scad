@@ -67,8 +67,8 @@ module motor(motor_type = iPower_GBM2208)
 	}
 }
 
-//Motor_mount(motor_type = Turnigy_AeroDrive_C2024);
-module Motor_mount(motor_type = iPower_GBM2208, thick = 2, correct_for_wires = true)
+//Motor_mount(motor_type = Turnigy_AeroDrive_C2024, bumper = 4);
+module Motor_mount(motor_type = iPower_GBM2208, thick = 2, bumper = 0, correct_for_wires = true)
 {
 	pad_radius = motor_mount_diameter(motor_type)/2;
 	
@@ -77,14 +77,14 @@ module Motor_mount(motor_type = iPower_GBM2208, thick = 2, correct_for_wires = t
 		union()
 		{
 			// motor pad
-			cylinder(h = thick, r = pad_radius);
+			cylinder(h = thick, r = pad_radius + bumper);
 
 			// extensions (if any)
 		}
 
 		// holes
 		translate([0, 0, thick+ff/2])
-		motor_base_mount(motor_type, depth = thick+ff, correct_for_wires = correct_for_wires);
+			motor_base_mount(motor_type, depth = thick+ff, correct_for_wires = correct_for_wires);
 	}
 }
 
