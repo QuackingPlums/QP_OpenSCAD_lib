@@ -134,13 +134,13 @@ QPAV250_generic = ["generic 250 quad motor",
 	0, 0, M2, M2];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 Turnigy_AeroDrive_C2024 = ["Turnigy AeroDrive C2024",
-	20, 14,			// stator d, stator h
-	25, 25, 3,		// bottom mount hole centers min, max, bottom hole pattern (3 or 4)
-	29, 29, 1.5,		// base d1, base d2, base h
-	0, 0,			// base ring d, base ring h
-	22.5, 15,		// bell d, bell h
-	7, 1,			// bell cap d, bell cap h
-	7, 5,			// shaft collar d, shaft collar h
+	17.5, 10,		// stator d, stator h
+	24, 24, 3,		// bottom mount hole centers min, max, bottom hole pattern (3 or 4)
+	28, 28, 1.25,	// base d1, base d2, base h
+	19, 4,			// base ring d, base ring h
+	19.5, 11,		// bell d, bell h
+	10, 0.75,		// bell cap d, bell cap h
+	7, 5.25,			// shaft collar d, shaft collar h
 	2, 0, 0,			// shaft d, shaft h, shaft direction
 	0, 0, M2, M2];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw siz
 
