@@ -19,12 +19,12 @@ default_ledge_depth =			// also used for clip reach
 default_thick = 1.2;
 
 // properties
-function ww() =
-	ww;
+function extrusion_width() =
+	extrusion_width;
 
 
 //Clip(width = 8, height = 7, extend = 4);
-module Clip(width, height, clip_reach = ww, extend = 0)
+module Clip(width, height, ww = ww, clip_reach = ww, extend = 0)
 {
 	if (width == undef)
 		echo("<b>Usage:</b> Clip(width, height, clip_reach, extend);");
@@ -55,7 +55,7 @@ module Clip(width, height, clip_reach = ww, extend = 0)
 }
 
 //Ledge(width = 8, height = 5);
-module Ledge(width, height, lip_height = default_lip_height, ledge_depth = default_ledge_depth)
+module Ledge(width, height, ww = ww, lip_height = default_lip_height, ledge_depth = default_ledge_depth)
 {
 	if (width == undef)
 		echo("<b>Usage:</b> Ledge(width, height, lip_height, ledge_depth);");
