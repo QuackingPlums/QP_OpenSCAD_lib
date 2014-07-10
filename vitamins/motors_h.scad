@@ -70,11 +70,11 @@ GLB_GBM2208 = ["Goodluckbuy GBM2208-80 brushless gimbal motor",						// 100-200g
 	16, 19,	4,		// bottom mount hole centers min, max, bottom hole pattern (3 or 4)
 	25, 27.7, 5.5,	// base d1, base d2, base h
 	0, 0,			// base ring d, base ring h
-	27.7, 10.5,		// bell d, bell h
-	25, 5,			// bell cap d, bell cap h
+	27.7, 12,		// bell d, bell h
+	18, 3,			// bell cap d, bell cap h
 	0, 0,			// shaft collar d, shaft collar h
 	3.17, 0, 0,		// shaft d, shaft h, shaft direction
-	12, 4, M2, M3];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+	10, 4, M2, M3];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 RCTimer_GBM5010 = ["RCTimer 5010-021-150T", 								// ???g (DSLR?!)
 	40, 8,
