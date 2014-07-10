@@ -8,13 +8,12 @@
 //
 
 IKEA_SORLI = ["IKEA SÖRLI", 196, 196, 18];
-
-function build_plate_name(build_plate) = build_plate[0];
-function build_plate_x(build_plate) = build_plate[1];		// width
-function build_plate_y(build_plate) = build_plate[2];		// depth
-function build_plate_cr(build_plate) = build_plate[3];		// corner radius
-
 default_build_plate = IKEA_SORLI;
+
+function build_plate_name(build_plate = default_build_plate) = build_plate[0];
+function build_plate_x(build_plate = default_build_plate) = build_plate[1];		// width
+function build_plate_y(build_plate = default_build_plate) = build_plate[2];		// depth
+function build_plate_cr(build_plate = default_build_plate) = build_plate[3];		// corner radius
 
 function max_width(build_plate = default_build_plate) = 
 	build_plate_x(build_plate);
