@@ -8,8 +8,8 @@ ff = 0.05;					// CSG fudge factor
 $fn = 24;					// curve complexity
 
 // main board dimensions
-function new_pcb_dimensions(x_len, y_len, thick, below_h, above_h=0, corner_radius = 0) =
-	[x_len, y_len, thick, below_h, above_h];
+function new_pcb_dimensions(x_len, y_len, thick, below_h, above_h, corner_radius=0) =
+	[x_len, y_len, thick, below_h, above_h, corner_radius];
 function pcb_x_len(pcb_dimensions) = pcb_dimensions[0];			// x dimension
 function pcb_y_len(pcb_dimensions) = pcb_dimensions[1];			// y dimension
 function pcb_thick(pcb_dimensions) = pcb_dimensions[2];			// board thickness
@@ -33,6 +33,11 @@ function pcb_square_component_location(pcb_square_component) = pcb_square_compon
 function pcb_square_component_cube(pcb_square_component) = pcb_square_component[1];
 
 // cylindrical component
+function new_pcb_round_component(location, height, diameter) =
+	[location, height, diameter];
+function pcb_round_component_location(pcb_round_component) = pcb_round_component[0];
+function pcb_round_component_height(pcb_round_component) = pcb_round_component[1];
+function pcb_round_component_diameter(pcb_round_component) = pcb_round_component[2];
 
 
 /***** use these when defining cases & lids *****/
@@ -95,9 +100,10 @@ module example()
 	x = 210;
 	y = 50;
 	t = 2.0;
-	hole_edge_offset = 2.5;
+	corner_radius = 5;
+	hole_edge_offset = corner_radius;
 
-	pcb_dimensions = new_pcb_dimensions(x_len = x, y_len = y, thick = t);
+	pcb_dimensions = new_pcb_dimensions(x_len = x, y_len = y, thick = t, corner_radius = corner_radius);echo(pcb_dimensions);
 	pcb_holes = [
 		new_pcb_hole(new_location(hole_edge_offset, hole_edge_offset), 3),
 		new_pcb_hole(new_location(hole_edge_offset, y-hole_edge_offset), 3),
@@ -110,25 +116,30 @@ module example()
 // board model for viewing purposes
 module Board(pcb, debug=false)
 {
-
 	pcb_dimensions = pcb_dimensions(pcb);
 	pcb_thick = pcb_thick(pcb_dimensions);
+	pcb_corner_radius = pcb_corner_radius(pcb_dimensions);
 	pcb_holes = pcb_holes(pcb);
+	pcb_square_components = pcb_square_components(pcb);
+	pcb_round_components = pcb_round_components(pcb);
+
 	br = "<br>";
 
 	if (debug)	echo(str("DEBUG INFO:", br,
 		"pcb=", pcb, br,
-		"pcb_dimensions=", pcb_dimensions, br,
-		"pcb_thick=", pcb_thick, br,
-		"pcb_holes=", pcb_holes, br,
-		"pcb_hole[1]=", pcb_hole_location(pcb_holes[1]), br
+		"pcb_dimensions= ", pcb_dimensions, br,
+		"pcb_thick= ", pcb_thick, br,
+		"pcb_corner_radius= ", pcb_corner_radius, br,
+		"pcb_holes= ", pcb_holes, br,
+		"pcb_square_components= ", pcb_square_components, br,
+		"pcb_round_components= ", pcb_round_components, br
 	));
 
 	difference()
 	{
 		// main board
 		color(pcb_green())
-			cube(pcb_board_cube(pcb_dimensions));
+			rounded_cube2(pcb_board_cube(pcb_dimensions), pcb_corner_radius);
 
 		// holes
 		for(i = [0:len(pcb_holes(pcb))-1])
@@ -136,4 +147,35 @@ module Board(pcb, debug=false)
 				translate(pcb_hole_location(pcb_holes[i]))
 					cylinder( h = pcb_thick+ff, d = pcb_hole_diameter(pcb_holes[i]) );
 	}
+
+	// square components
+	for (i = [0 : len(pcb_square_components)-1])
+		translate([0, 0, pcb_thick-ff])
+			Square_component(pcb_square_components[i]);
+
+	// round components
+	for (i = [0 : len(pcb_round_components)-1])
+		translate([0, 0, pcb_thick-ff])
+			Round_component(pcb_round_components[i]);
+
+
+}
+
+module Square_component(component)
+{
+	location = pcb_square_component_location(component);
+	cube = pcb_square_component_cube(component);
+
+	translate(location)
+		cube(cube);
+}
+
+module Round_component(component)
+{
+	location = pcb_round_component_location(component);
+	height = pcb_round_component_height(component);
+	diameter = pcb_round_component_diameter(component);
+
+	translate(location)
+		cylinder(h = height, d = diameter);
 }
