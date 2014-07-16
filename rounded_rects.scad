@@ -58,7 +58,7 @@ module rounded_rect(length, width, corner_radius, height = ff)
 	rounded_cube2(cuboid, corner_radius);
 }
 
-module rounded_cube2(cuboid, corner_radius)
+module rounded_cube2(cuboid, corner_radius = 0.01)
 {
 	l = cuboid[0];
 	w = cuboid[1];
