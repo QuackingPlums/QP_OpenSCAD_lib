@@ -14,6 +14,7 @@ ff = 0.05;
 
 // rounded rect with height
 //rounded_rect(length = 30, width = 20, corner_radius = 5, height = 5);
+//rounded_cube2([30, 20, 5], 5);
 
 // regular cuboid with chamfered edges
 //rounded_cube([20, 30, 10], corner_radius = 3);
