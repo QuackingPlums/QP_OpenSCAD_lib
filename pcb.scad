@@ -27,18 +27,19 @@ function pcb_hole_location(pcb_hole) = pcb_hole[0];
 function pcb_hole_diameter(pcb_hole) = pcb_hole[1];
 
 // square component
-function new_pcb_square_component(location, cube) =
-	[location, cube];
+function new_pcb_square_component(location, cube, colour = "DimGrey") =
+	[location, cube, colour];
 function pcb_square_component_location(pcb_square_component) = pcb_square_component[0];
 function pcb_square_component_cube(pcb_square_component) = pcb_square_component[1];
+function pcb_square_component_colour(pcb_square_component) = pcb_square_component[2];
 
 // cylindrical component
-function new_pcb_round_component(location, height, diameter) =
-	[location, height, diameter];
+function new_pcb_round_component(location, height, diameter, colour = "Silver") =
+	[location, height, diameter, colour];
 function pcb_round_component_location(pcb_round_component) = pcb_round_component[0];
 function pcb_round_component_height(pcb_round_component) = pcb_round_component[1];
 function pcb_round_component_diameter(pcb_round_component) = pcb_round_component[2];
-
+function pcb_round_component_colour(pcb_round_component) = pcb_round_component[3];
 
 /***** use these when defining cases & lids *****/
 
@@ -92,7 +93,7 @@ function pcb_lid_supports(pcb) = pcb[5];
 function pcb_square_connectors(pcb) = pcb[6];
 
 // colours
-function pcb_green() = "Green";
+function pcb_green() = "DarkGreen";
 
 example();	// melzi board
 module example()
@@ -165,9 +166,10 @@ module Square_component(component)
 {
 	location = pcb_square_component_location(component);
 	cube = pcb_square_component_cube(component);
+	colour = pcb_square_component_colour(component);
 
 	translate(location)
-		cube(cube);
+		color(colour) cube(cube);
 }
 
 module Round_component(component)
@@ -175,7 +177,8 @@ module Round_component(component)
 	location = pcb_round_component_location(component);
 	height = pcb_round_component_height(component);
 	diameter = pcb_round_component_diameter(component);
+	colour = pcb_round_component_colour(component);
 
 	translate(location)
-		cylinder(h = height, d = diameter);
+		color(colour) cylinder(h = height, d = diameter);
 }
