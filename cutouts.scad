@@ -1,4 +1,7 @@
-$fn = 50;
+use <rounded_rects.scad>
+
+$fs = 1.0;					// CSG segment size (mm)
+$fa = 5;						// CSG minimum angle (degrees)
 
 //x = 60;
 //y = 50;
@@ -8,7 +11,9 @@ $fn = 50;
 //
 //%cube([x, y, z+1]);
 
+//triangle_cutout(x = 20, y = 10, depth = 3, r = 1)
 //square_cutout(x = x, y = y, width = w, depth = z, r = r);
+//ladder_cutout(rect = [40, 100, 3], gap = 8, min_width = 12, r = 1)
 //slot(length = x, depth = z, r = r);
 //diagonal_cutout1(x = x, y = y, width = w, depth = z, r = r);
 //zigzag_cutout1 (x = x, y = y, width = w, depth = z, r = r, strong = false);
@@ -29,6 +34,7 @@ module triangle_cutout(x = 20, y = 10, depth = 3, r = 1)
 	}
 }
 
+//square_cutout(30, 12, 2, 1.5);
 module square_cutout(x = 20, y = 10, depth = 3, r = 1)
 {
 	hull()
@@ -42,6 +48,24 @@ module square_cutout(x = 20, y = 10, depth = 3, r = 1)
 		translate([r, y-r, 0])
 			cylinder(h = depth, r = r);
 	}
+}
+
+//ladder_cutout();
+module ladder_cutout(rect = [40, 100, 3], gap = 8, min_width = 12, r = 1)
+{
+	x = rect[0];
+	y = rect[1] + gap;
+	z = rect[2];
+
+	n = floor((y) / (gap+min_width));		// number of cutouts
+	w = (y - (n*gap)) / n;		 		// width of each cutout
+	
+	dy = w + gap;
+
+	if (n>0)
+		for (i = [0:n-1])
+			translate([0, i*dy, 0])
+				rounded_cube2([x, w, z], r);
 }
 
 module slot(length = 20, depth = 3, r = 1.5)

@@ -9,6 +9,9 @@
 use <Mendel90.scad>;
 
 /*
+is_in("two", [["one"], ["two"], ["three"]])
+Returns true if match_value is found in set, false otherwise
+
 module position(translate = [], rotate = [], colour = -1)
 Rotate, translate and colour an arbitrary list of objects. In that order
 translate		coordinate vector
@@ -31,6 +34,10 @@ depth			depth of slot
 */
 
 
+//echo(is_in("two", [["one"], ["two"], ["three"]]));
+function is_in(match_string = "findme", search_set = [["string1"], ["string2"], ["string3"]]) =
+	( search([match_string], search_set) == [[]] ) ? false : true;
+ 
 module position(translate = [], rotate = [], mirror = [0, 0, 0], colour = -1)
 {
 	for (i = [0 : $children-1])
