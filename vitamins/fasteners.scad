@@ -9,6 +9,7 @@
 
 include <fasteners_h.scad>;
 use <../polyholes.scad>;
+use <../teardrops.scad>;
 
 $fs = 0.5;
 $fa = 5;
@@ -110,6 +111,28 @@ module self_tap_hole_test(screw_type = No2, thick = 3, )
 				%cylinder(h = thick + 1, r = r);
 			}
 	}
+}
+
+//countersink();
+module countersink(hole_diameter = 5, depth = 3, teardrop = false)
+{
+	r = hole_diameter/2;
+
+	hull()
+	{
+		tear_poly(h = ff, r = r, teardrop = teardrop);
+
+		translate([0, 0, depth-ff])
+			tear_poly(h = ff, r = r + depth, teardrop = teardrop);
+	}
+}
+
+module tear_poly(h, r, teardrop)
+{
+	if (teardrop)
+		teardrop(h = h, r = r);
+	else
+		poly_cylinder(h = h, r = r);
 }
 
 /////////

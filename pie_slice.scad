@@ -2,12 +2,35 @@
 | 2D and 3D pie slices
 **************************************************/
 
+ff = 0.05;											// fudge factor
+$fs = 1.0;											// CSG segment size (mm)
+$fa = 5;												// CSG minimum angle (degrees)
+
+translate([3, 3, 0]) rounded_pie_slice_3D(30, 0, 60, 3, 3);
+module rounded_pie_slice_3D(r, start_angle, end_angle, h, corner_radius)
+{
+	linear_extrude(height = h)
+		rounded_pie_slice_2D(r, start_angle, end_angle, corner_radius);
+}
+
+//pie_slice_3D(30, 0, 60, 3);
 module pie_slice_3D(r, start_angle, end_angle, h)
 {
 	linear_extrude(height = h)
 		pie_slice_2D(r, start_angle, end_angle);
 }
 
+//translate([3, 3, 0]) rounded_pie_slice_2D(30, 0, 60, 3);
+module rounded_pie_slice_2D(r, start_angle, end_angle, corner_radius)
+{
+	minkowski()
+	{
+		pie_slice_2D(r, start_angle, end_angle);
+		circle(r = corner_radius);
+	}
+}
+
+//pie_slice_2D(30, 0, 60);
 module pie_slice_2D(r, start_angle, end_angle)
 {
     R = r * sqrt(2) + 1;
