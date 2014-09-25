@@ -48,4 +48,15 @@ module show_M90_build_area()
 	show_build_area(build_area = IKEA_SORLI);
 }
 
+module clip_to_build_area()
+{
+	intersection()
+	{
+		translate([-100, -100, 0])
+			cube(200);	
+		children();
+	}
+
+}
+
 //echo(max_diagonal());
