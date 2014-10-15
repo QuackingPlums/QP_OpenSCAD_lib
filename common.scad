@@ -6,7 +6,6 @@
 //
 // Useful tools and utilities
 //
-use <Mendel90.scad>;
 
 /*
 is_in("two", [["one"], ["two"], ["three"]])
@@ -61,5 +60,11 @@ module slot(length, width, depth)
 	}
 }
 
+// this is wrong!
 function rms(a, b) = 
 	sqrt(pow(a, 2) + pow(b, 2));
+
+module debug()
+{
+	#children();
+}
