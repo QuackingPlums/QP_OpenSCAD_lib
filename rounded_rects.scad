@@ -6,43 +6,35 @@ use <common.scad>;
 
 ff = 0.05;
 
-// ***** examples *****
+function new_help_item(signature, parameters, description) =
+	[signature, parameters, description];
+function help_item_signature(help_item) = help_item[0];
+function help_item_parameters(help_item) = help_item[1];
+function help_item_description(help_item) = help_item[2];
 
-// 2-dimensional rounded rect
-//rounded_rect(length = 30, width = 20, corner_radius = 5);
+function new_help_item_parameter(name, example, description) =
+	[name, example, description];
+function parameter_name(parameter) = parameter[0];
+function parameter_example(parameter) = parameter[1];
+function parameter_description(parameter) = parameter[2];
 
-// rounded rect with height
-//rounded_rect(length = 30, width = 20, corner_radius = 5, height = 5);
-//rounded_cube2([30, 20, 5], 5);
-
-// regular cuboid with chamfered edges
-//rounded_cube([20, 30, 10], corner_radius = 3);
-
-// regular cuboid with chamfered edges and teardrop base
-//rounded_cube([20, 30, 10], corner_radius = 3, teardrop = true);
-
-// 2-dimensional rounded pill
-//rounded_pill(length = 30, width = 10);
-
-// rounded pill with height
-//rounded_pill(length = 30, width = 10, height = 5);
-
-function format_help(command_type, command, description = "") = 
-	str("<p>", command_type, " <b>", command, "</b><br><i>", description, "</i>");
-function format_module(command, description) =
-	format_help("module", command, description);
-function format_function(command, description) =
-	format_help("function", command, description);
-
-module _help(name, description, examples, deprecated)
+module format_help(name, description, functions, modules)
 {
-	echo(str( "<h3>", name, "</h3><br>", description ));
-	echo("<h3>Examples</h3>");
-	for (i = [0:len(examples)-1])
-		echo(examples[i]);
-	echo("<h3>Deprecated</h3>");
-	for (i = [0:len(deprecated)-1])
-		echo(deprecated[i]);
+	echo();
+	echo(str( "<b>", name, "</b>"));
+	echo("---------------------------------------------");
+	echo(description);
+	for (i = [0:len(modules)-1])
+	{
+		echo();
+		echo(str( "module <b>", help_item_signature(modules[i]), "</b>" ));
+		echo(str( help_item_description(modules[i]) ));
+		if (len(help_item_parameters(modules[i])) > 0)
+			for (j = [0:len(help_item_parameters(modules[i]))-1])
+				assign(parameter = help_item_parameters(modules[i])[j])
+					echo(str( "<b>", parameter_name(parameter), "</b> <i>", parameter_example(parameter), "</i> - ", parameter_description(parameter) ));
+	}
+	echo();
 }
 
 rounded_rects_help();
@@ -50,37 +42,48 @@ module rounded_rects_help()
 {
 	name = "rounded_rects.scad";
 	description = "A library for creating rounded rectangles and cuboids.";
-	examples = [
-		format_module("Stadium([rect])", "2D pill shape"),
-		format_module("Rounded_rectangle([rect], corner_radius)", "2D rectangle with rounded corners"),
-		format_module("Extruded_rounded_rectangle([cube], corner_radius)", "Extruded 2D rectangle with rounded corners"),
-		format_module("Capsule([rect], teardrop = false)", "3D pill shape"),
-		format_module("Rounded_cube([cube], corner_radius, teardrop)", "3D cuboid with rounded corners and optional teardrop lower edge profile")];
-	deprecated = [format_module("rounded_pill()", "blah")];
+	functions = [];
+	modules = [
+		new_help_item(
+			"Stadium(rect)",
+			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle")],
+			"Draws a 2D pill shape."),
+		new_help_item(
+			"Rounded_rectangle(rect, corner_radius)",
+			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
+				new_help_item_parameter("corner_radius", "", "Size of corner circles")],
+			"Draws a 2D rectangle with rounded corners."),
+		new_help_item(
+			"Extruded_rounded_rectangle(cube, corner_radius)",
+			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
+				new_help_item_parameter("corner_radius", "r", "Size of constrainging circle")],
+			"Draws an extruded 2D rectangle with rounded corners."),
+		new_help_item(
+			"Capsule(rect, teardrop = false)",
+			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
+				new_help_item_parameter("teardrop", "default: false", "Set true to use teardrop instead of sphere")],
+			"Draws a 3D pill shape."),
+		new_help_item(
+			"Rounded_cube(cube, corner_radius, teardrop)",
+			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
+				new_help_item_parameter("corner_radius", "r", "Size of constrainging circle"),
+				new_help_item_parameter("teardrop", "default: false", "Set true to use teardrop instead of sphere")],
+			"Draws a 3D cuboid with rounded corners and optional teardrop lower edge profile.")
+	];
 
-	_help(
+	format_help(
 		name,
 		description,
-		examples,
-		deprecated
+		functions,
+		modules
 	);
-
-*	echo(str(	
-		"<p><h2>Name</h2>",
-		"<p><b>rounded_rects.scad</b> - create rounded primitives",
-		"<p><h2>Examples</h2>",
-		format_help("Rounded_rectangle()", "blah"),
-		"<p>Extruded_rounded_rectangle()",
-		"<p>Rounded_cube()",
-		"<p><h2>Deprecated</h2>",
-	"</p>"));
 }
 
-function rect_width(rect) =
-	min(rect[0], rect[1]);
+//function rect_width(rect) =
+//	min(rect[0], rect[1]);
 
-function corner_centres(length, width, radius) =
-	[[radius, radius], [radius, width-radius], [length-radius, width-radius], [length-radius, radius]];
+//function corner_centres(length, width, radius) =
+//	[[radius, radius], [radius, width-radius], [length-radius, width-radius], [length-radius, radius]];
 
 function minimum_corner_radius(edge_clearance) =			// square peg/round hole problem
 	edge_clearance / (sqrt(2)-1) + edge_clearance;
@@ -205,7 +208,7 @@ module Rounded_cube(cube, corner_radius, teardrop = false)
 
 //**************
 
-rounded_pill(30, 10, 5);
+//rounded_pill(30, 10, 5);
 module rounded_pill(length, width, height = ff)
 {
 	echo("<b>rounded_pill()</b> is deprecated; use <b>Rounded_rectangle()</b>");
@@ -231,7 +234,7 @@ module rounded_rect(length, width, corner_radius, height = ff)
 //rounded_cube2([30, 20, 5], 5);
 module rounded_cube2(cuboid, corner_radius = 0.01)
 {
-	echo("<b>rounded_cube2()</b> is deprecated; use <b>Rounded_rectangle()</b> instead");
+	echo("<b>rounded_cube2()</b> is deprecated; use <b>Extruded_rounded_rectangle()</b> instead");
 
 	l = cuboid[0];
 	w = cuboid[1];
