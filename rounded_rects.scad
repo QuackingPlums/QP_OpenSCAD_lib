@@ -20,21 +20,35 @@ function parameter_description(parameter) = parameter[2];
 
 module format_help(name, description, functions, modules)
 {
-	echo();
-	echo(str( "<b>", name, "</b>"));
-	echo("---------------------------------------------");
+	num_modules = len(modules);
+	num_functions = len(functions);
+
+	echo("========================================");
+	echo(str( "Name: <b>", name, "</b>" ));
 	echo(description);
-	for (i = [0:len(modules)-1])
-	{
-		echo();
-		echo(str( "module <b>", help_item_signature(modules[i]), "</b>" ));
-		echo(str( help_item_description(modules[i]) ));
-		if (len(help_item_parameters(modules[i])) > 0)
-			for (j = [0:len(help_item_parameters(modules[i]))-1])
-				assign(parameter = help_item_parameters(modules[i])[j])
-					echo(str( "<b>", parameter_name(parameter), "</b> <i>", parameter_example(parameter), "</i> - ", parameter_description(parameter) ));
-	}
-	echo();
+	if (num_functions > 0)
+		for (i = [0:num_functions-1])
+		{
+			echo();
+			echo(str( "function <b>", help_item_signature(functions[i]), "</b>" ));
+			echo(str( help_item_description(functions[i]) ));
+			if (len(help_item_parameters(functions[i])) > 0)
+				for (j = [0:len(help_item_parameters(functions[i]))-1])
+					assign(parameter = help_item_parameters(functions[i])[j])
+						echo(str( "<b>", parameter_name(parameter), "</b> <i>", parameter_example(parameter), "</i> - ", parameter_description(parameter) ));
+		}
+	if (num_modules > 0)
+		for (i = [0:len(modules)-1])
+		{
+			echo();
+			echo(str( "module <b>", help_item_signature(modules[i]), "</b>" ));
+			echo(str( help_item_description(modules[i]) ));
+			if (len(help_item_parameters(modules[i])) > 0)
+				for (j = [0:len(help_item_parameters(modules[i]))-1])
+					assign(parameter = help_item_parameters(modules[i])[j])
+						echo(str( "<b>", parameter_name(parameter), "</b> <i>", parameter_example(parameter), "</i> - ", parameter_description(parameter) ));
+		}
+	echo("========================================");
 }
 
 rounded_rects_help();
@@ -42,7 +56,11 @@ module rounded_rects_help()
 {
 	name = "rounded_rects.scad";
 	description = "A library for creating rounded rectangles and cuboids.";
-	functions = [];
+	functions = [
+		new_help_item(
+			"minimum_corner_radius(edge_clearance)",
+			[	new_help_item_parameter("edge_clearance", "number", "Desired edge clearance")],
+			"Returns the smallest corner radius to accommodate a specified edge clearance")];
 	modules = [
 		new_help_item(
 			"Stadium(rect)",
@@ -51,23 +69,23 @@ module rounded_rects_help()
 		new_help_item(
 			"Rounded_rectangle(rect, corner_radius)",
 			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
-				new_help_item_parameter("corner_radius", "", "Size of corner circles")],
+				new_help_item_parameter("corner_radius", "number", "Size of corner circles")],
 			"Draws a 2D rectangle with rounded corners."),
 		new_help_item(
 			"Extruded_rounded_rectangle(cube, corner_radius)",
 			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
-				new_help_item_parameter("corner_radius", "r", "Size of constrainging circle")],
+				new_help_item_parameter("corner_radius", "number", "Size of constrainging circle")],
 			"Draws an extruded 2D rectangle with rounded corners."),
 		new_help_item(
 			"Capsule(rect, teardrop = false)",
 			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
-				new_help_item_parameter("teardrop", "default: false", "Set true to use teardrop instead of sphere")],
+				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop instead of sphere")],
 			"Draws a 3D pill shape."),
 		new_help_item(
 			"Rounded_cube(cube, corner_radius, teardrop)",
 			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
-				new_help_item_parameter("corner_radius", "r", "Size of constrainging circle"),
-				new_help_item_parameter("teardrop", "default: false", "Set true to use teardrop instead of sphere")],
+				new_help_item_parameter("corner_radius", "number", "Size of constrainging circle"),
+				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop instead of sphere")],
 			"Draws a 3D cuboid with rounded corners and optional teardrop lower edge profile.")
 	];
 
