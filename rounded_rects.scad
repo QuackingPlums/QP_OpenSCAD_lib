@@ -2,60 +2,17 @@
 | Rounded corners are less prone to lifting than
 | sharp corners. They also look nicer.
 **************************************************/
+use <docSCAD.scad>;
 use <common.scad>;
 
 ff = 0.05;
-
-function new_help_item(signature, parameters, description) =
-	[signature, parameters, description];
-function help_item_signature(help_item) = help_item[0];
-function help_item_parameters(help_item) = help_item[1];
-function help_item_description(help_item) = help_item[2];
-
-function new_help_item_parameter(name, example, description) =
-	[name, example, description];
-function parameter_name(parameter) = parameter[0];
-function parameter_example(parameter) = parameter[1];
-function parameter_description(parameter) = parameter[2];
-
-module format_help(name, description, functions, modules)
-{
-	num_modules = len(modules);
-	num_functions = len(functions);
-
-	echo("========================================");
-	echo(str( "Name: <b>", name, "</b>" ));
-	echo(description);
-	if (num_functions > 0)
-		for (i = [0:num_functions-1])
-		{
-			echo();
-			echo(str( "function <b>", help_item_signature(functions[i]), "</b>" ));
-			echo(str( help_item_description(functions[i]) ));
-			if (len(help_item_parameters(functions[i])) > 0)
-				for (j = [0:len(help_item_parameters(functions[i]))-1])
-					assign(parameter = help_item_parameters(functions[i])[j])
-						echo(str( "<b>", parameter_name(parameter), "</b> <i>", parameter_example(parameter), "</i> - ", parameter_description(parameter) ));
-		}
-	if (num_modules > 0)
-		for (i = [0:len(modules)-1])
-		{
-			echo();
-			echo(str( "module <b>", help_item_signature(modules[i]), "</b>" ));
-			echo(str( help_item_description(modules[i]) ));
-			if (len(help_item_parameters(modules[i])) > 0)
-				for (j = [0:len(help_item_parameters(modules[i]))-1])
-					assign(parameter = help_item_parameters(modules[i])[j])
-						echo(str( "<b>", parameter_name(parameter), "</b> <i>", parameter_example(parameter), "</i> - ", parameter_description(parameter) ));
-		}
-	echo("========================================");
-}
 
 rounded_rects_help();
 module rounded_rects_help()
 {
 	name = "rounded_rects.scad";
 	description = "A library for creating rounded rectangles and cuboids.";
+	properties = [];
 	functions = [
 		new_help_item(
 			"minimum_corner_radius(edge_clearance)",
@@ -92,6 +49,7 @@ module rounded_rects_help()
 	format_help(
 		name,
 		description,
+		properties,
 		functions,
 		modules
 	);

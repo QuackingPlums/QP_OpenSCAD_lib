@@ -82,7 +82,8 @@ module docSCAD_help()
 {
 	name = "docSCAD.scad";
 	description = "A library for creating documentation for other libraries.";
-	properties = [];
+	properties = [
+	];
 	functions = [
 		new_help_item(
 			"new_help_item(signature, parameters, description)",
