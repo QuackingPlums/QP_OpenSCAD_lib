@@ -7,6 +7,8 @@
 // Useful tools and utilities
 //
 
+use <docSCAD.scad>; //docSCAD_help();
+
 /*
 is_in("two", [["one"], ["two"], ["three"]])
 Returns true if match_value is found in set, false otherwise
@@ -32,18 +34,74 @@ width			width of slot
 depth			depth of slot
 */
 
+//common_help();
+module common_help()
+{
+	name = "common.scad";
+	description = "A library of commonly used modules and functions";
+	properties = [];
+	functions = [
+		new_help_item(
+			"new_circle(x, y, diameter)",
+			[	new_help_item_parameter("x", "number", "x-coordinate of circle centre"),
+				new_help_item_parameter("y", "number", "y-coordinate of circle centre"),
+				new_help_item_parameter("diameter", "number", "diameter of circle")],
+			"Create a definition for a circle = [x, y, diameter]"),
+		new_help_item(
+			"new_rect(x, y, dx, dy)",
+			[	new_help_item_parameter("x", "number", "x-coordinate of rectangle"),
+				new_help_item_parameter("y", "number", "y-coordinate of rectangle"),
+				new_help_item_parameter("dx", "number", "length of rectangle along x-axis"),
+				new_help_item_parameter("dy", "number", "length of rectangle along y-axis")],
+			"Create a definition for a rectangle = [x, y, dx, dy]"),
+		new_help_item(
+			"new_cube(x, y, z, dx, dy, dz)",
+			[	new_help_item_parameter("x", "number", "x-coordinate of cuboid"),
+				new_help_item_parameter("y", "number", "y-coordinate of cuboid"),
+				new_help_item_parameter("z", "number", "z-coordinate of cuboid"),
+				new_help_item_parameter("dx", "number", "length of cuboid along x-axis"),
+				new_help_item_parameter("dy", "number", "length of cuboid along y-axis"),
+				new_help_item_parameter("dz", "number", "length of cuboid along z-axis")],
+			"Create a definition for a cuboid = [x, y, z, dx, dy, dz]"),
+		new_help_item(
+			"is_in(match_string, search_set)",
+			[	new_help_item_parameter("match_string", "string", "string to search for - e.g. &quot;one&quot;"),
+				new_help_item_parameter("search_set", "list of strings", "set of strings to search - e.g. [[&quot;one&quot;],[&quot;two&quot;],[&quot;three&quot;]]")],
+			"Returns true if match_string found in search_set, false otherwise")
+	];
+	modules = [
+		new_help_item(
+			"position(translate, rotate, mirror, colour)",
+			[	new_help_item_parameter("translate", "[x, y, z]", "3-axis translation vector"),
+				new_help_item_parameter("rotate", "[x, y, z]", "simple angle of rotation along each axis"),
+				new_help_item_parameter("mirror", "[x, y, z]", "normal vector of plane intersecting origin through which to mirror all children"),
+				new_help_item_parameter("colour", "string", "Standard OpenSCAD colour name")],
+			"Combination colour, mirror, rotate and translate transformation, in that order")
+	];
+
+	format_help(name, description, properties, functions, modules);
+}
+
+function new_circle(x, y, diameter) =
+	[x, y, diameter];
+
+function new_rect(x, y, dx, dy) =
+	[x, y, dx, dy];
+
+function new_cube(x, y, z, dx, dy, dz) =
+	[x, y, z, dx, dy, dz];
 
 //echo(is_in("two", [["one"], ["two"], ["three"]]));
 function is_in(match_string = "findme", search_set = [["string1"], ["string2"], ["string3"]]) =
 	( search([match_string], search_set) == [[]] ) ? false : true;
  
-module position(translate = [], rotate = [], mirror = [0, 0, 0], colour = -1)
+module position(translate = [], rotate = [], mirror = [0, 0, 0], colour)
 {
 	for (i = [0 : $children-1])
 		translate(translate)
 			rotate(rotate)
 				mirror(mirror)
-					if (colour == -1)
+					if (colour == undef)
 						children(i);
 					else
 						color(colour)
@@ -52,6 +110,8 @@ module position(translate = [], rotate = [], mirror = [0, 0, 0], colour = -1)
 
 module slot(length, width, depth)
 {
+	echo("DEPRECATED: use rounded_rects instead.");
+
 	hull()
 	{
 		cylinder(h = depth, r = width/2);
