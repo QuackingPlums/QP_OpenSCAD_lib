@@ -92,9 +92,9 @@ module docSCAD_help()
 				new_help_item_parameter("description", "string", "Function description")],
 			"Create documentation for a new module or function."),
 		new_help_item(
-			"new_help_item_parameter(name, example, description)",
+			"new_help_item_parameter(name, type, description)",
 			[	new_help_item_parameter("name", "string", "Parameter name"),
-				new_help_item_parameter("example", "string", "Parameter example"),
+				new_help_item_parameter("type", "string", "Parameter type"),
 				new_help_item_parameter("description", "string", "Parameter description")],
 			"Create documentation for a module or function parameter.")
 	];
