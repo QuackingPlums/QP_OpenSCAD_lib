@@ -38,7 +38,10 @@ module format_help(name, description, properties, functions, modules)
 			if (len(help_item_parameters(properties[i])) > 0)
 				for (j = [0:len(help_item_parameters(properties[i]))-1])
 					assign(parameter = help_item_parameters(properties[i])[j])
-						echo(str( "<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i> - ", parameter_description(parameter) ));
+						echo(str(
+							"<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i>",
+						 	parameter_description(parameter) == undef ? "" : str(" - ", parameter_description(parameter))
+						));
 			echo();
 		}
 	}
@@ -54,7 +57,10 @@ module format_help(name, description, properties, functions, modules)
 			if (len(help_item_parameters(functions[i])) > 0)
 				for (j = [0:len(help_item_parameters(functions[i]))-1])
 					assign(parameter = help_item_parameters(functions[i])[j])
-						echo(str( "<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i> - ", parameter_description(parameter) ));
+						echo(str(
+							"<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i>",
+							parameter_description(parameter) == undef ? "" : str(" - ", parameter_description(parameter))
+						));
 			echo();
 		}
 	}
@@ -70,14 +76,17 @@ module format_help(name, description, properties, functions, modules)
 			if (len(help_item_parameters(modules[i])) > 0)
 				for (j = [0:len(help_item_parameters(modules[i]))-1])
 					assign(parameter = help_item_parameters(modules[i])[j])
-						echo(str( "<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i> - ", parameter_description(parameter) ));
+						echo(str(
+							"<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i>",
+							parameter_description(parameter) == undef ? "" : str(" - ", parameter_description(parameter))
+						));
 			echo();
 		}
 	}
 	echo("========================================");
 }
 
-docSCAD_help();
+//docSCAD_help();
 module docSCAD_help()
 {
 	name = "docSCAD.scad";
