@@ -46,14 +46,49 @@ module common_help()
 			[	new_help_item_parameter("x", "number", "x-coordinate of circle centre"),
 				new_help_item_parameter("y", "number", "y-coordinate of circle centre"),
 				new_help_item_parameter("diameter", "number", "diameter of circle")],
-			"Create a definition for a circle = [x, y, diameter]"),
+			"Returns a new circle type = [x, y, diameter]"),
+		new_help_item(
+			"circle_x(circle)",
+			[],
+			"Returns x-coordinate of circle"),
+		new_help_item(
+			"circle_y(circle)",
+			[],
+			"Returns y-coordinate of circle"),
+		new_help_item(
+			"circle_diameter(circle)",
+			[],
+			"Returns diameter of circle"),
+		new_help_item(
+			"new_cyl(x, y, height, diameter)",
+			[	new_help_item_parameter("x", "number", "x-coordinate of cylinder centre"),
+				new_help_item_parameter("y", "number", "y-coordinate of cylinder centre"),
+				new_help_item_parameter("height", "number", "height of cylinder"),
+				new_help_item_parameter("diameter", "number", "diameter of cylinder")],
+			"Returns a new cylinder type = [x, y, height, diameter]"),
 		new_help_item(
 			"new_rect(x, y, dx, dy)",
 			[	new_help_item_parameter("x", "number", "x-coordinate of rectangle"),
 				new_help_item_parameter("y", "number", "y-coordinate of rectangle"),
 				new_help_item_parameter("dx", "number", "length of rectangle along x-axis"),
 				new_help_item_parameter("dy", "number", "length of rectangle along y-axis")],
-			"Create a definition for a rectangle = [x, y, dx, dy]"),
+			"Returns a new rectangle type = [x, y, dx, dy]"),
+		new_help_item(
+			"rect_x(rect)",
+			[],
+			"Returns x-coordinate of rectangle"),
+		new_help_item(
+			"rect_y(rect)",
+			[],
+			"Returns y-coordinate of rectangle"),
+		new_help_item(
+			"rect_dx(rect)",
+			[],
+			"Returns length of rectangle along x-axis"),
+		new_help_item(
+			"rect_dy(rect)",
+			[],
+			"Returns length of rectangle along y-axis"),
 		new_help_item(
 			"new_cube(x, y, z, dx, dy, dz)",
 			[	new_help_item_parameter("x", "number", "x-coordinate of cuboid"),
@@ -62,7 +97,31 @@ module common_help()
 				new_help_item_parameter("dx", "number", "length of cuboid along x-axis"),
 				new_help_item_parameter("dy", "number", "length of cuboid along y-axis"),
 				new_help_item_parameter("dz", "number", "length of cuboid along z-axis")],
-			"Create a definition for a cuboid = [x, y, z, dx, dy, dz]"),
+			"Returns a new cuboid type = [x, y, z, dx, dy, dz]"),
+		new_help_item(
+			"cube_x(cube)",
+			[],
+			"Returns x-coordinate of cube"),
+		new_help_item(
+			"cube_y(cube)",
+			[],
+			"Returns y-coordinate of cube"),
+		new_help_item(
+			"cube_z(cube)",
+			[],
+			"Returns z-coordinate of cube"),
+		new_help_item(
+			"cube_dx(cube)",
+			[],
+			"Returns length of cube along x-axis"),
+		new_help_item(
+			"cube_dy(cube)",
+			[],
+			"Returns length of cube along y-axis"),
+		new_help_item(
+			"cube_dz(cube)",
+			[],
+			"Returns length of cube along z-axis"),
 		new_help_item(
 			"is_in(match_string, search_set)",
 			[	new_help_item_parameter("match_string", "string", "string to search for - e.g. &quot;one&quot;"),
@@ -84,12 +143,32 @@ module common_help()
 
 function new_circle(x, y, diameter) =
 	[x, y, diameter];
+function circle_x(circle) = circle[0];
+function circle_y(circle) = circle[1];
+function circle_diameter(circle) = circle[2];
+
+function new_cyl(x, y, height, diameter) =
+	[x, y, height, diameter];
+function cyl_x(cyl) = cyl[0];
+function cyl_y(cyl) = cyl[1];
+function cyl_height(cyl) = cyl[2];
+function cyl_diameter(cyl) = cyl[3];
 
 function new_rect(x, y, dx, dy) =
 	[x, y, dx, dy];
+function rect_x(rect) = rect[0];
+function rect_y(rect) = rect[1];
+function rect_dx(rect) = rect[2];
+function rect_dy(rect) = rect[3];
 
 function new_cube(x, y, z, dx, dy, dz) =
 	[x, y, z, dx, dy, dz];
+function cube_x(cube) = cube[0];
+function cube_y(cube) = cube[1];
+function cube_z(cube) = cube[2];
+function cube_dx(cube) = cube[3];
+function cube_dy(cube) = cube[4];
+function cube_dz(cube) = cube[5];
 
 //echo(is_in("two", [["one"], ["two"], ["three"]]));
 function is_in(match_string = "findme", search_set = [["string1"], ["string2"], ["string3"]]) =
