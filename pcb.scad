@@ -140,7 +140,7 @@ module Board(pcb, debug=false)
 	{
 		// main board
 		color(pcb_green())
-			rounded_cube2(pcb_board_cube(pcb_dimensions), pcb_corner_radius);
+			Extruded_rounded_rectangle(pcb_board_cube(pcb_dimensions), pcb_corner_radius);
 
 		// holes
 		for(i = [0:len(pcb_holes(pcb))-1])
