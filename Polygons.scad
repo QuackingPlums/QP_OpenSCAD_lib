@@ -9,7 +9,7 @@
 
 use <docSCAD.scad>; //docSCAD_help();
 
-polygons_help();
+//polygons_help();
 module polygons_help()
 {
 	name = "polygons.scad";
@@ -47,7 +47,7 @@ module Regular_convex_polygon(r, n)
 	Polygonize(point_cloud = convex_vertices(r = r, v = n));
 }
 
-Regular_concave_polygon(5, 10, 12);
+//Regular_concave_polygon(5, 10, 12);
 module Regular_concave_polygon(r1, r2, n)
 {
 	Polygonize(point_cloud = concave_vertices(r1 = r1, r2 = r2, v = n));
