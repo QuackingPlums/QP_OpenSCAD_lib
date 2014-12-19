@@ -31,7 +31,7 @@ module rounded_rects_help()
 		new_help_item(
 			"Extruded_rounded_rectangle(cube, corner_radius)",
 			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
-				new_help_item_parameter("corner_radius", "number", "Size of constrainging circle")],
+				new_help_item_parameter("corner_radius", "number", "Size of constraining circle")],
 			"Draws an extruded 2D rectangle with rounded corners."),
 		new_help_item(
 			"Capsule(rect, teardrop = false)",
