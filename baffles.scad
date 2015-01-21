@@ -3,6 +3,9 @@
 | and edges, especially when printing near the edge
 | of the heated bed where colder air can reduce
 | adhesion.
+|
+| UPDATE Jan 2015:
+| Brims seem to work as well if not better
 **************************************************/
 use <common.scad>;
 ff = 0.05;
