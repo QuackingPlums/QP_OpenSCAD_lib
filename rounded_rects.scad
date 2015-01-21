@@ -47,11 +47,11 @@ module rounded_rects_help()
 	];
 
 	format_help(
-		name,
-		description,
-		properties,
-		functions,
-		modules
+		name=name,
+		description=description,
+		properties=properties,
+		functions=functions,
+		modules=modules
 	);
 }
 
