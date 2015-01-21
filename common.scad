@@ -39,40 +39,17 @@ module common_help()
 {
 	name = "common.scad";
 	description = "A library of commonly used modules and functions";
-	properties = [];
-	functions = [
+	types=[];
+	accessors=[
 		new_help_item(
-			"new_circle(x, y, diameter)",
-			[	new_help_item_parameter("x", "number", "x-coordinate of circle centre"),
-				new_help_item_parameter("y", "number", "y-coordinate of circle centre"),
-				new_help_item_parameter("diameter", "number", "diameter of circle")],
-			"Returns a new circle type = [x, y, diameter]"),
+			signature="circle_x(circle)",
+			description="Returns x-coordinate of circle"),
 		new_help_item(
-			"circle_x(circle)",
-			[],
-			"Returns x-coordinate of circle"),
+			signature="circle_y(circle)",
+			description="Returns y-coordinate of circle"),
 		new_help_item(
-			"circle_y(circle)",
-			[],
-			"Returns y-coordinate of circle"),
-		new_help_item(
-			"circle_diameter(circle)",
-			[],
-			"Returns diameter of circle"),
-		new_help_item(
-			"new_cyl(x, y, height, diameter)",
-			[	new_help_item_parameter("x", "number", "x-coordinate of cylinder centre"),
-				new_help_item_parameter("y", "number", "y-coordinate of cylinder centre"),
-				new_help_item_parameter("height", "number", "height of cylinder"),
-				new_help_item_parameter("diameter", "number", "diameter of cylinder")],
-			"Returns a new cylinder type = [x, y, height, diameter]"),
-		new_help_item(
-			"new_rect(x, y, dx, dy)",
-			[	new_help_item_parameter("x", "number", "x-coordinate of rectangle"),
-				new_help_item_parameter("y", "number", "y-coordinate of rectangle"),
-				new_help_item_parameter("dx", "number", "length of rectangle along x-axis"),
-				new_help_item_parameter("dy", "number", "length of rectangle along y-axis")],
-			"Returns a new rectangle type = [x, y, dx, dy]"),
+			signature="circle_diameter(circle)",
+			description="Returns diameter of circle"),
 		new_help_item(
 			"rect_x(rect)",
 			[],
@@ -89,15 +66,6 @@ module common_help()
 			"rect_dy(rect)",
 			[],
 			"Returns length of rectangle along y-axis"),
-		new_help_item(
-			"new_cube(x, y, z, dx, dy, dz)",
-			[	new_help_item_parameter("x", "number", "x-coordinate of cuboid"),
-				new_help_item_parameter("y", "number", "y-coordinate of cuboid"),
-				new_help_item_parameter("z", "number", "z-coordinate of cuboid"),
-				new_help_item_parameter("dx", "number", "length of cuboid along x-axis"),
-				new_help_item_parameter("dy", "number", "length of cuboid along y-axis"),
-				new_help_item_parameter("dz", "number", "length of cuboid along z-axis")],
-			"Returns a new cuboid type = [x, y, z, dx, dy, dz]"),
 		new_help_item(
 			"cube_x(cube)",
 			[],
@@ -121,7 +89,39 @@ module common_help()
 		new_help_item(
 			"cube_dz(cube)",
 			[],
-			"Returns length of cube along z-axis"),
+			"Returns length of cube along z-axis")
+	];
+	properties = [];
+	functions = [
+		new_help_item(
+			"new_circle(x, y, diameter)",
+			[	new_help_item_parameter("x", "number", "x-coordinate of circle centre"),
+				new_help_item_parameter("y", "number", "y-coordinate of circle centre"),
+				new_help_item_parameter("diameter", "number", "diameter of circle")],
+			"Returns a new circle type = [x, y, diameter]"),
+		new_help_item(
+			"new_cyl(x, y, height, diameter)",
+			[	new_help_item_parameter("x", "number", "x-coordinate of cylinder centre"),
+				new_help_item_parameter("y", "number", "y-coordinate of cylinder centre"),
+				new_help_item_parameter("height", "number", "height of cylinder"),
+				new_help_item_parameter("diameter", "number", "diameter of cylinder")],
+			"Returns a new cylinder type = [x, y, height, diameter]"),
+		new_help_item(
+			"new_rect(x, y, dx, dy)",
+			[	new_help_item_parameter("x", "number", "x-coordinate of rectangle"),
+				new_help_item_parameter("y", "number", "y-coordinate of rectangle"),
+				new_help_item_parameter("dx", "number", "length of rectangle along x-axis"),
+				new_help_item_parameter("dy", "number", "length of rectangle along y-axis")],
+			"Returns a new rectangle type = [x, y, dx, dy]"),
+		new_help_item(
+			"new_cube(x, y, z, dx, dy, dz)",
+			[	new_help_item_parameter("x", "number", "x-coordinate of cuboid"),
+				new_help_item_parameter("y", "number", "y-coordinate of cuboid"),
+				new_help_item_parameter("z", "number", "z-coordinate of cuboid"),
+				new_help_item_parameter("dx", "number", "length of cuboid along x-axis"),
+				new_help_item_parameter("dy", "number", "length of cuboid along y-axis"),
+				new_help_item_parameter("dz", "number", "length of cuboid along z-axis")],
+			"Returns a new cuboid type = [x, y, z, dx, dy, dz]"),
 		new_help_item(
 			"is_in(match_string, search_set)",
 			[	new_help_item_parameter("match_string", "string", "string to search for - e.g. &quot;one&quot;"),
@@ -138,7 +138,14 @@ module common_help()
 			"Combination colour, mirror, rotate and translate transformation, in that order")
 	];
 
-	format_help(name, description, properties, functions, modules);
+	format_help(
+		name=name,
+		description=description,
+		types=types,
+		accessors=accessors,
+		properties=properties,
+		functions=functions,
+		modules=modules);
 }
 
 function new_circle(x, y, diameter) =
