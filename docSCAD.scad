@@ -66,11 +66,14 @@ module format_help(name, description, types, accessors, properties, functions, m
 			echo(str( help_item_description(properties[i]) ));
 			if (len(help_item_parameters(properties[i])) > 0)
 				for (j = [0:len(help_item_parameters(properties[i]))-1])
-					assign(parameter = help_item_parameters(properties[i])[j])
-						echo(str(
-							"<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i>",
-						 	parameter_description(parameter) == undef ? "" : str(" - ", parameter_description(parameter))
-						));
+				{
+					//assign(parameter = help_item_parameters(properties[i])[j])
+					parameter = help_item_parameters(properties[i])[j];
+					echo(str(
+						"<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i>",
+					 	parameter_description(parameter) == undef ? "" : str(" - ", parameter_description(parameter))
+					));
+				}
 			echo();
 		}
 	}
@@ -85,11 +88,14 @@ module format_help(name, description, types, accessors, properties, functions, m
 			echo(str( help_item_description(functions[i]) ));
 			if (len(help_item_parameters(functions[i])) > 0)
 				for (j = [0:len(help_item_parameters(functions[i]))-1])
-					assign(parameter = help_item_parameters(functions[i])[j])
-						echo(str(
-							"<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i>",
-							parameter_description(parameter) == undef ? "" : str(" - ", parameter_description(parameter))
-						));
+				{
+					//assign(parameter = help_item_parameters(functions[i])[j])
+					parameter = help_item_parameters(functions[i])[j];
+					echo(str(
+						"<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i>",
+						parameter_description(parameter) == undef ? "" : str(" - ", parameter_description(parameter))
+					));
+				}
 			echo();
 		}
 	}
@@ -104,11 +110,14 @@ module format_help(name, description, types, accessors, properties, functions, m
 			echo(str( help_item_description(modules[i]) ));
 			if (len(help_item_parameters(modules[i])) > 0)
 				for (j = [0:len(help_item_parameters(modules[i]))-1])
-					assign(parameter = help_item_parameters(modules[i])[j])
-						echo(str(
-							"<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i>",
-							parameter_description(parameter) == undef ? "" : str(" - ", parameter_description(parameter))
-						));
+				{
+					//assign(parameter = help_item_parameters(modules[i])[j])
+					parameter = help_item_parameters(modules[i])[j];
+					echo(str(
+						"<b>", parameter_name(parameter), "</b> <i>", parameter_type(parameter), "</i>",
+						parameter_description(parameter) == undef ? "" : str(" - ", parameter_description(parameter))
+					));
+				}
 			echo();
 		}
 	}
