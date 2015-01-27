@@ -4,7 +4,7 @@
 | the heated bed where colder air can reduce
 | adhesion.
 **************************************************/
-use <docSCAD.scad>;	docSCAD_help();
+use <docSCAD.scad>;	//docSCAD_help();
 use <common.scad>;
 
 ff = 0.05;					// CSG fudge factor
