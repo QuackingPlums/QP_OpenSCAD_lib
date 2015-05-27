@@ -46,18 +46,21 @@ module pie_slice_nophead2(r, start_angle, end_angle)
 	r = r;
 	a0 = start_angle;
 	a1 = end_angle;
-
-    $fa = 5;
-    R = r * sqrt(2) + 1;
-    intersection() {
-        circle(r);
-        hull() {
-            point(0,0);
-            for(i = [0:4])
-                assign(a = ((4 - i) * a0 + i * a1) / 4)
-                     point(R * cos(a), R * sin(a));
-       }
-    }
+	
+	$fa = 5;
+	R = r * sqrt(2) + 1;
+	intersection() {
+		circle(r);
+		hull() {
+			point(0,0);
+			for(i = [0:4])
+			{
+				//assign(a = ((4 - i) * a0 + i * a1) / 4)
+				a = ((4 - i) * a0 + i * a1) / 4;
+				point(R * cos(a), R * sin(a));
+			}
+		}
+	}
 }
 
 // whosawhatsis
