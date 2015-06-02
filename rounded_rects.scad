@@ -134,6 +134,21 @@ module Capsule(rect, teardrop = false)
 	}
 }
 
+//_teardrop_2D(10);
+module _teardrop_2D(r)
+{
+	intersection()
+	{
+		rotate(225)
+			union()
+			{
+				circle(r = r);
+					square(r);
+			}
+		square(2*r, center = true);
+	}
+}
+
 //_teardrop(10, true);
 module _teardrop(r, invert = false)
 {
