@@ -5,7 +5,9 @@
 use <docSCAD.scad>;
 use <common.scad>;
 
-ff = 0.05;
+ff = 0.05;									// CSG fudge factor
+$fs = 1.0;									// CSG segment size (mm)
+$fa = 5;										// CSG minimum angle (degrees)
 
 rounded_rects_help();
 module rounded_rects_help()
@@ -22,12 +24,13 @@ module rounded_rects_help()
 		new_help_item(
 			"Stadium(rect, teardrop = false)",
 			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
-				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrops instead of circles")],
+				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along X-axis")],
 			"Draws a 2D pill shape."),
 		new_help_item(
-			"Rounded_rectangle(rect, corner_radius)",
+			"Rounded_rectangle(rect, corner_radius, teardrop = false)",
 			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
-				new_help_item_parameter("corner_radius", "number", "Size of corner circles")],
+				new_help_item_parameter("corner_radius", "number", "Size of corner circles"),
+				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along X-axis")],
 			"Draws a 2D rectangle with rounded corners."),
 		new_help_item(
 			"Extruded_rounded_rectangle(cube, corner_radius)",
@@ -37,13 +40,13 @@ module rounded_rects_help()
 		new_help_item(
 			"Capsule(rect, teardrop = false)",
 			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
-				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop instead of sphere")],
+				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along XY-plane")],
 			"Draws a 3D pill shape."),
 		new_help_item(
 			"Rounded_cube(cube, corner_radius, teardrop = false)",
 			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
 				new_help_item_parameter("corner_radius", "number", "Size of constrainging circle"),
-				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop instead of sphere")],
+				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along XY plane")],
 			"Draws a 3D cuboid with rounded corners and optional teardrop lower edge profile.")
 	];
 
@@ -65,7 +68,8 @@ module rounded_rects_help()
 function minimum_corner_radius(edge_clearance) =			// square peg/round hole problem
 	edge_clearance / (sqrt(2)-1) + edge_clearance;
 
-Stadium([100, 20], true);
+//Stadium([100, 20], true);
+//Stadium([20, 100], true);
 module Stadium(rect, teardrop = false)
 {
 	x = rect[0];
@@ -88,8 +92,8 @@ module Stadium(rect, teardrop = false)
 	}
 }
 
-//Rounded_rectangle([20, 10], 4);
-module Rounded_rectangle(rect, corner_radius)
+//Rounded_rectangle([30, 20], 5, true);
+module Rounded_rectangle(rect, corner_radius, teardrop = false)
 {
 	x = rect[0];
 	y = rect[1];
@@ -98,11 +102,11 @@ module Rounded_rectangle(rect, corner_radius)
 
 	hull()
 	{
-		Stadium([d, y]);
+		Stadium([d, y], teardrop);
 
 		if (x > d)
 			translate([x-d, 0])
-				Stadium([d, y]);
+				Stadium([d, y], teardrop);
 	}
 }
 
