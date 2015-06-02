@@ -20,8 +20,9 @@ module rounded_rects_help()
 			"Returns the smallest corner radius to accommodate a specified edge clearance")];
 	modules = [
 		new_help_item(
-			"Stadium(rect)",
-			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle")],
+			"Stadium(rect, teardrop = false)",
+			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
+				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrops instead of circles")],
 			"Draws a 2D pill shape."),
 		new_help_item(
 			"Rounded_rectangle(rect, corner_radius)",
@@ -39,7 +40,7 @@ module rounded_rects_help()
 				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop instead of sphere")],
 			"Draws a 3D pill shape."),
 		new_help_item(
-			"Rounded_cube(cube, corner_radius, teardrop)",
+			"Rounded_cube(cube, corner_radius, teardrop = false)",
 			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
 				new_help_item_parameter("corner_radius", "number", "Size of constrainging circle"),
 				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop instead of sphere")],
@@ -64,8 +65,8 @@ module rounded_rects_help()
 function minimum_corner_radius(edge_clearance) =			// square peg/round hole problem
 	edge_clearance / (sqrt(2)-1) + edge_clearance;
 
-//Stadium([100, 20]);
-module Stadium(rect)
+Stadium([100, 20], true);
+module Stadium(rect, teardrop = false)
 {
 	x = rect[0];
 	y = rect[1];
@@ -74,9 +75,15 @@ module Stadium(rect)
 	hull()
 	{
 		translate([r, r])
-			circle(r = r);
+			if (teardrop)
+				_teardrop_2D(r);
+			else
+				circle(r = r);
 		if (x != y)
 			translate([x-r, y-r])
+			if (teardrop)
+				_teardrop_2D(r);
+			else
 				circle(r = r);
 	}
 }
