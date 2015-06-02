@@ -33,9 +33,10 @@ module rounded_rects_help()
 				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along X-axis")],
 			"Draws a 2D rectangle with rounded corners."),
 		new_help_item(
-			"Extruded_rounded_rectangle(cube, corner_radius)",
+			"Extruded_rounded_rectangle(cube, corner_radius, teardrop = false)",
 			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
-				new_help_item_parameter("corner_radius", "number", "Size of constraining circle")],
+				new_help_item_parameter("corner_radius", "number", "Size of constraining circle"),
+				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along XZ-plane")],
 			"Draws an extruded 2D rectangle with rounded corners."),
 		new_help_item(
 			"Capsule(rect, teardrop = false)",
@@ -110,15 +111,15 @@ module Rounded_rectangle(rect, corner_radius, teardrop = false)
 	}
 }
 
-//Extruded_rounded_rectangle([20, 30, 10], 5);
-module Extruded_rounded_rectangle(cube, corner_radius)
+Extruded_rounded_rectangle([20, 30, 10], 5, true);
+module Extruded_rounded_rectangle(cube, corner_radius, teardrop = false)
 {
 	x = cube[0];
 	y = cube[1];
 	z = cube[2];
 
 	linear_extrude(height = z)
-		Rounded_rectangle([x, y], corner_radius);
+		Rounded_rectangle([x, y], corner_radius, teardrop);
 }
 
 //Capsule([10, 20], true);
