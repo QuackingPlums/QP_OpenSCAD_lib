@@ -25,13 +25,18 @@ module rounded_rects_help()
 			"Stadium(rect, teardrop = false)",
 			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
 				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along X-axis")],
-			"Draws a 2D pill shape."),
+			"Draws a stadium (2D pill shape)."),
 		new_help_item(
 			"Rounded_rectangle(rect, corner_radius, teardrop = false)",
 			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
 				new_help_item_parameter("corner_radius", "number", "Size of corner circles"),
 				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along X-axis")],
 			"Draws a 2D rectangle with rounded corners."),
+		new_help_item(
+			"Extruded_stadium(cube, corner_radius, teardrop = false)",
+			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
+				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along XZ-plane")],
+			"Draws an extruded stadium."),
 		new_help_item(
 			"Extruded_rounded_rectangle(cube, corner_radius, teardrop = false)",
 			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
@@ -111,7 +116,18 @@ module Rounded_rectangle(rect, corner_radius, teardrop = false)
 	}
 }
 
-Extruded_rounded_rectangle([20, 30, 10], 5, true);
+//Extruded_stadium([30, 20, 8], 5, true);
+module Extruded_stadium(cube, teardrop = false)
+{
+	x = cube[0];
+	y = cube[1];
+	z = cube[2];
+
+	linear_extrude(height = z)
+		Stadium([x, y], teardrop);
+}
+
+//Extruded_rounded_rectangle([20, 30, 10], 5, true);
 module Extruded_rounded_rectangle(cube, corner_radius, teardrop = false)
 {
 	x = cube[0];
