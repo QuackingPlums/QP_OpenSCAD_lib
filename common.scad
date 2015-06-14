@@ -34,6 +34,74 @@ width			width of slot
 depth			depth of slot
 */
 
+
+function new_circle(x, y, diameter) =
+	[x, y, diameter];
+function circle_x(circle) = circle[0];
+function circle_y(circle) = circle[1];
+function circle_diameter(circle) = circle[2];
+
+function new_cyl(x, y, height, diameter) =
+	[x, y, height, diameter];
+function cyl_x(cyl) = cyl[0];
+function cyl_y(cyl) = cyl[1];
+function cyl_height(cyl) = cyl[2];
+function cyl_diameter(cyl) = cyl[3];
+
+function new_rect(x, y, dx, dy) =
+	[x, y, dx, dy];
+function rect_x(rect) = rect[0];
+function rect_y(rect) = rect[1];
+function rect_dx(rect) = rect[2];
+function rect_dy(rect) = rect[3];
+
+function new_cube(x, y, z, dx, dy, dz) =
+	[x, y, z, dx, dy, dz];
+function cube_x(cube) = cube[0];
+function cube_y(cube) = cube[1];
+function cube_z(cube) = cube[2];
+function cube_dx(cube) = cube[3];
+function cube_dy(cube) = cube[4];
+function cube_dz(cube) = cube[5];
+
+//echo(is_in("two", [["one"], ["two"], ["three"]]));
+function is_in(match_string = "findme", search_set = [["string1"], ["string2"], ["string3"]]) =
+	( search([match_string], search_set) == [[]] ) ? false : true;
+ 
+module position(translate = [], rotate = [], mirror = [0, 0, 0], colour)
+{
+	for (i = [0 : $children-1])
+		translate(translate)
+			rotate(rotate)
+				mirror(mirror)
+					if (colour == undef)
+						children(i);
+					else
+						color(colour)
+							children(i);
+}
+
+module slot(length, width, depth)
+{
+	echo("DEPRECATED: use rounded_rects instead.");
+
+	hull()
+	{
+		cylinder(h = depth, r = width/2);
+		translate([length - width, 0, 0])
+			cylinder(h = depth, r = width/2);
+	}
+}
+
+// this is wrong!
+function rms(a, b) = 
+	sqrt(pow(a, 2) + pow(b, 2));
+
+module debug()
+{
+	#children();
+}
+
 //common_help();
 module common_help()
 {
@@ -146,71 +214,4 @@ module common_help()
 		properties=properties,
 		functions=functions,
 		modules=modules);
-}
-
-function new_circle(x, y, diameter) =
-	[x, y, diameter];
-function circle_x(circle) = circle[0];
-function circle_y(circle) = circle[1];
-function circle_diameter(circle) = circle[2];
-
-function new_cyl(x, y, height, diameter) =
-	[x, y, height, diameter];
-function cyl_x(cyl) = cyl[0];
-function cyl_y(cyl) = cyl[1];
-function cyl_height(cyl) = cyl[2];
-function cyl_diameter(cyl) = cyl[3];
-
-function new_rect(x, y, dx, dy) =
-	[x, y, dx, dy];
-function rect_x(rect) = rect[0];
-function rect_y(rect) = rect[1];
-function rect_dx(rect) = rect[2];
-function rect_dy(rect) = rect[3];
-
-function new_cube(x, y, z, dx, dy, dz) =
-	[x, y, z, dx, dy, dz];
-function cube_x(cube) = cube[0];
-function cube_y(cube) = cube[1];
-function cube_z(cube) = cube[2];
-function cube_dx(cube) = cube[3];
-function cube_dy(cube) = cube[4];
-function cube_dz(cube) = cube[5];
-
-//echo(is_in("two", [["one"], ["two"], ["three"]]));
-function is_in(match_string = "findme", search_set = [["string1"], ["string2"], ["string3"]]) =
-	( search([match_string], search_set) == [[]] ) ? false : true;
- 
-module position(translate = [], rotate = [], mirror = [0, 0, 0], colour)
-{
-	for (i = [0 : $children-1])
-		translate(translate)
-			rotate(rotate)
-				mirror(mirror)
-					if (colour == undef)
-						children(i);
-					else
-						color(colour)
-							children(i);
-}
-
-module slot(length, width, depth)
-{
-	echo("DEPRECATED: use rounded_rects instead.");
-
-	hull()
-	{
-		cylinder(h = depth, r = width/2);
-		translate([length - width, 0, 0])
-			cylinder(h = depth, r = width/2);
-	}
-}
-
-// this is wrong!
-function rms(a, b) = 
-	sqrt(pow(a, 2) + pow(b, 2));
-
-module debug()
-{
-	#children();
 }
