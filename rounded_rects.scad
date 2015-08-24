@@ -230,7 +230,7 @@ module Rounded_cube(cube, corner_radius, teardrop = false)
 //rounded_pill(30, 10, 5);
 module rounded_pill(length, width, height = ff)
 {
-	echo("<b>rounded_pill()</b> is deprecated; use <b>Rounded_rectangle()</b>");
+	echo("<b>rounded_pill()</b> is deprecated; use <b>Extruded_stadium()</b>");
 	
 	l = length;
 	w = width;
@@ -245,7 +245,7 @@ module rounded_pill(length, width, height = ff)
 //rounded_rect(10, 20, 3);
 module rounded_rect(length, width, corner_radius, height = ff)
 {
-	echo("<b>rounded_rect()</b> is deprecated; use <b>Rounded_rectangle()</b> instead");
+	echo("<b>rounded_rect()</b> is deprecated; use <b>Extruded_rounded_rectangle()</b> instead");
 
 	Extruded_rounded_rectangle([length, width, height], corner_radius);
 }
