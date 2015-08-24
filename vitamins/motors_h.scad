@@ -19,7 +19,7 @@ iPower_GBM4008 = ["iFlight iPower GBM4008-150 brushless gimbal motor",				// 400
  	38.93, 3.84,		// bell cap d, bell cap h
 	0, 0,			// shaft collar d, shaft collar h
 	3.17, 0, 0,		// shaft d, shaft h, shaft direction
-	12, 4, M3, M3];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+	12, 4, M3, M3];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 iPower_GBM4006 = ["iFlight iPower GBM4006-150 brushless gimbal motor",				// 400-800g (NEX-5)
 	40, 6,			// stator d, stator h
@@ -41,7 +41,7 @@ iPower_GBM3508 = ["iFlight iPower GBM3508-130 brushless gimbal motor",				// 200
  	35, 3,			// bell cap d, bell cap h
 	0, 0,			// shaft collar d, shaft collar h
 	3.17, 10, 0,		// shaft d, shaft h, shaft direction
-	12, 4, M3, M3];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+	12, 4, M3, M3];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 iPower_GBM2212 = ["iFlight iPower GBM2212-80 brushless gimbal motor",				// 100-300g (GoPro = 75g)
 	22, 12,			// stator d, stator h
@@ -52,7 +52,7 @@ iPower_GBM2212 = ["iFlight iPower GBM2212-80 brushless gimbal motor",				// 100-
 	25, 5,			// bell cap d, bell cap h
 	9, 4.2,			// shaft collar d, shaft collar h
 	3.17, 0, 0,		// shaft d, shaft h, shaft direction
-	12, 4, M2, M3];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+	12, 4, M2, M3];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 iPower_GBM2208 = ["iFlight iPower GBM2208-80 brushless gimbal motor",				// 100-200g (GoPro = 75g) ** VERIFIED **
 	22, 8,			// stator d, stator h
@@ -63,18 +63,18 @@ iPower_GBM2208 = ["iFlight iPower GBM2208-80 brushless gimbal motor",				// 100-
 	25, 5,			// bell cap d, bell cap h
 	9, 4.2,			// shaft collar d, shaft collar h
 	3.17, 0, 0,		// shaft d, shaft h, shaft direction
-	12, 4, M2, M3];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+	12, 4, M2, M3];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 GLB_GBM2208 = ["Goodluckbuy GBM2208-80 brushless gimbal motor",						// 100-200g (GoPro = 75g) ** VERIFIED **
 	22, 8,			// stator d, stator h
 	16, 19,	4,		// bottom mount hole centers min, max, bottom hole pattern (3 or 4)
 	25, 27.7, 5.5,	// base d1, base d2, base h
 	0, 0,			// base ring d, base ring h
-	27.7, 12,		// bell d, bell h
+	27.7, 12,			// bell d, bell h
 	18, 3,			// bell cap d, bell cap h
 	0, 0,			// shaft collar d, shaft collar h
 	3.17, 0, 0,		// shaft d, shaft h, shaft direction
-	10, 4, M2, M3];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+	10, 4, M2, M3];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 RCTimer_GBM5010 = ["RCTimer 5010-021-150T", 								// ???g (DSLR?!)
 	40, 8,
@@ -109,7 +109,7 @@ RCX_ZMR1804 = ["RCX ZMR 1804 2400KV",										// QPAV250 mini-quad
 	20.6, 2,			// bell cap d, bell cap h
 	9, 1,			// shaft collar d, shaft collar h
 	5, 14.9, 0,		// shaft d, shaft h, shaft direction
-	0, 0, M2, M2];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+	0, 0, M2, M2];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 LD1510A = ["Hobbyking LD1510A-02-P",
 	15, 10,			// stator d, stator h
@@ -120,7 +120,7 @@ LD1510A = ["Hobbyking LD1510A-02-P",
 	10, 2.5,			// bell cap d, bell cap h
 	5, 2,			// shaft collar d, shaft collar h
 	2, 7.9, 0,		// shaft d, shaft h, shaft direction
-	0, 0, M2, M2];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+	0, 0, M2, M2];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 QPAV250_generic = ["generic 250 quad motor",
 	0, 0,			// stator d, stator h
@@ -130,19 +130,31 @@ QPAV250_generic = ["generic 250 quad motor",
 	22, 5,			// bell d, bell h
 	22, 2,			// bell cap d, bell cap h
 	20, 2,			// shaft collar d, shaft collar h
-	5, 15, 0,		// shaft d, shaft h, shaft direction
-	0, 0, M2, M2];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+	5, 15, 0,			// shaft d, shaft h, shaft direction
+	0, 0, M2, M2];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 Turnigy_AeroDrive_C2024 = ["Turnigy AeroDrive C2024",
-	17.5, 10,		// stator d, stator h
+	17.5, 10,			// stator d, stator h
 	24, 24, 3,		// bottom mount hole centers min, max, bottom hole pattern (3 or 4)
-	28, 28, 1.25,	// base d1, base d2, base h
+	28, 28, 1.25,		// base d1, base d2, base h
 	19, 4,			// base ring d, base ring h
-	19.5, 11,		// bell d, bell h
-	10, 0.75,		// bell cap d, bell cap h
+	19.5, 11,			// bell d, bell h
+	10, 0.75,			// bell cap d, bell cap h
 	7, 5.25,			// shaft collar d, shaft collar h
 	2, 0, 0,			// shaft d, shaft h, shaft direction
-	0, 0, M2, M2];		// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw siz
+	0, 0, M2, M2];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+
+EMAX_MT2204 = ["EMAX Nighthawk 250 motor",
+// ** UNVERIFIED **
+	22, 4,			// stator d, stator h
+	16, 19,	4,		// bottom mount hole centers min, max, bottom hole pattern (3 or 4)
+	27.9, 27.9, 3.5,	// base d1, base d2, base h
+	0, 0,			// base ring d, base ring h
+	27.9, 12.5,		// bell d, bell h
+	12, 2,			// bell cap d, bell cap h
+	0, 0,			// shaft collar d, shaft collar h
+	5, 12, 0,			// shaft d, shaft h, shaft direction
+	0, 0, M2, M2];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
 /*
 name

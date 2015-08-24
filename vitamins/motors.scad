@@ -199,4 +199,4 @@ module motor_screws(screw_type = M3_cap_screw, length = 12, diameter = 16, patte
 	}
 }
 
-motor(GLB_GBM2208);
+motor(EMAX_MT2204);
