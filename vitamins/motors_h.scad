@@ -156,6 +156,18 @@ EMAX_MT2204 = ["EMAX Nighthawk 250 motor",
 	5, 12, 0,			// shaft d, shaft h, shaft direction
 	0, 0, M2, M2];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
 
+DYS_BX1306 = ["DYS BX1306 motor",
+// ** UNVERIFIED **
+	13, 6,			// stator d, stator h
+	12, 12,	4,		// bottom mount hole centers min, max, bottom hole pattern (3 or 4)
+	14, 18, 3.5,		// base d1, base d2, base h
+	0, 0,			// base ring d, base ring h
+	18, 8,			// bell d, bell h
+	13, 2,			// bell cap d, bell cap h
+	6.5, 1,			// shaft collar d, shaft collar h
+	5, 11, 0,			// shaft d, shaft h, shaft direction
+	0, 0, M2, M2];	// top mount hole centers, top mount hole pattern (3 or 4), top mount screw size, base mount screw size
+
 /*
 name
 stator d,

@@ -199,4 +199,4 @@ module motor_screws(screw_type = M3_cap_screw, length = 12, diameter = 16, patte
 	}
 }
 
-motor(EMAX_MT2204);
+motor(DYS_BX1306);
