@@ -44,10 +44,10 @@ Mobius = ["Mobius ActionCam",								// Mobius ActionCam ** VERIFIED **
 	"None",							// mount type ** DEPRECATED **
 	18.5, 9.25, 2.5, 0, 0];			// lens diameter, lens x-offset, lens y-offset, lens z-offset (from center), lens dome
 
-DJI_Phantom3_Pro = ["DJI Phantom3 Pro",						// DJI Phantom 3 Pro
+DJI_Phantom3_Pro = ["DJI Phantom3 Pro",						// DJI Phantom 3 Pro ** VERIFIED **
 	0, 0, 0,							// width, height, depth (unlikely to ever need this on P3!)
 	"None",							// mount type ** DEPRECATED **
-	35.0, 0, 9.0, 0, 1.0,				// lens diameter, lens x-offset, lens y-offset, lens z-offset (from center), lens dome
+	32.0, 0, 7.0, 0, 1.0,				// lens diameter, lens x-offset, lens y-offset, lens z-offset (from center), lens dome
 	"Sony EXMOR IX220", "1/2.3\"",		// sensor name, sensor type
 	6.30, 4.72, -1.0, 94];				// sensor width, sensor height, sensor depth, sensor FoV
 
