@@ -6,6 +6,8 @@
 //
 // Cameras - header definitions
 //
+// Useful info:
+// https://en.wikipedia.org/wiki/Image_sensor_format
 
 // Camera types
 GoPro_HD_Hero3_Black = ["GoPro HD Hero3: Black Edition",		// GoPro HD Hero3	 ** VERIFIED **
