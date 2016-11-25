@@ -239,4 +239,11 @@ function motor_length(motor_type) =
 	motor_shaft_collar_h(motor_type) +
 	motor_shaft_h(motor_type);
 
+function motor_shaft_height(motor_type) =
+	motor_base_h(motor_type) +
+	motor_base_ring_h(motor_type) +
+	motor_bell_h(motor_type) +
+	motor_cap_h(motor_type) +
+	motor_shaft_collar_h(motor_type);
+
 //echo(motor_length(iPower_GBM4008));
