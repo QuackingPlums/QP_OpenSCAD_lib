@@ -32,3 +32,35 @@ module radius(length = 100, radius = 5)
 			cylinder(h = length + ff, r = radius, center = true);
 	}
 }
+
+// weld two objects together at their intersection
+module weld(t=1) { 
+    union() {
+        children(0);
+        children(1);
+        hull(){
+            union(){
+                intersection() {
+                    minkowski(){
+                        intersection(){
+                            children(0);
+                            children(1);
+                        }
+                        sphere(r=t);
+                    }
+                    children(0);
+                }
+                intersection() {
+                    minkowski(){
+                        intersection() {
+                            children(0);
+                            children(1);                   
+                        }
+                        sphere(r=t);
+                    }
+                    children(1);
+                }
+            }
+        }
+    }
+}
