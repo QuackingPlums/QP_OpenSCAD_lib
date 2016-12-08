@@ -20,8 +20,65 @@ function new_type(type, description) =
 function type_name(type) = type[0];
 function type_description(type) = type[1];
 
+function new_member(name, description, parameters, returnValue) =
+	[name, description, parameters, returnValue];
+function memberName(member) = member[0];
+function memberDescription(member) = member[1];
+function memberParameters(member) = member[2];
+function memberReturnValue(member) = member[3];
+
+function join(strings, delimeter="") = 
+	strings == undef?
+		undef
+	: strings == []?
+		""
+	: _join(strings, len(strings)-1, delimeter, 0);
+function _join(strings, index, delimeter) = 
+	index==0 ? 
+		strings[index] 
+	: str(_join(strings, index-1, delimeter), delimeter, strings[index]) ;
+
+module formatHelp_simple(libraryName, description, members)
+{
+	_name = str("<h1>", libraryName, "</h1>");
+	_description = str("<p>", description, "</p>");
+
+	_descriptions = [
+		for(i=[0:len(members)-1])[
+			for(j=[0:len(memberDescription(members[i]))-1])
+				str( "| ", memberDescription(members[i])[j], "<br>" )
+		]
+	];
+
+//echo(str("_descriptions:", _descriptions));
+//echo(str( "_descriptions[1]:", join(_descriptions[1]) ));
+//
+	_members = [
+		for(i=[0:len(members)-1])
+			str(
+				//"<br>--------------------------------------------------<br>",
+				"<br>",
+				"<u><b>", memberName(members[i]), "</b>",
+				(memberParameters(members[i])!=undef?str(" ( <i>", memberParameters(members[i]),"</i> )"):" ()"),
+				(memberReturnValue(members[i])!=undef?str(" = ", memberReturnValue(members[i])):""), 
+				"</u><br>",
+				join(_descriptions[i]),
+				"<br>"
+			)
+	];
+//echo(str("members:", members));
+	echo(str( _name, _description ));
+	for (i=[0:len(_members)-1])
+		echo(_members[i]);
+}
 
 module format_help(name, description, types, accessors, properties, functions, modules)
+{
+	echo("<b>## DEPRECATED ##</b>: docSCAD.format_help()");
+	formatHelp(name, description, types, accessors, properties, functions, modules);
+}
+
+module formatHelp(name, description, types, accessors, properties, functions, modules)
 {
 	num_types = len(types);
 	num_accessors = len(accessors);
@@ -124,7 +181,7 @@ module format_help(name, description, types, accessors, properties, functions, m
 	echo("========================================");
 }
 
-//docSCAD_help();
+docSCAD_help();
 module docSCAD_help()
 {
 	name = "docSCAD.scad";
@@ -156,7 +213,7 @@ module docSCAD_help()
 	];
 	modules = [
 		new_help_item(
-			"format_help(name, description, properties, functions, modules)",
+			"formatHelp(name, description, types, accessors, properties, functions, modules)",
 			[	new_help_item_parameter("name", "string", "Library name"),
 				new_help_item_parameter("description", "string", "Library description"),
 				new_help_item_parameter("types", "list of type docs", "Documentation for library types"),
@@ -167,7 +224,7 @@ module docSCAD_help()
 			"Display documentation with formatting."),
 	];
 
-	format_help(
+	*format_help(
 		name=name,
 		description=description,
 		types=types,
@@ -175,5 +232,46 @@ module docSCAD_help()
 		properties=properties,
 		functions=functions,
 		modules=modules
+	);
+
+	formatHelp_simple(
+		libraryName="docSCAD.scad",
+		description="Console documentation for OpenSCAD.",
+		members=[
+			new_member(
+				name="formatHelp",
+				description=[
+					"name = Library name",
+					"description = Description of library",
+					"types = List of types",
+					"accessors = List of accessors",
+					"properties = List of properties",
+					"functions = List of functions",
+					"modules = List of modules"
+				],
+				parameters="name, description, types, accessors, properties, functions, modules"
+			),
+			new_member(
+				name="formatHelp_simple",
+				description=[
+					"name = Library name",
+					"description = Description of library",
+					"members = List of members"
+				],
+				parameters="name, description, members"
+			),
+			new_member(
+				name="new_member",
+				description=[
+					"Create a new member function/module/etc.",
+					"",
+					"name = member name",
+					"description = member description",
+					"parameters = function/method signature",
+					"returnType = return type"
+				],
+				parameters="name, description[, parameters][, returnType]"
+			)
+		]
 	);
 }
