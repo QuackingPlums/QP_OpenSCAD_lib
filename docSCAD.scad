@@ -2,6 +2,7 @@
 | docSCAD
 | Create documentation for OpenSCAD libraries
 **************************************************/
+use <../davidson16807-relativity.scad/strings.scad>;
 
 function new_help_item(signature, parameters, description) =
 	[signature, parameters, description];
@@ -27,17 +28,6 @@ function memberDescription(member) = member[1];
 function memberParameters(member) = member[2];
 function memberReturnValue(member) = member[3];
 
-function join(strings, delimeter="") = 
-	strings == undef?
-		undef
-	: strings == []?
-		""
-	: _join(strings, len(strings)-1, delimeter, 0);
-function _join(strings, index, delimeter) = 
-	index==0 ? 
-		strings[index] 
-	: str(_join(strings, index-1, delimeter), delimeter, strings[index]) ;
-
 module formatHelp_simple(libraryName, description, members)
 {
 	_name = str("<h1>", libraryName, "</h1>");
@@ -50,23 +40,18 @@ module formatHelp_simple(libraryName, description, members)
 		]
 	];
 
-//echo(str("_descriptions:", _descriptions));
-//echo(str( "_descriptions[1]:", join(_descriptions[1]) ));
-//
 	_members = [
 		for(i=[0:len(members)-1])
 			str(
-				//"<br>--------------------------------------------------<br>",
 				"<br>",
 				"<u><b>", memberName(members[i]), "</b>",
 				(memberParameters(members[i])!=undef?str(" ( <i>", memberParameters(members[i]),"</i> )"):" ()"),
 				(memberReturnValue(members[i])!=undef?str(" = ", memberReturnValue(members[i])):""), 
 				"</u><br>",
-				join(_descriptions[i]),
-				"<br>"
+				join(_descriptions[i])
 			)
 	];
-//echo(str("members:", members));
+
 	echo(str( _name, _description ));
 	for (i=[0:len(_members)-1])
 		echo(_members[i]);
@@ -236,7 +221,16 @@ module docSCAD_help()
 
 	formatHelp_simple(
 		libraryName="docSCAD.scad",
-		description="Console documentation for OpenSCAD.",
+		description=join([
+			"Console documentation for OpenSCAD",
+			"<pre>
+module library_help()\n
+  formatHelp_simple(\n
+    libraryName=\"library.scad\",\n
+    description=\"Some description\",\n
+    members=[new_member(memberName, memberDescription, memberParameters)]\n
+  );</pre>"
+		]),
 		members=[
 			new_member(
 				name="formatHelp",
@@ -263,7 +257,7 @@ module docSCAD_help()
 			new_member(
 				name="new_member",
 				description=[
-					"Create a new member function/module/etc.",
+					"Create a new member function/module/etc. for formatHelp_simple()",
 					"",
 					"name = member name",
 					"description = member description",
