@@ -6,6 +6,7 @@
 //
 // Fillets and radii for smoothing and strengthening edges
 //
+use <../OpenSCAD_lib/docSCAD.scad>;	 //docSCAD_help();
 
 ff = 0.05;						// fudge factor to prevent barfing on coincident faces
 
@@ -64,3 +65,24 @@ module weld(t=1) {
         }
     }
 }
+
+fillets_help();
+module fillets_help()
+  formatHelp_simple(
+    libraryName="fillets.scad",
+    description="Fillets and radii",
+    members=[
+		new_member(
+			"fillet",
+			["Add this into internal corners to strengthen the joint"],
+			"length=100, radius=5"),
+		new_member(
+			"radius",
+			["Subtract a radius from a straight edge to form a curved", "edge (use minkowski for rounding ALL edges)"],
+			"length=100, radius=5"),
+		new_member(
+			"weld",
+			["Weld two objects together at their intersection"],
+			"t=1")
+	]
+  );	
