@@ -223,6 +223,8 @@ module docSCAD_help()
 		libraryName="docSCAD.scad",
 		description=join([
 			"Console documentation for OpenSCAD",
+			"<p>",
+			"Example:",
 			"<pre>
 module library_help()\n
   formatHelp_simple(\n
