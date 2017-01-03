@@ -33,28 +33,36 @@ module formatHelp_simple(libraryName, description, members)
 	_name = str("<h1>", libraryName, "</h1>");
 	_description = str("<p>", description, "</p>");
 
-	_descriptions = [
-		for(i=[0:len(members)-1])[
-			for(j=[0:len(memberDescription(members[i]))-1])
-				str( "| ", memberDescription(members[i])[j], "<br>" )
-		]
-	];
+	_descriptions =
+		len(members)==0?
+			[]:
+			[
+				for(i=[0:len(members)-1])
+					[
+						for(j=[0:len(memberDescription(members[i]))-1])
+							str( "| ", memberDescription(members[i])[j], "<br>" )
+					]
+			];
 
-	_members = [
-		for(i=[0:len(members)-1])
-			str(
-				"<br>",
-				"<u><b>", memberName(members[i]), "</b>",
-				(memberParameters(members[i])!=undef?str(" ( <i>", memberParameters(members[i]),"</i> )"):" ()"),
-				(memberReturnValue(members[i])!=undef?str(" = ", memberReturnValue(members[i])):""), 
-				"</u><br>",
-				join(_descriptions[i])
-			)
-	];
+	_members =
+		len(members)==0?
+			[]:
+			[
+				for(i=[0:len(members)-1])
+					str(
+						"<br>",
+						"<u><b>", memberName(members[i]), "</b>",
+						(memberParameters(members[i])!=undef?str(" ( <i>", memberParameters(members[i]),"</i> )"):" ()"),
+						(memberReturnValue(members[i])!=undef?str(" = ", memberReturnValue(members[i])):""), 
+						"</u><br>",
+						join(_descriptions[i])
+					)
+			];
 
 	echo(str( _name, _description ));
-	for (i=[0:len(_members)-1])
-		echo(_members[i]);
+	if (len(_members)>0)
+		for (i=[0:len(_members)-1])
+			echo(_members[i]);
 }
 
 module format_help(name, description, types, accessors, properties, functions, modules)
@@ -230,7 +238,7 @@ module library_help()\n
   formatHelp_simple(\n
     libraryName=\"library.scad\",\n
     description=\"Some description\",\n
-    members=[new_member(memberName, memberDescription, memberParameters)]\n
+    members=[new_member(name, \[description\], \[parameters\], returnValue]\n
   );</pre>"
 		]),
 		members=[
