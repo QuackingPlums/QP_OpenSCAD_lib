@@ -9,13 +9,21 @@
 
 // Servo types
 
-generic_9g = ["Generic 9g servo",						// name
+generic_9g = ["Generic 9g micro servo",					// name
 	[23, 22, 12.5], "Steelblue",						// body
 	[32, 2, 12.5], "Steelblue",							// mount tabs, colour
 	4,												// shoulder height
 	12, 25.75, 0,	"Steelblue",							// output shaft d, h (total), offset, colour
 	4.7, 29.25, "White"								// spline d, h (total), colour
 ];
+towerpro_MG90s = ["TowerPro MG90S 9g micro servo",
+	[22.5, 22.7, 12], "Black",
+	[32, 2.5, 12], "Black",
+	4.3,
+	12, 26.7, 0, "Black",
+	4.6, 29.9, "Silver"
+];
+	
 
 function servoName(servo) = servo[0];
 function servoBody(servo) = servo[1];

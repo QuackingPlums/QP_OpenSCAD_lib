@@ -12,7 +12,7 @@ use <../docSCAD.scad>;							//docSCAD_help();
 use <../common.scad>;
 
 
-Servo();
+Servo(towerpro_MG90s);
 module Servo(type=generic_9g, colour=true)
 {
 	body = servoBody(type);
@@ -62,7 +62,8 @@ module servos_help()
 	formatHelp_simple(
 		libraryName = "servos.scad",
 		description = str("Servo placeholders for the following servos:<p>",
-			"<b>generic_9g</b> - generic blue 9g servo"
+			"<b>generic_9g</b> - Generic 9g micro servo<br>",
+			"<b>towerpro_MG90s</b> - TowerPro MG90S 9g micro servo"
 		),
 		members = [
 			new_member(
