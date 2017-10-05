@@ -2,7 +2,7 @@
 | docSCAD
 | Create documentation for OpenSCAD libraries
 **************************************************/
-use <../davidson16807-relativity.scad/strings.scad>;
+use <davidson16807-relativity.scad/strings.scad>;
 
 function new_help_item(signature, parameters, description) =
 	[signature, parameters, description];
