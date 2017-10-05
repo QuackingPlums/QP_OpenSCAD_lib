@@ -8,30 +8,29 @@
 //
 
 include <servos_h.scad>;
+use <../docSCAD.scad>;							//docSCAD_help();
 use <../common.scad>;
 
 
-echo(servoBodyThick(generic_9g));
-
 Servo();
-module Servo(type=generic_9g)
+module Servo(type=generic_9g, colour=true)
 {
 	body = servoBody(type);
-	bodyColour = servoBodyColour(type);
+	bodyColour = colour?servoBodyColour(type):0;
 	bodyWidth = servoBodyWidth(type);
 	bodyHeight = servoBodyHeight(type);
 	bodyThick = servoBodyThick(type);
 	mount = servoMount(type);
-	mountColour = servoMountColour(type);
+	mountColour = colour?servoMountColour(type):0;
 	mountLength = servoMountLength(type);
 	mountThick = servoMountThick(type);
 	mountWidth = servoMountWidth(type);
 	shoulder = servoShoulder(type);
-	outputShaftColour = servoOutputShaftColour(type);
+	outputShaftColour = colour?servoOutputShaftColour(type):0;
 	outputShaftDiameter = servoOutputShaftDiameter(type);
 	outputShaftHeight = servoOutputShaftHeight(type);
 	outputShaftOffset = servoOutputShaftOffset(type);
-	splineColour = servoSplineColour(type);
+	splineColour = colour?servoSplineColour(type):0;
 	splineDiameter = servoSplineDiameter(type);
 	splineHeight = servoSplineHeight(type);
 
@@ -55,4 +54,27 @@ module Servo(type=generic_9g)
 		color(splineColour)
 			cylinder(d=splineDiameter, h=splineHeight);
 	}
+}
+
+servos_help();
+module servos_help()
+{
+	formatHelp_simple(
+		libraryName = "servos.scad",
+		description = str("Servo placeholders for the following servos:<p>",
+			"<b>generic_9g</b> - generic blue 9g servo"
+		),
+		members = [
+			new_member(
+				name="Servo",
+				description=[
+					"Render a servo",
+					"",
+					"type = Servo type (see above)",
+					"colour = true|false"
+					],
+				parameters="type, colour"
+			)
+		]
+	);
 }
