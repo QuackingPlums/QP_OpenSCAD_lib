@@ -6,7 +6,7 @@
 //
 // Common ABS colours
 //
-use <docSCAD.scad>;				docSCAD_help();
+use <docSCAD.scad>;				//docSCAD_help();
 
 CDW_ABS_Black = "DimGrey";
 CDW_ABS_Fl_Yellow = "Yellow";
@@ -33,7 +33,7 @@ FDY_PLA_Cl_Black = "DimGrey";
 FDY_PLA_Pr_Purple = "Indigo";
 FDY_PLA_Vl_Green = "Green";
 
-filaments_help();
+//filaments_help();
 module filaments_help()
 	formatHelp_simple(
 	libraryName="filaments_h.scad",
