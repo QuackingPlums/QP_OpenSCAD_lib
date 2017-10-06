@@ -28,6 +28,14 @@ function memberDescription(member) = member[1];
 function memberParameters(member) = member[2];
 function memberReturnValue(member) = member[3];
 
+// parameter formatting functions for formatHelp_simple()
+function String(paramName, paramDesc) =
+	str("string <b>", paramName, "</b> ", paramDesc);
+function List(listType, paramName, paramDesc) =
+	str("[", listType, "] <b>", paramName, "</b> ", paramDesc);
+function Optional(param) =
+	str("<i>optional</i> ", param);
+
 module formatHelp_simple(libraryName, description, members)
 {
 	_name = str("<h1>", libraryName, "</h1>");
@@ -258,23 +266,45 @@ module library_help()\n
 			new_member(
 				name="formatHelp_simple",
 				description=[
-					"name = Library name",
-					"description = Description of library",
-					"members = List of members"
+					String("libraryName", "Name of library"),
+					String("description", "Description of library"),
+					List("member", "members", "List of members in the library")
 				],
-				parameters="name, description, members"
+				parameters="libraryName, description, members"
 			),
 			new_member(
 				name="new_member",
 				description=[
-					"Create a new member function/module/etc. for formatHelp_simple()",
+					"Create a new member function/module/etc. for <b>formatHelp_simple()</b>",
 					"",
-					"name = member name",
-					"description = member description",
-					"parameters = function/method signature",
-					"returnType = return type"
+					String("name", "Function/module name"),
+					List("string", "description", "Function/module description (one line per element)"),
+					Optional(String("parameters", "Function/method signature")),
+					Optional(String("returnType", ""))
 				],
 				parameters="name, description[, parameters][, returnType]"
+			),
+			new_member(
+				name="String",
+				description=[
+					"Create a formatted string parameter for <b>new_member()</b>, e.g.:",
+					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", String("paramName", "paramDesc")),
+				],
+				parameters="paramName, paramDesc"
+			),
+			new_member(
+				name="List",
+				description=["Create a formatted list parameter for <b>new_member()</b>, e.g.:",
+					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", List("listType", "paramName", "paramDesc")),
+],
+				parameters="listType, paramName, paramDesc"
+			),
+			new_member(
+				name="Optional",
+				description=["Create a formatted optional parameter for <b>new_member()</b>",
+					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", Optional(String("paramName", "paramDesc"))),
+],
+				parameters="param"
 			)
 		]
 	);
