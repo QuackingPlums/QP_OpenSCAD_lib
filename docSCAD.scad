@@ -31,6 +31,10 @@ function memberReturnValue(member) = member[3];
 // parameter formatting functions for formatHelp_simple()
 function String(paramName, paramDesc) =
 	str("string <b>", paramName, "</b> ", paramDesc);
+function Number(paramName, paramDesc) =
+	str("number <b>", paramName, "</b> ", paramDesc);
+function Boolean(paramName, paramDesc) =
+	str("boolean <b>", paramName, "</b> ", paramDesc);
 function List(listType, paramName, paramDesc) =
 	str("[", listType, "] <b>", paramName, "</b> ", paramDesc);
 function Optional(param) =
@@ -289,6 +293,22 @@ module library_help()\n
 				description=[
 					"Create a formatted string parameter for <b>new_member()</b>, e.g.:",
 					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", String("paramName", "paramDesc")),
+				],
+				parameters="paramName, paramDesc"
+			),
+			new_member(
+				name="Number",
+				description=[
+					"Create a formatted number parameter for <b>new_member()</b>, e.g.:",
+					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", Number("paramName", "paramDesc")),
+				],
+				parameters="paramName, paramDesc"
+			),
+			new_member(
+				name="Boolean",
+				description=[
+					"Create a formatted number parameter for <b>new_member()</b>, e.g.:",
+					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", Boolean("paramName", "paramDesc")),
 				],
 				parameters="paramName, paramDesc"
 			),
