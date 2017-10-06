@@ -11,6 +11,8 @@
 // Subsequent additions by quackingplums@gmail.com
 //
 
+use <OpenSCAD_lib/docSCAD.scad>;							//docSCAD_help();
+
 layer_height = 0.2;	// config variable
 
 //teardrop_2D(10);
@@ -20,6 +22,41 @@ layer_height = 0.2;	// config variable
 //vertical_tearslot(10, 10, 50);
 //qp_tearslot(10, 10, 50);
 //qp_vertical_tearslot(10, 10, 50);
+
+/* NEW TEARDROPS
+teardrop(r, truncate) (flat, 2D)
+extrudedTeardrop(r, h, truncate)
+teardrop3D(r, truncate)
+extrudedHorizontalTearslot()
+verticalHorizontalTearslot()
+*/
+
+//!Teardrop3D(10);
+module Teardrop3D(r, truncate=true)
+{
+	trunc = r*cos(45);
+
+	intersection()
+	{
+		union()
+		{
+			sphere(r=r);
+			translate([0, 0, -2*trunc])
+				cylinder(r1=0, r2=trunc, h=trunc);
+		}
+		cube(2*r, center=true);
+	}
+}
+
+module ExtrudedTeardrop(r, h, truncate=true)
+{
+	teardrop(h=h, r=r, center=false, truncate=truncate);
+}
+
+module Teardrop(r, truncate=true)
+{
+	teardrop_2D(r=r, truncate=truncate);
+}
 
 // flat teardrop shape
 module teardrop_2D(r, truncate = true) {
@@ -78,3 +115,47 @@ module qp_vertical_tearslot(h, r, l, center = true)				// corrected for actual l
 //            translate([0, r-l/2, 0])
 //                circle(r = r, center = true);
 //        }
+
+
+!teardrops_help();
+module teardrops_help()
+{
+	formatHelp_simple(
+		libraryName = "teardrops.scad",
+		description = str(
+			"Small horizontal holes can get away with it but larger ones can be printed without support material if the upper half is replaces with 45-degree overhangs.<br>",
+			"Truncates to an octagonal approximation by default (requires a small bridge at the top).",
+			"<p>Can also be inverted and used for 'rounded' bottom edges that would otherwise collapse.",
+			"<p>THIS LIBRARY IS CURRENTLY UNDERGOING AN OVERHAUL"
+		),
+		members = [
+			new_member(
+				name = "Teardrop",
+				description = ["Flat, two-dimensional teardrop",
+					"",
+					Number("r", "teardrop radius"),
+					Optional(Boolean("truncate", "constrain to circle [default=true]"))],
+				parameters = "r [, truncate]"),
+			new_member(
+				name = "ExtrudedTeardrop",
+				description = ["Extruded teardrop  (i.e. a teardrop-profile cylinder)",
+					"",
+					Number("r", "teardrop radius"),
+					Number("h", "teardrop extrusion height"),
+					Optional(Boolean("truncate", "constrain to circle [default=true]"))],
+				parameters = "r, h [, truncate]"),
+			new_member(
+				name = "Teardrop3D",
+				description = ["Three-dimensional teardrop.",
+					"Rendered inverted as this is normally used for rounded bottom edges",
+					"",
+					Number("r", "teardrop radius"),
+					Optional(Boolean("truncate", "constrain to circle [default=true]"))],
+				parameters = "r, [, truncate]")
+//horizontalTearslot()
+//verticalTearslot()
+
+			
+		]
+	);
+}
