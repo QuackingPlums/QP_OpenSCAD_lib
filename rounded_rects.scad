@@ -56,7 +56,7 @@ module rounded_rects_help()
 			"Draws a 3D cuboid with rounded corners and optional teardrop lower edge profile.")
 	];
 
-	format_help(
+	formatHelp(
 		name=name,
 		description=description,
 		properties=properties,
