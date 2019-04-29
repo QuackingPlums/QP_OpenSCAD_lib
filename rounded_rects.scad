@@ -63,6 +63,35 @@ module rounded_rects_help()
 		functions=functions,
 		modules=modules
 	);
+
+	// new simple help defs
+	members = [
+		new_member(
+			name="ExtrudedRoundedRect",
+			parameters="cube, cornerRadius, teardrop=false",
+			description=[
+				"Draws an extruded 2D rectangle with rounded corners.",
+				List("x, y z", "cube", "as defined by its x, y, z dimensions"),
+				Number("cornerRadius", "of 2D rectangle"),
+				Boolean("teardrop", "for printability")
+			]
+		),
+		new_member(
+			name="ExtrudedStadium",
+			parameters="cube, tearDrop=false",
+			description=[
+				"Draws an extruded stadium.",
+				List("x, y z", "cube", "as defined by its x, y, z dimensions"),
+				Boolean("teardrop", "for printability")
+			]
+		)
+	];
+
+	formatHelp_simple(
+		libraryName=name,
+		description=description,
+		members=members
+	);
 }
 
 //function rect_width(rect) =
@@ -117,6 +146,8 @@ module Rounded_rectangle(rect, corner_radius, teardrop = false)
 }
 
 //Extruded_stadium([30, 20, 8], 5, true);
+module ExtrudedStadium(cube, teardrop = false)
+	Extruded_stadium(cube, teardrop);
 module Extruded_stadium(cube, teardrop = false)
 {
 	x = cube[0];
@@ -128,6 +159,8 @@ module Extruded_stadium(cube, teardrop = false)
 }
 
 //Extruded_rounded_rectangle([20, 30, 10], 5, true);
+module ExtrudedRoundedRect(cube, cornerRadius, teardrop = false)
+	Extruded_rounded_rectangle(cube, cornerRadius, teardrop);
 module Extruded_rounded_rectangle(cube, corner_radius, teardrop = false)
 {
 	x = cube[0];
