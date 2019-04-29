@@ -82,11 +82,12 @@ module screw_head_clearance_hole(screw_type = M3_cap_screw)
 		poly_cylinder(h = hh, r = screw_head_clearance_radius(screw_type));
 }
 
-module self_tap_hole(screw_type = No2, depth = 10)
+module self_tap_hole(thread_type, depth = 10, screw_type=No2)
 {
+	thread_type=screw_type;
 	translate([0, 0, -depth])
 	{
-		cylinder(h = depth, r = metric_radius(screw_type) * 1.23, $fn = 3);
+		cylinder(h = depth, r = metric_radius(thread_type) * 1.23, $fn = 3);
 		//%cylinder(h = depth + ff, r = metric_radius(screw_type), $fn=100);
 	}
 }
