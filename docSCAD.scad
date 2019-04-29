@@ -316,14 +316,14 @@ module library_help()\n
 				name="List",
 				description=["Create a formatted list parameter for <b>new_member()</b>, e.g.:",
 					str("&nbsp;&nbsp;&nbsp;&nbsp;", List("listType", "paramName", "paramDesc")),
-],
+				],
 				parameters="listType, paramName, paramDesc"
 			),
 			new_member(
 				name="Optional",
 				description=["Create a formatted optional parameter for <b>new_member()</b>",
 					str("&nbsp;&nbsp;&nbsp;&nbsp;", Optional(String("paramName", "paramDesc"))),
-],
+				],
 				parameters="param"
 			)
 		]
