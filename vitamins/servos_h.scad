@@ -16,12 +16,12 @@ generic_9g = ["Generic 9g micro servo",					// name
 	12, 25.75, 0,	"Steelblue",							// output shaft d, h (total), offset, colour
 	4.7, 29.25, "White"								// spline d, h (total), colour
 ];
-towerpro_MG90s = ["TowerPro MG90S 9g micro servo",
-	[22.5, 22.7, 12], "Black",
-	[32, 2.5, 12], "Black",
-	4.3,
-	12, 26.7, 0, "Black",
-	4.6, 29.9, "Silver"
+towerpro_MG90s = ["TowerPro MG90S 9g micro servo",			// same as Turnigy TGY90S, and several others
+	[22.7, 22.9, 12.35], "DimGray",
+	[32.4, 2.75, 12], "DimGray",
+	1.5,
+	12, 28.6, 0, "DimGray",
+	4.65, 33.25, "Silver"
 ];
 	
 

@@ -61,9 +61,32 @@ module servos_help()
 {
 	formatHelp_simple(
 		libraryName = "servos.scad",
-		description = str("Servo placeholders for the following servos:<p>",
+		description = str("Servo placeholders for the following servos:",
+			"<p>",
 			"<b>generic_9g</b> - Generic 9g micro servo<br>",
-			"<b>towerpro_MG90s</b> - TowerPro MG90S 9g micro servo"
+			"<b>towerpro_MG90s</b> - TowerPro MG90S 9g micro servo",
+			"<p>",
+			"Properties:",
+			"<p>",
+			"<b>servoName</b>()<br>",
+			"<b>servoBody</b>()<br>",
+			"<b>servoBodyColour</b>()<br>",
+			"<b>servoMount</b>()<br>",
+			"<b>servoMountColour</b>()<br>",
+			"<b>servoShoulder</b>()<br>",
+			"<b>servoOutputShaftDiameter</b>()<br>",
+			"<b>servoOutputShaftHeight</b>()<br>",
+			"<b>servoOutputShaftOffset</b>()<br>",
+			"<b>servoOutputShaftColour</b>()<br>",
+			"<b>servoSplineDiameter</b>()<br>",
+			"<b>servoSplineHeight</b>()<br>",
+			"<b>servoSplineColour</b>()<br>",
+			"<b>servoBodyWidth</b>()<br>",
+			"<b>servoBodyHeight</b>()<br>",
+			"<b>servoBodyThick</b>()<br>",
+			"<b>servoMountLength</b>()<br>",
+			"<b>servoMountThick</b>()<br>",
+			"<b>servoMountWidth</b>()"
 		),
 		members = [
 			new_member(
