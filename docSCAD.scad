@@ -292,7 +292,7 @@ module library_help()\n
 				name="String",
 				description=[
 					"Create a formatted string parameter for <b>new_member()</b>, e.g.:",
-					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", String("paramName", "paramDesc")),
+					str("&nbsp;&nbsp;&nbsp;&nbsp;", String("paramName", "paramDesc")),
 				],
 				parameters="paramName, paramDesc"
 			),
@@ -300,7 +300,7 @@ module library_help()\n
 				name="Number",
 				description=[
 					"Create a formatted number parameter for <b>new_member()</b>, e.g.:",
-					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", Number("paramName", "paramDesc")),
+					str("&nbsp;&nbsp;&nbsp;&nbsp;", Number("paramName", "paramDesc")),
 				],
 				parameters="paramName, paramDesc"
 			),
@@ -308,22 +308,22 @@ module library_help()\n
 				name="Boolean",
 				description=[
 					"Create a formatted number parameter for <b>new_member()</b>, e.g.:",
-					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", Boolean("paramName", "paramDesc")),
+					str("&nbsp;&nbsp;&nbsp;&nbsp;", Boolean("paramName", "paramDesc")),
 				],
 				parameters="paramName, paramDesc"
 			),
 			new_member(
 				name="List",
 				description=["Create a formatted list parameter for <b>new_member()</b>, e.g.:",
-					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", List("listType", "paramName", "paramDesc")),
-],
+					str("&nbsp;&nbsp;&nbsp;&nbsp;", List("listType", "paramName", "paramDesc")),
+				],
 				parameters="listType, paramName, paramDesc"
 			),
 			new_member(
 				name="Optional",
 				description=["Create a formatted optional parameter for <b>new_member()</b>",
-					str("&nbsp;&nbsp;&nbsp;&nbsp;e.g.:", Optional(String("paramName", "paramDesc"))),
-],
+					str("&nbsp;&nbsp;&nbsp;&nbsp;", Optional(String("paramName", "paramDesc"))),
+				],
 				parameters="param"
 			)
 		]
