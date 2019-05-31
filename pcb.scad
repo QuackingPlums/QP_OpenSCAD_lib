@@ -2,7 +2,7 @@
 | Generic board definition
 | 
 **************************************************/
-use <../OpenSCAD_lib/rounded_rects.scad>;
+use <QP_OpenSCAD_lib/rounded_rects.scad>;
 
 ff = 0.05;					// CSG fudge factor
 $fn = 24;					// curve complexity

@@ -11,7 +11,7 @@
 // Subsequent additions by quackingplums@gmail.com
 //
 
-use <OpenSCAD_lib/docSCAD.scad>;							//docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>;							//docSCAD_help();
 
 layer_height = 0.2;	// config variable
 

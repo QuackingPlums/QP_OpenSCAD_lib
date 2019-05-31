@@ -8,8 +8,8 @@
 //
 
 include <servos_h.scad>;
-use <../docSCAD.scad>;							//docSCAD_help();
-use <../common.scad>;
+use <QP_OpenSCAD_lib/docSCAD.scad>;							//docSCAD_help();
+use <QP_OpenSCAD_lib/common.scad>;
 
 
 Servo(towerpro_MG90s);

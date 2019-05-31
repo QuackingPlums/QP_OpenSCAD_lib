@@ -10,7 +10,7 @@
 // Subsequent additions by quackingplums@gmail.com
 //
 
-use <docSCAD.scad>;				//docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>;				//docSCAD_help();
 
 function sides(r) = max(round(4 * r),3);
 function corrected_radius(r,n) = 0.1 + r / cos(180 / (n==undef ? sides(r) : n) );

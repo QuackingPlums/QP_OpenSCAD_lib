@@ -7,7 +7,7 @@
 // Useful tools and utilities
 //
 
-use <docSCAD.scad>; //docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>; //docSCAD_help();
 
 //polygons_help();
 module polygons_help()

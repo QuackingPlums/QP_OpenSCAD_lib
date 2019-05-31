@@ -7,7 +7,7 @@
 // Non-primitive shapes
 //
 
-use <docSCAD.scad>; 					docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>; 					docSCAD_help();
 
 shapesHelp();
 module shapesHelp()

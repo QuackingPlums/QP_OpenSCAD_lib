@@ -6,7 +6,7 @@
 //
 // Magnets - header definitions
 //
-use <../docSCAD.scad>;	//docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>;	//docSCAD_help();
 
 /////////////////////
 // disc/cylindrical magnets

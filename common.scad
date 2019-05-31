@@ -7,7 +7,7 @@
 // Useful tools and utilities
 //
 
-use <docSCAD.scad>; //docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>; //docSCAD_help();
 
 /*
 is_in("two", [["one"], ["two"], ["three"]])

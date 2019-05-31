@@ -7,7 +7,7 @@
 | UPDATE Jan 2015:
 | Brims seem to work as well if not better
 **************************************************/
-use <common.scad>;
+use <QP_OpenSCAD_lib/common.scad>;
 ff = 0.05;
 $fn = 24;
 

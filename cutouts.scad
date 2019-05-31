@@ -1,4 +1,4 @@
-use <rounded_rects.scad>
+use <QP_OpenSCAD_lib/rounded_rects.scad>
 
 $fs = 1.0;					// CSG segment size (mm)
 $fa = 5;						// CSG minimum angle (degrees)

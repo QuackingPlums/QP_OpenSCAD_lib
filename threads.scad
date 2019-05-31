@@ -3,9 +3,9 @@
 | Uses threads library by Dan Kirschner
 **************************************************/
 use <dan_kirschner/threads.scad>;
-use <polyholes.scad>;							//polyholes_help();
-use <docSCAD.scad>;							//docSCAD_help();
-use <common.scad>;
+use <QP_OpenSCAD_lib/polyholes.scad>;			//polyholes_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>;				//docSCAD_help();
+use <QP_OpenSCAD_lib/common.scad>;
 
 ff = 0.05;									// CSG fudge factor
 $fs = 1.0;									// CSG segment size (mm)

@@ -6,7 +6,7 @@
 //
 // Mendel90 dimensions, etc
 //
-use <docSCAD.scad>; //docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>; //docSCAD_help();
 
 IKEA_SORLI = ["IKEA SÖRLI", 196, 196, 18];
 default_build_plate = IKEA_SORLI;

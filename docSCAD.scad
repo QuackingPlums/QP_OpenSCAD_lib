@@ -186,7 +186,7 @@ module formatHelp(name, description, types, accessors, properties, functions, mo
 	echo("========================================");
 }
 
-docSCAD_help();
+//docSCAD_help();
 module docSCAD_help()
 {
 	name = "docSCAD.scad";

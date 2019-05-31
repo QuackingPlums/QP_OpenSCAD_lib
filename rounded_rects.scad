@@ -2,8 +2,8 @@
 | Rounded corners are less prone to lifting than
 | sharp corners. They also look nicer.
 **************************************************/
-use <docSCAD.scad>;
-use <common.scad>;
+use <QP_OpenSCAD_lib/docSCAD.scad>;
+use <QP_OpenSCAD_lib/common.scad>;
 
 ff = 0.05;									// CSG fudge factor
 $fs = 1.0;									// CSG segment size (mm)

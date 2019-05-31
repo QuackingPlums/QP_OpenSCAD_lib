@@ -6,7 +6,7 @@
 //
 // Common ABS colours
 //
-use <docSCAD.scad>;				//docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>;				//docSCAD_help();
 
 CDW_ABS_Black = "DimGrey";
 CDW_ABS_Fl_Yellow = "Yellow";

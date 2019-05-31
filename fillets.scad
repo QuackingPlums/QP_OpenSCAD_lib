@@ -6,7 +6,7 @@
 //
 // Fillets and radii for smoothing and strengthening edges
 //
-use <../OpenSCAD_lib/docSCAD.scad>;	 //docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>;	 //docSCAD_help();
 
 ff = 0.05;						// fudge factor to prevent barfing on coincident faces
 

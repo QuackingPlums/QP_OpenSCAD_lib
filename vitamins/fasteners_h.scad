@@ -6,7 +6,6 @@
 //
 // Fasteners - header definitions
 //
-use <../docSCAD.scad>;					//docSCAD_help();
 
 // useful references:
 // http://www.csgnetwork.com/screwsochdcaptable.html
@@ -211,54 +210,3 @@ function stud_clearance_radius(stud_type) = stud_clearance_diameter(stud_type) /
 
 
 function select_length(length = 7) = (length > 16) ? length :  ceil(length / 2) * 2; // round up small sizes to next largest even number
-
-//
-fasteners_help();
-module fasteners_help()
-{
-	formatHelp_simple(
-		libraryName="fasteners.scad",
-		description="Screws, nuts, washers, nut traps, countersinks, etc.",
-		members=[
-			new_member(
-				name="screw",
-				description=[
-					"Render a standard screw type",
-					List("screw type", "screw_type", "Screw descriptor (e.g.: M2_cap_screw)"),
-					Number("length", "Length of screw shaft"),
-					Boolean("washer", "Render with/without washer (default: false)"),
-					Number("exploded", "Exploded view offset (default: 0)"),
-					String("colour", "HTML colour name (default: dimgray)")
-				],
-				parameters="screw_type, length, washer, exploded, colour"
-			),
-			new_member(
-				name="screw_clearance_hole",
-				description=[
-					"Render a standard screw hole (for differencing from another solid)",
-					List("screw type", "screw_type", "Screw descriptor (e.g.: M2_cap_screw)"),
-					Number("depth", "Hole depth")
-				],
-				parameters="screw_type, depth"
-			),
-			new_member(
-				name="screw_head_clearance_hole",
-				description=[
-					"Render a standard screw head hole (for differencing from another solid)",
-					"Typically used in conjunction with screw_clearance_hole() to create a flush screw head",
-					List("screw type", "screw_type", "Screw descriptor (e.g.: M2_cap_screw)")
-				],
-				parameters="screw_type"
-			),
-			new_member(
-				name="self_tap_hole",
-				description=[
-					"Render a slightly narrower screw hole self-tapping screws (for differencing from another solid)",
-					List("thread type", "thread_type", "Thread descriptor (e.g.: No2)"),
-					Number("depth", "Hole depth")
-				],
-				parameters="thread_type, depth"
-			)
-		]
-	);
-}
