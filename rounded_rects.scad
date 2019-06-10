@@ -84,6 +84,15 @@ module rounded_rects_help()
 				List("x, y z", "cube", "as defined by its x, y, z dimensions"),
 				Boolean("teardrop", "for printability")
 			]
+		),
+		new_member(
+			name="RoundedCube",
+			parameters="cube, cornerRadius, teardrop = false",
+			description=[
+				"Draws a rounded cube.",
+				List("x, y, z", "cube", "as defined by its x, y, z dimensions"),
+				Boolean("teardrop", "for printability")
+			]
 		)
 	];
 
@@ -227,6 +236,8 @@ module _teardrop(r, invert = false)
 }
 
 //Rounded_cube([10, 30, 35], 5, true);
+module RoundedCube(cube, cornerRadius, teardrop = false)
+	Rounded_cube(cube, cornerRadius, teardrop);
 module Rounded_cube(cube, corner_radius, teardrop = false)
 {
 	x = cube[0];
