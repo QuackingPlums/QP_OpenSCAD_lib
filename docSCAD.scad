@@ -2,7 +2,13 @@
 | docSCAD
 | Create documentation for OpenSCAD libraries
 **************************************************/
-use <davidson16807-relativity.scad/strings.scad>;
+//use <davidson16807-relativity.scad/strings.scad>;
+// ### join is the only function we use here ###
+function join(strings, delimeter="") = 
+	strings == undef ? undef : strings == [] ? "" : _join(strings, len(strings)-1, delimeter);
+function _join(strings, index, delimeter) = 
+	index==0 ? strings[index] : str(_join(strings, index-1, delimeter), delimeter, strings[index]);
+// ### ===== ###
 
 function new_help_item(signature, parameters, description) =
 	[signature, parameters, description];
