@@ -15,12 +15,12 @@ module rounded_rects_help()
 	name = "rounded_rects.scad";
 	description = str(
 			"A library for drawing rounded primatives:\n",
-			"Stadium - 2D pill\n",
-			"Extruded stadium - extruded 2D pill\n",
-			"Capsule - 3D pill\n",
-			"Rounded rectangle - 2D rectangle with rounded corners\n",
-			"Extruded rounded rectangle - extruded 2D rectanle with rounded corners\n",
-			"Rounded cube - 3D cube with rounded corners\n"
+			Bold("Stadium()"), " - 2D pill\n",
+			Bold("ExtrudedStadium()"), " - extruded 2D pill\n",
+			Bold("Capsule()"), " - 3D pill\n",
+			Bold("RoundedRectangle()"), " - 2D rectangle with rounded corners\n",
+			Bold("ExtrudedRoundedRectangle()"), " - extruded 2D rectangle with rounded corners\n",
+			Bold("RoundedCube()"), " - 3D cube with rounded corners"
 		);
 	
 //	properties = [];
