@@ -28,22 +28,34 @@ function memberDescription(member) = member[1];
 function memberParameters(member) = member[2];
 function memberReturnValue(member) = member[3];
 
+// HTML formatting functions
+function Bold(string) =
+	str("<b>", string, "</b>");
+function Italic(string) =
+	str("<i>", string, "</i>");
+function Underline(string) =
+	str("<u>", string, "</u>");
+function HeadingOne(string) = 
+	str("<h1>", string, "</h1>");
+function Paragraph(string) =
+	str("<p>", string, "</p>");
+
 // parameter formatting functions for formatHelp_simple()
 function String(paramName, paramDesc) =
-	str("string <b>", paramName, "</b> ", paramDesc);
+	str("string ", Bold(paramName), " ", paramDesc);
 function Number(paramName, paramDesc) =
-	str("number <b>", paramName, "</b> ", paramDesc);
+	str("number ", Bold(paramName), " ", paramDesc);
 function Boolean(paramName, paramDesc) =
-	str("boolean <b>", paramName, "</b> ", paramDesc);
+	str("boolean ", Bold(paramName), " ", paramDesc);
 function List(listType, paramName, paramDesc) =
-	str("[", listType, "] <b>", paramName, "</b> ", paramDesc);
+	str("[", listType, "] ", Bold(paramName), " ", paramDesc);
 function Optional(param) =
-	str("<i>optional</i> ", param);
+	Italic(param);
 
 module formatHelp_simple(libraryName, description, members)
 {
-	_name = str("<h1>", libraryName, "</h1>");
-	_description = str("<p>", description, "</p>");
+	_name = HeadingOne(libraryName);
+	_description = Paragraph(description);
 
 	_descriptions =
 		len(members)==0?
@@ -71,10 +83,10 @@ module formatHelp_simple(libraryName, description, members)
 					)
 			];
 
-	echo(str( _name, _description ));
-	if (len(_members)>0)
-		for (i=[0:len(_members)-1])
-			echo(_members[i]);
+	echo(str( _name, _description, join(_members)));
+//	if (len(_members)>0)
+//		for (i=[0:len(_members)-1])
+//			echo(_members[i]);
 }
 
 module format_help(name, description, types, accessors, properties, functions, modules)
