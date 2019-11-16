@@ -7,33 +7,7 @@
 // Useful tools and utilities
 //
 
-use <QP_OpenSCAD_lib/docSCAD.scad>; 				docSCAD_help();
-
-/*
-is_in("two", [["one"], ["two"], ["three"]])
-Returns true if match_value is found in set, false otherwise
-
-module position(translate = [], rotate = [], colour = -1)
-Rotate, translate and colour an arbitrary list of objects. In that order
-translate		coordinate vector
-rotate    		axis angles
-colour   		any valid w3/css3 colour name
-
-module show_build_area(x = 196, y = 196, corner_radius = 18)
-Draw (non-printing) build platform template
-Useful for plating up objects.
-Default to Mendel90 with IKEA SÖRLI mirror tile.
-x				x dimension
-y				y dimension
-corner_radius	20mm for SÖRLI
-
-module slot(length, width, depth)
-Subtractive rounded-end slot shape to fit within given dimensions
-length			length of slot including radii
-width			width of slot
-depth			depth of slot
-*/
-
+use <QP_OpenSCAD_lib/docSCAD.scad>; 					 docSCAD_help();
 
 function new_circle(x, y, diameter) =
 	[x, y, diameter];
@@ -81,6 +55,7 @@ module position(translate = [], rotate = [], mirror = [0, 0, 0], colour)
 							children(i);
 }
 
+// DEPRECATE!
 module slot(length, width, depth)
 {
 	echo("DEPRECATED: use rounded_rects instead.");
@@ -93,9 +68,15 @@ module slot(length, width, depth)
 	}
 }
 
-// this is wrong!
+// DEPRECATE!
 function rms(a, b) = 
 	sqrt(pow(a, 2) + pow(b, 2));
+
+function RootSumOfSquares(a, b) = 
+	sqrt(pow(a, 2) + pow(b, 2));
+
+function RootDifferenceOfSquares(a, b) =
+	sqrt(pow(a, 2) - pow(b, 2));
 
 module debug()
 {
@@ -206,14 +187,14 @@ module common_help()
 			"Combination colour, mirror, rotate and translate transformation, in that order")
 	];
 
-	format_help(
-		name=name,
-		description=description,
-		types=types,
-		accessors=accessors,
-		properties=properties,
-		functions=functions,
-		modules=modules);
+//	format_help(
+//		name=name,
+//		description=description,
+//		types=types,
+//		accessors=accessors,
+//		properties=properties,
+//		functions=functions,
+//		modules=modules);
 
 	formatHelp_simple(
 		libraryName=name,
@@ -234,7 +215,7 @@ module common_help()
 				name="circle_x",
 				parameters="circle",
 				description=["Returns x-coordinate of circle centre",
-					List("circle", "[x, y, diameter]", "circle type")
+					List("x, y, diameter", "circle", "circle type")
 				],
 				returnValue="x"
 			),
@@ -242,7 +223,7 @@ module common_help()
 				name="circle_y",
 				parameters="circle",
 				description=["Returns y-coordinate of circle centre",
-					List("circle", "[x, y, diameter]", "circle type")
+					List("x, y, diameter", "circle", "circle type")
 				],
 				returnValue="y"
 			),
@@ -250,7 +231,7 @@ module common_help()
 				name="circle_diameter",
 				parameters="circle",
 				description=["Returns diameter of circle",
-					List("circle", "[x, y, diameter]", "circle type")
+					List("x, y, diameter", "circle", "circle type")
 				],
 				returnValue="diameter"
 			),
@@ -269,7 +250,7 @@ module common_help()
 				name="cyl_x",
 				parameters="cyl",
 				description=["Returns x-coordinate of cyl centre",
-					List("cyl", "[x, y, height, diameter]", "cyl type")
+					List("x, y, height, diameter", "cyl", "cyl type")
 				],
 				returnValue="x"
 			),
@@ -277,7 +258,7 @@ module common_help()
 				name="cyl_y",
 				parameters="cyl",
 				description=["Returns y-coordinate of cyl centre",
-					List("cyl", "[x, y, height, diameter]", "cyl type")
+					List("x, y, height, diameter", "cyl", "cyl type")
 				],
 				returnValue="y"
 			),
@@ -285,7 +266,7 @@ module common_help()
 				name="cyl_height",
 				parameters="cyl",
 				description=["Returns height of cyl",
-					List("cyl", "[x, y, height, diameter]", "cyl type")
+					List("x, y, height, diameter", "cyl", "cyl type")
 				],
 				returnValue="height"
 			),
@@ -293,7 +274,7 @@ module common_help()
 				name="cyl_diameter",
 				parameters="cyl",
 				description=["Returns diameter of cyl",
-					List("cyl", "[x, y, height diameter]", "cyl type")
+					List("x, y, height, diameter", "cyl", "cyl type")
 				],
 				returnValue="diameter"
 			),
@@ -312,7 +293,7 @@ module common_help()
 				name="rect_x",
 				parameters="rect",
 				description=["Returns x-coordinate of rect origin",
-					List("rect", "[x, y, dx, dy]", "rect type")
+					List("x, y, dx, dy", "rect", "rect type")
 				],
 				returnValue="x"
 			),
@@ -320,7 +301,7 @@ module common_help()
 				name="rect_y",
 				parameters="rect",
 				description=["Returns y-coordinate of rect origin",
-					List("rect", "[x, y, dx, dy]", "rect type")
+					List("x, y, dx, dy", "rect", "rect type")
 				],
 				returnValue="y"
 			),
@@ -328,7 +309,7 @@ module common_help()
 				name="rect_dx",
 				parameters="rect",
 				description=["Returns x-dimension of rect",
-					List("rect", "[x, y, dx, dy]", "rect type")
+					List("x, y, dx, dy", "rect", "rect type")
 				],
 				returnValue="dx"
 			),
@@ -336,7 +317,7 @@ module common_help()
 				name="rect_dy",
 				parameters="rect",
 				description=["Returns y-dimension of rect",
-					List("rect", "[x, y, dx, dy]", "rect type")
+					List("x, y, dx, dy", "rect", "rect type")
 				],
 				returnValue="dy"
 			),
@@ -357,7 +338,7 @@ module common_help()
 				name="cube_x",
 				parameters="cube",
 				description=["Returns x-coordinate of cube origin",
-					List("cube", "[x, y, z, dx, dy, dz]", "cube type")
+					List("x, y, z, dx, dy, dz", "cube", "cube type")
 				],
 				returnValue="x"
 			),
@@ -365,7 +346,7 @@ module common_help()
 				name="cube_y",
 				parameters="cube",
 				description=["Returns y-coordinate of cube origin",
-					List("cube", "[x, y, z dx, dy, dz]", "cube type")
+					List("x, y, z, dx, dy, dz", "cube", "cube type")
 				],
 				returnValue="y"
 			),
@@ -373,7 +354,7 @@ module common_help()
 				name="cube_z",
 				parameters="cube",
 				description=["Returns z-coordinate of cube origin",
-					List("cube", "[x, y, z dx, dy, dz]", "cube type")
+					List("x, y, z, dx, dy, dz", "cube", "cube type")
 				],
 				returnValue="z"
 			),
@@ -381,7 +362,7 @@ module common_help()
 				name="cube_dx",
 				parameters="cube",
 				description=["Returns x-dimension of cube",
-					List("cube", "[x, y, z, dx, dy, dz]", "cube type")
+					List("x, y, z, dx, dy, dz", "cube", "cube type")
 				],
 				returnValue="dx"
 			),
@@ -389,7 +370,7 @@ module common_help()
 				name="cube_dy",
 				parameters="cube",
 				description=["Returns y-dimension of cube",
-					List("cube", "[x, y, z, dx, dy, dz]", "cube type")
+					List("x, y, z, dx, dy, dz", "cube", "cube type")
 				],
 				returnValue="dy"
 			),
@@ -397,7 +378,7 @@ module common_help()
 				name="cube_dz",
 				parameters="cube",
 				description=["Returns z-dimension of cube",
-					List("cube", "[x, y, z, dx, dy, dz]", "cube type")
+					List("x, y, z, dx, dy, dz", "cube", "cube type")
 				],
 				returnValue="dz"
 			),
@@ -405,10 +386,34 @@ module common_help()
 				name="position",
 				parameters="translate=[], rotate=[], mirror=[0, 0, 0], colour",
 				description=["Applies a combination of colour, mirror, rotate and translate, in that order, to all children",
-					List("translate", "[x, y, z]", "3-axis translation vector"),
-					List("rotate", "[x, y, z]", "Angles of rotation along each axis"),
-					List("mirror", "[x, y, z]", "Normal vector of a plane intersecting the origin through which to mirror"),
+					List("x, y, z", "translate", "3-axis translation vector"),
+					List("°x, °y, °z", "rotate", "Angles of rotation along each axis"),
+					List("x, y, z", "mirror", "Normal vector of a plane intersecting the origin through which to mirror"),
 					String("colour", "W3C CSS3 colour name or hex value")
+				]
+			),
+			new_member(
+				name="is_in",
+				parameters="match_string, search_set",
+				description=["Returns true if match_string found in search_set, false otherwise",
+					String("match_string", "string to search for - e.g.: &quot;one&quot;"),
+					List("strings", "search_set", "list of strings to search - e.g.: [[&quot;one&quot;],[&quot;two&quot;], [&quot;three&quot;]]")
+				]
+			),
+			new_member(
+				name="RootSumOfSquares",
+				parameters="a, b",
+				description=["Returns &radic;(a&sup2; + b&sup2;) (e.g.: Pythagoras)",
+					Number("a", ""),
+					Number("b", "")
+				]
+			),
+			new_member(
+				name="RootDifferenceOfSquares",
+				parameters="a, b",
+				description=["Returns &radic;(a&sup2; - b&sup2;) (e.g.: Pythagoras)",
+					Number("a", ""),
+					Number("b", "")
 				]
 			),
 			new_member(
