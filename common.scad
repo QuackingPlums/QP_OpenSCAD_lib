@@ -7,7 +7,7 @@
 // Useful tools and utilities
 //
 
-use <QP_OpenSCAD_lib/docSCAD.scad>; //docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>; 				docSCAD_help();
 
 /*
 is_in("two", [["one"], ["two"], ["three"]])
@@ -102,7 +102,7 @@ module debug()
 	#children();
 }
 
-//common_help();
+common_help();
 module common_help()
 {
 	name = "common.scad";
@@ -214,4 +214,208 @@ module common_help()
 		properties=properties,
 		functions=functions,
 		modules=modules);
+
+	formatHelp_simple(
+		libraryName=name,
+		description=description,
+		members=
+		[
+			new_member(
+				name="new_circle",
+				description=["Returns a new circle type = [x, y, diameter]",
+					Number("x", "x-coordinate of circle centre"),
+					Number("y", "y-coordinate of circle centre"),
+					Number("diameter", "diameter of circle")
+				],
+				parameters="x, y, diameter",
+				returnValue="circle type"
+			),
+			new_member(
+				name="circle_x",
+				parameters="circle",
+				description=["Returns x-coordinate of circle centre",
+					List("circle", "[x, y, diameter]", "circle type")
+				],
+				returnValue="x"
+			),
+			new_member(
+				name="circle_y",
+				parameters="circle",
+				description=["Returns y-coordinate of circle centre",
+					List("circle", "[x, y, diameter]", "circle type")
+				],
+				returnValue="y"
+			),
+			new_member(
+				name="circle_diameter",
+				parameters="circle",
+				description=["Returns diameter of circle",
+					List("circle", "[x, y, diameter]", "circle type")
+				],
+				returnValue="diameter"
+			),
+			new_member(
+				name="new_cyl",
+				description=["Returns a new cyl type = [x, y, height, diameter]",
+					Number("x", "x-coordinate of cyl centre"),
+					Number("y", "y-coordinate of cyl centre"),
+					Number("height", "height of cyl"),
+					Number("diameter", "diameter of cyl")
+				],
+				parameters="x, y, height, diameter",
+				returnValue="cyl type"
+			),
+			new_member(
+				name="cyl_x",
+				parameters="cyl",
+				description=["Returns x-coordinate of cyl centre",
+					List("cyl", "[x, y, height, diameter]", "cyl type")
+				],
+				returnValue="x"
+			),
+			new_member(
+				name="cyl_y",
+				parameters="cyl",
+				description=["Returns y-coordinate of cyl centre",
+					List("cyl", "[x, y, height, diameter]", "cyl type")
+				],
+				returnValue="y"
+			),
+			new_member(
+				name="cyl_height",
+				parameters="cyl",
+				description=["Returns height of cyl",
+					List("cyl", "[x, y, height, diameter]", "cyl type")
+				],
+				returnValue="height"
+			),
+			new_member(
+				name="cyl_diameter",
+				parameters="cyl",
+				description=["Returns diameter of cyl",
+					List("cyl", "[x, y, height diameter]", "cyl type")
+				],
+				returnValue="diameter"
+			),
+			new_member(
+				name="new_rect",
+				description=["Returns a new rect type = [x, y, dx, dy]",
+					Number("x", "x-coordinate of rect origin"),
+					Number("y", "y-coordinate of rec origin"),
+					Number("dx", "x-dimension of rect"),
+					Number("dy", "y-dimension of rect")
+				],
+				parameters="x, y, dx, dy",
+				returnValue="rect type"
+			),
+			new_member(
+				name="rect_x",
+				parameters="rect",
+				description=["Returns x-coordinate of rect origin",
+					List("rect", "[x, y, dx, dy]", "rect type")
+				],
+				returnValue="x"
+			),
+			new_member(
+				name="rect_y",
+				parameters="rect",
+				description=["Returns y-coordinate of rect origin",
+					List("rect", "[x, y, dx, dy]", "rect type")
+				],
+				returnValue="y"
+			),
+			new_member(
+				name="rect_dx",
+				parameters="rect",
+				description=["Returns x-dimension of rect",
+					List("rect", "[x, y, dx, dy]", "rect type")
+				],
+				returnValue="dx"
+			),
+			new_member(
+				name="rect_dy",
+				parameters="rect",
+				description=["Returns y-dimension of rect",
+					List("rect", "[x, y, dx, dy]", "rect type")
+				],
+				returnValue="dy"
+			),
+			new_member(
+				name="new_cube",
+				description=["Returns a new cube type = [x, y, z, dx, dy, dz]",
+					Number("x", "x-coordinate of cube origin"),
+					Number("y", "y-coordinate of cube origin"),
+					Number("z", "z-coordinate of cube origin"),
+					Number("dx", "x-dimension of cube"),
+					Number("dy", "y-dimension of cube"),
+					Number("dz", "z-dimension of cube")
+				],
+				parameters="x, y, z, dx, dy, dz",
+				returnValue="cube type"
+			),
+			new_member(
+				name="cube_x",
+				parameters="cube",
+				description=["Returns x-coordinate of cube origin",
+					List("cube", "[x, y, z, dx, dy, dz]", "cube type")
+				],
+				returnValue="x"
+			),
+			new_member(
+				name="cube_y",
+				parameters="cube",
+				description=["Returns y-coordinate of cube origin",
+					List("cube", "[x, y, z dx, dy, dz]", "cube type")
+				],
+				returnValue="y"
+			),
+			new_member(
+				name="cube_z",
+				parameters="cube",
+				description=["Returns z-coordinate of cube origin",
+					List("cube", "[x, y, z dx, dy, dz]", "cube type")
+				],
+				returnValue="z"
+			),
+			new_member(
+				name="cube_dx",
+				parameters="cube",
+				description=["Returns x-dimension of cube",
+					List("cube", "[x, y, z, dx, dy, dz]", "cube type")
+				],
+				returnValue="dx"
+			),
+			new_member(
+				name="cube_dy",
+				parameters="cube",
+				description=["Returns y-dimension of cube",
+					List("cube", "[x, y, z, dx, dy, dz]", "cube type")
+				],
+				returnValue="dy"
+			),
+			new_member(
+				name="cube_dz",
+				parameters="cube",
+				description=["Returns z-dimension of cube",
+					List("cube", "[x, y, z, dx, dy, dz]", "cube type")
+				],
+				returnValue="dz"
+			),
+			new_member(
+				name="position",
+				parameters="translate=[], rotate=[], mirror=[0, 0, 0], colour",
+				description=["Applies a combination of colour, mirror, rotate and translate, in that order, to all children",
+					List("translate", "[x, y, z]", "3-axis translation vector"),
+					List("rotate", "[x, y, z]", "Angles of rotation along each axis"),
+					List("mirror", "[x, y, z]", "Normal vector of a plane intersecting the origin through which to mirror"),
+					String("colour", "W3C CSS3 colour name or hex value")
+				]
+			),
+			new_member(
+				name="debug",
+				description=["Apply debug modifier (#) to all children"
+				]
+			)
+		]
+	);
 }
