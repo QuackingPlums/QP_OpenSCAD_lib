@@ -48,11 +48,13 @@ module Teardrop3D(r, truncate=true)
 	}
 }
 
+//!ExtrudedTeardrop(5, 20);
 module ExtrudedTeardrop(r, h, truncate=true)
 {
 	teardrop(h=h, r=r, center=false, truncate=truncate);
 }
 
+//!Teardrop(r=20);
 module Teardrop(r, truncate=true)
 {
 	teardrop_2D(r=r, truncate=truncate);
@@ -62,7 +64,7 @@ module Teardrop(r, truncate=true)
 module teardrop_2D(r, truncate = true) {
     difference() {
         union() {
-            circle(r = r, center = true);
+            circle(r = r);
             translate([0,r / sqrt(2),0])
                 rotate([0,0,45])
                     square([r, r], center = true);
