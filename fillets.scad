@@ -8,7 +8,7 @@
 //
 use <QP_OpenSCAD_lib/common.scad>;
 use <QP_OpenSCAD_lib/docSCAD.scad>;	 			//docSCAD_help();
-use <QP_OpenSCAD_lib/teardrops.scad>;			teardrops_help();
+use <QP_OpenSCAD_lib/teardrops.scad>;			//teardrops_help();
 
 ff = 0.05;						// fudge factor to prevent barfing on coincident faces
 
@@ -37,6 +37,7 @@ module radius(length = 100, radius = 5)
 }
 
 // weld two objects together at their intersection
+// weld(t=1) {cylinder(r=5, h=40, center=true); rotate([0, 60, 0]) cylinder(r=4, h=40, center=true);};
 module weld(t=1) { 
     union() {
         children(0);
@@ -149,36 +150,47 @@ module fillets_help()
     description="Fillets and radii",
     members=[
 		new_member(
-			"fillet",
-			["Add this into internal corners to strengthen the joint"],
-			"length=100, radius=5"),
+			name="fillet",
+			parameters="length=100, radius=5",
+			description=["Add this into internal corners to strengthen the joint",
+				Indent( Number("length", "length of fillet") ),
+				Indent( Number("radius", "fillet radius") )
+			]
+		),
 		new_member(
-			"radius",
-			["Subtract a radius from a straight edge to form a curved",
-				"edge (use minkowski for rounding ALL edges)"],
-			"length=100, radius=5"),
+			name="radius",
+			parameters="length=100, radius=5",
+			description=["Subtract a radius from a straight edge to form a curved",
+				"edge (similar to minkowski but quicker for single edges)",
+				Indent( Number("length", "length of radius") ),
+				Indent( Number("radius", "edge radius") )
+			]
+		),
 		new_member(
-			"weld",
-			["Weld two objects together at their intersection"],
-			"t=1"),
+			name="weld",
+			parameters="t=1",
+			description=["Weld two objects together at their intersection",
+				Indent( Number("t", "minkowski thickness of weld") )
+			]
+		),
 		new_member(
 			name="RoundFunnelChamfer",
 			parameters="r=10, cornerRadius=3, teardrop=false",
 			description=["Subtract from the base of a hollow cylinder to create a ", 
 				"funnelled intake. Set teardrop=false when inverted.",
-				Number("r", "radius of hole"),
-				Number("cornerRadius", "radius of funnel lip"),
-				Boolean("teardrop", "truncated teardrop for printability")
+				Indent( Number("r", "radius of hole") ),
+				Indent( Number("cornerRadius", "radius of funnel lip") ),
+				Indent( Boolean("teardrop", "truncated teardrop for printability") )
 			]),
 		new_member(
 			name="StadiumFunnelChamfer",
 			parameters="x=20, y=50, cornerRadius=3, teardrop=true",
 			description=["Subtract from the base of a hollow extruded stadium to create a ", 
 				"funnelled intake. Set teardrop=false when inverted.",
-				Number("x", "x-dimension of stadium"),
-				Number("y", "y-dimension of stadium"),
-				Number("cornerRadius", "radius of funnel lip"),
-				Boolean("teardrop", "truncated teardrop for printability")
+				Indent( Number("x", "x-dimension of stadium") ),
+				Indent( Number("y", "y-dimension of stadium") ),
+				Indent( Number("cornerRadius", "radius of funnel lip") ),
+				Indent( Boolean("teardrop", "truncated teardrop for printability") )
 			])
 	]
   );	
