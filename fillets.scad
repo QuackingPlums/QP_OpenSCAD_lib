@@ -84,7 +84,6 @@ module Torus(R=20, r=5, teardrop=false)
 //!RoundFunnelChamfer(teardrop=false);
 module RoundFunnelChamfer(r=10, cornerRadius=3, teardrop=true)
 {
-	$fn=48;
 	difference()
 	{
 		outerCylRadius = r+cornerRadius;
@@ -100,8 +99,6 @@ module RoundFunnelChamfer(r=10, cornerRadius=3, teardrop=true)
 //!StadiumFunnelChamfer(teardrop=false);
 module StadiumFunnelChamfer(x=20, y=50, cornerRadius=3, teardrop=true)
 {
-	$fn=48;
-
 	r = min(x, y)/2;
 	dy = y - 2*r;
 	dx = x - 2*r;
@@ -143,7 +140,7 @@ module StadiumFunnelChamfer(x=20, y=50, cornerRadius=3, teardrop=true)
 			}
 }
 
-fillets_help();
+//fillets_help();
 module fillets_help()
   formatHelp_simple(
     libraryName="fillets.scad",
