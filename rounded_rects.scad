@@ -80,8 +80,8 @@ module rounded_rects_help()
 			parameters="rect, teardrop = false",
 			description=[
 				"Draws a stadium (2D pill).",
-				List("x, y", "rect", "dimensions of smallest constraining rectangle"),
-				Boolean("teardrop", "for printability")
+				Indent( List("x, y", "rect", "dimensions of smallest constraining rectangle") ),
+				Indent( Boolean("teardrop", "for printability") )
 			]
 		),
 		new_member(
@@ -89,8 +89,8 @@ module rounded_rects_help()
 			parameters="cube, tearDrop = false",
 			description=[
 				"Draws an extruded stadium.",
-				List("x, y z", "cube", "dimensions of smallest constraining cuboid"),
-				Boolean("teardrop", "for printability")
+				Indent( List("x, y z", "cube", "dimensions of smallest constraining cuboid") ),
+				Indent( Boolean("teardrop", "for printability") )
 			]
 		),
 		new_member(
@@ -98,8 +98,8 @@ module rounded_rects_help()
 			parameters="rect, teardrop = false",
 			description=[
 				"Draws a capsule (3D pill).",
-				List("x, y", "rect", "dimensions of smallest constraining rectangle"),
-				Boolean("teardrop", "for printability")
+				Indent( List("x, y", "rect", "dimensions of smallest constraining rectangle") ),
+				Indent( Boolean("teardrop", "for printability") )
 			]
 		),
 		new_member(
@@ -107,9 +107,9 @@ module rounded_rects_help()
 			parameters="rect, cornerRadius, teardrop = false",
 			description=[
 				"Draws a 2D rectangle with rounded corners.",
-				List("x, y", "rect", "dimensions of smallest constraining rectangle"),
-				Number("cornerRadius", "of 2D rectangle"),
-				Boolean("teardrop", "for printability")
+				Indent( List("x, y", "rect", "dimensions of smallest constraining rectangle") ),
+				Indent( Number("cornerRadius", "of 2D rectangle") ),
+				Indent( Boolean("teardrop", "for printability") )
 			]
 		),
 		new_member(
@@ -117,9 +117,9 @@ module rounded_rects_help()
 			parameters="cube, cornerRadius, teardrop = false",
 			description=[
 				"Draws an extruded rounded rectangle.",
-				List("x, y z", "cube", "dimensions of smallest constraining cuboid"),
-				Number("cornerRadius", "of 2D rectangle"),
-				Boolean("teardrop", "for printability")
+				Indent( List("x, y z", "cube", "dimensions of smallest constraining cuboid") ),
+				Indent( Number("cornerRadius", "of 2D rectangle") ),
+				Indent( Boolean("teardrop", "for printability") )
 			]
 		),
 		new_member(
@@ -127,8 +127,8 @@ module rounded_rects_help()
 			parameters="cube, cornerRadius, teardrop = false",
 			description=[
 				"Draws a rounded cuboid.",
-				List("x, y, z", "cube", "dimensions of smallest constraining cuboid"),
-				Boolean("teardrop", "for printability")
+				Indent( List("x, y, z", "cube", "dimensions of smallest constraining cuboid") ),
+				Indent( Boolean("teardrop", "for printability") )
 			]
 		)
 	];
@@ -150,8 +150,8 @@ function minimum_corner_radius(edge_clearance) =			// square peg/round hole prob
 	edge_clearance / (sqrt(2)-1) + edge_clearance;
 
 //Stadium([100, 20], true);
-//Stadium([20, 100], true);
-module Stadium(rect, teardrop = false)
+//!Stadium(center=true);
+module Stadium(rect=[10, 30], teardrop = false, center=false)
 {
 	x = rect[0];
 	y = rect[1];
@@ -159,13 +159,13 @@ module Stadium(rect, teardrop = false)
 
 	hull()
 	{
-		translate([r, r])
+		translate(center ? [0, 0] : [r, r])
 			if (teardrop)
 				_teardrop_2D(r);
 			else
 				circle(r = r);
 		if (x != y)
-			translate([x-r, y-r])
+			translate(center ? [x-2*r, y-2*r] : [x-r, y-r])
 			if (teardrop)
 				_teardrop_2D(r);
 			else
@@ -193,17 +193,17 @@ module Rounded_rectangle(rect, corner_radius, teardrop = false)
 	}
 }
 
-//Extruded_stadium([30, 20, 8], 5, true);
-module ExtrudedStadium(cube, teardrop = false)
-	Extruded_stadium(cube, teardrop);
-module Extruded_stadium(cube, teardrop = false)
+//!Extruded_stadium([30, 20, 8], true);
+module ExtrudedStadium(cube, teardrop = false, center=false)
+	Extruded_stadium(cube, teardrop, center=false);
+module Extruded_stadium(cube, teardrop = false, center=false)
 {
 	x = cube[0];
 	y = cube[1];
 	z = cube[2];
 
 	linear_extrude(height = z)
-		Stadium([x, y], teardrop);
+		Stadium([x, y], teardrop, center);
 }
 
 //Extruded_rounded_rectangle([20, 30, 10], 5, true);
