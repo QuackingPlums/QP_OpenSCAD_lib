@@ -22,75 +22,27 @@ module rounded_rects_help()
 			Bold("ExtrudedRoundedRectangle()"), " - extruded 2D rectangle with rounded corners\n",
 			Bold("RoundedCube()"), " - 3D cube with rounded corners"
 		);
-	
-//	properties = [];
-//	functions = [
-//		new_help_item(
-//			"minimum_corner_radius(edge_clearance)",
-//			[	new_help_item_parameter("edge_clearance", "number", "Desired edge clearance")],
-//			"Returns the smallest corner radius to accommodate a specified edge clearance")];
-//	modules = [
-//		new_help_item(
-//			"Stadium(rect, teardrop = false)",
-//			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
-//				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along X-axis")],
-//			"Draws a stadium (2D pill shape)."),
-//		new_help_item(
-//			"Rounded_rectangle(rect, corner_radius, teardrop = false)",
-//			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
-//				new_help_item_parameter("corner_radius", "number", "Size of corner circles"),
-//				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along X-axis")],
-//			"Draws a 2D rectangle with rounded corners."),
-//		new_help_item(
-//			"Extruded_stadium(cube, corner_radius, teardrop = false)",
-//			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
-//				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along XZ-plane")],
-//			"Draws an extruded stadium."),
-//		new_help_item(
-//			"Extruded_rounded_rectangle(cube, corner_radius, teardrop = false)",
-//			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
-//				new_help_item_parameter("corner_radius", "number", "Size of constraining circle"),
-//				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along XZ-plane")],
-//			"Draws an extruded 2D rectangle with rounded corners."),
-//		new_help_item(
-//			"Capsule(rect, teardrop = false)",
-//			[	new_help_item_parameter("rect", "[x, y]", "Size of constraining rectangle"),
-//				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along XY-plane")],
-//			"Draws a 3D pill shape."),
-//		new_help_item(
-//			"Rounded_cube(cube, corner_radius, teardrop = false)",
-//			[	new_help_item_parameter("cube", "[x, y, z]", "Size of constraining cube"),
-//				new_help_item_parameter("corner_radius", "number", "Size of constrainging circle"),
-//				new_help_item_parameter("teardrop", "boolean", "Set to true to use teardrop profile along XY plane")],
-//			"Draws a 3D cuboid with rounded corners and optional teardrop lower edge profile.")
-//	];
-//
-//	formatHelp(
-//		name=name,
-//		description=description,
-//		properties=properties,
-//		functions=functions,
-//		modules=modules
-//	);
 
 	// new simple help defs
 	members = [
 		new_member(
 			name="Stadium",
-			parameters="rect, teardrop = false",
+			parameters="rect, teardrop=false, center=false",
 			description=[
 				"Draws a stadium (2D pill).",
 				Indent( List("x, y", "rect", "dimensions of smallest constraining rectangle") ),
-				Indent( Boolean("teardrop", "for printability") )
+				Indent( Boolean("teardrop", "for printability") ),
+				Indent( Boolean("center", "position the first circle on the origin") )
 			]
 		),
 		new_member(
 			name="ExtrudedStadium",
-			parameters="cube, tearDrop = false",
+			parameters="cube, tearDrop=false, center=false",
 			description=[
 				"Draws an extruded stadium.",
 				Indent( List("x, y z", "cube", "dimensions of smallest constraining cuboid") ),
-				Indent( Boolean("teardrop", "for printability") )
+				Indent( Boolean("teardrop", "for printability") ),
+				Indent( Boolean("center", "position the first cylinder on the origin") )
 			]
 		),
 		new_member(
@@ -104,7 +56,7 @@ module rounded_rects_help()
 		),
 		new_member(
 			name="RoundedRect",
-			parameters="rect, cornerRadius, teardrop = false",
+			parameters="rect, cornerRadius, teardrop=false",
 			description=[
 				"Draws a 2D rectangle with rounded corners.",
 				Indent( List("x, y", "rect", "dimensions of smallest constraining rectangle") ),
@@ -114,7 +66,7 @@ module rounded_rects_help()
 		),
 		new_member(
 			name="ExtrudedRoundedRect",
-			parameters="cube, cornerRadius, teardrop = false",
+			parameters="cube, cornerRadius, teardrop=false",
 			description=[
 				"Draws an extruded rounded rectangle.",
 				Indent( List("x, y z", "cube", "dimensions of smallest constraining cuboid") ),
@@ -124,7 +76,7 @@ module rounded_rects_help()
 		),
 		new_member(
 			name="RoundedCube",
-			parameters="cube, cornerRadius, teardrop = false",
+			parameters="cube, cornerRadius, teardrop=false",
 			description=[
 				"Draws a rounded cuboid.",
 				Indent( List("x, y, z", "cube", "dimensions of smallest constraining cuboid") ),
@@ -195,7 +147,7 @@ module Rounded_rectangle(rect, corner_radius, teardrop = false)
 
 //!Extruded_stadium([30, 20, 8], true);
 module ExtrudedStadium(cube, teardrop = false, center=false)
-	Extruded_stadium(cube, teardrop, center=false);
+	Extruded_stadium(cube, teardrop, center);
 module Extruded_stadium(cube, teardrop = false, center=false)
 {
 	x = cube[0];
