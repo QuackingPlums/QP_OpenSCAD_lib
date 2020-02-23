@@ -58,6 +58,10 @@ function List(listType, paramName, paramDesc) =
 function Optional(param) =
 	Italic(param);
 
+function Indent(string, n=1) =
+	str( "&nbsp;&nbsp;", n<=1 ? string : Indent(string, n-1) );
+//echo(Indent("some text", 2));
+
 module formatHelp_simple(libraryName, description, members)
 {
 	_name = HeadingOne(libraryName);
