@@ -41,8 +41,6 @@ function stdscrew_clearance_diameter(size) = size[2];
 function stdscrew_radius(size) = stdscrew_diameter(size) / 2;
 function stdscrew_clearance_radius(size) = stdscrew_clearance_diameter(size) / 2;
 
-///////////
-// Screws
 
 // Screw head types
 cap_head =	["cap head screw"];
@@ -63,12 +61,33 @@ spring_washer = 	["spring washer"];
 
 function washer_form(form) = form[0];
 
-M2_washer = "defined later";
-M3_washer = "defined later";
-M4_washer = "defined later";
-M5_washer = "defined later";
-M6_washer = "defined later";
-M8_washer = "defined later";
+///////////
+// Washers
+
+// http://www.a2stainless.co.uk/Metric-Washers-Dimensional-Data_AHDHV.aspx
+
+// Washer types
+M2_washer = [M2, plain_washer, metric_clearance_diameter(M2), 5.5, 0.3];
+M3_washer = [M3, plain_washer, metric_clearance_diameter(M3), 7, 0.6];
+M3_12mm_penny_washer = [M3, penny_washer, metric_clearance_diameter(M3), 12, 0.8];
+M4_washer = [M4, plain_washer, metric_clearance_diameter(M4), 9, 0.8];
+M4_washer_c = [M4, formC_washer, metric_clearance_diameter(M4), 9.8, 1];
+M5_washer = [M5, plain_washer, metric_clearance_diameter(M5), 10.0, 1.0];
+M5_washer_c = [M5, formC_washer, metric_clearance_diameter(M5), 12.0, 1];
+M6_washer = [M6, plain_washer, metric_clearance_diameter(M6), 11.5, 1.45];		// check!
+M8_washer = [M8, plain_washer, metric_clearance_diameter(M8), 17.0, 1.6];		// check!
+
+function washer_size(washer_type) = str(metric_name(washer_type[0]), washer_type[1] == penny_washer ? str("x", washer_type[3],"x", washer_type[4]) : "");
+function washer_variant(washer_type) = washer_form(washer_type[1]);
+function washer_bore_diameter(washer_type) = metric_clearance_diameter(washer_type[0]);
+function washer_outer_diameter(washer_type) = washer_type[3];
+function washer_thickness(washer_type) = washer_type[4];
+
+function washer_bore_radius(washer_type) = washer_bore_diameter(washer_type) / 2;
+function washer_outer_radius(washer_type) = washer_outer_diameter(washer_type) / 2;
+
+//////////
+// Screws
 
 // Screw types
 M2_cap_screw =	[M2, cap_head,				// aka socket screw
@@ -116,7 +135,7 @@ function screw_head_clearance_radius(screw_type) = screw_head_clearance_diameter
 function select_screw(length = 7) = ceil(length / 2) * 2;	// round up to the nearest even number!
 
 
-/////////
+////////
 // Nuts
 
 // http://en.wikipedia.org/wiki/Nut_(hardware)
@@ -165,33 +184,10 @@ function nut_flat_radius(nut_type) = nut_radius(nut_type) * cos(30);
 function nut_flat_clearance_radius(nut_type) = nut_clearance_radius(nut_type) * cos(30);
 
 
-////////////
-// Washers
-
-// http://www.a2stainless.co.uk/Metric-Washers-Dimensional-Data_AHDHV.aspx
-
-// Washer types
-M2_washer = [M2, plain_washer, metric_clearance_diameter(M2), 5.5, 0.3];
-M3_washer = [M3, plain_washer, metric_clearance_diameter(M3), 7, 0.6];
-M3_12mm_penny_washer = [M3, penny_washer, metric_clearance_diameter(M3), 12, 0.8];
-M4_washer = [M4, plain_washer, metric_clearance_diameter(M4), 9, 0.8];
-M4_washer_c = [M4, formC_washer, metric_clearance_diameter(M4), 9.8, 1];
-M5_washer = [M5, plain_washer, metric_clearance_diameter(M5), 10.0, 1.0];
-M5_washer_c = [M5, formC_washer, metric_clearance_diameter(M5), 12.0, 1];
-M6_washer = [M6, plain_washer, metric_clearance_diameter(M6), 11.5, 1.45];		// check!
-M8_washer = [M8, plain_washer, metric_clearance_diameter(M8), 17.0, 1.6];		// check!
-
-function washer_size(washer_type) = str(metric_name(washer_type[0]), washer_type[1] == penny_washer ? str("x", washer_type[3],"x", washer_type[4]) : "");
-function washer_variant(washer_type) = washer_form(washer_type[1]);
-function washer_bore_diameter(washer_type) = metric_clearance_diameter(washer_type[0]);
-function washer_outer_diameter(washer_type) = washer_type[3];
-function washer_thickness(washer_type) = washer_type[4];
-
-function washer_bore_radius(washer_type) = washer_bore_diameter(washer_type) / 2;
-function washer_outer_radius(washer_type) = washer_outer_diameter(washer_type) / 2;
+//washers WAS here
 
 /////////////////////////
-// Studing & set screws
+// Studding & set screws
 
 // Stud/set types
 M3_stud = [M3, "threaded stud", M3_nyloc];

@@ -8,7 +8,7 @@
 //
 include <fasteners_h.scad>;
 
-use <QP_OpenSCAD_lib/docSCAD.scad>;					//docSCAD_help();
+use <QP_OpenSCAD_lib/docSCAD.scad>;					docSCAD_help();
 use <QP_OpenSCAD_lib/polyholes.scad>;
 use <QP_OpenSCAD_lib/teardrops.scad>;
 
@@ -17,8 +17,9 @@ $fa = 5;
 
 ff = 0.05;	// fudge factor to prevent barfing on coincident faces
 
-///////////
-// Screws
+// ####################
+// ##     Screws     ##
+// ####################
 
 module screw(screw_type = M3_cap_screw, length = 20, washer = false, exploded = 0, colour = "dimgray")
 {
@@ -70,7 +71,7 @@ module screw_head(screw_type = M3_cap_screw)
 			cylinder(h = head_height, r1 = screw_radius(screw_type), r2 = head_radius);
 }
 
-module screw_clearance_hole(screw_type, depth)
+module screw_clearance_hole(screw_type = M3_cap_screw, depth)
 {
 	translate([0, 0, -depth])
 		poly_cylinder(h = depth, r = metric_clearance_radius(screw_type));
@@ -137,8 +138,9 @@ module tear_poly(h, r, teardrop)
 		poly_cylinder(h = h, r = r);
 }
 
-/////////
-// Nuts
+// ##################
+// ##     Nuts     ##
+// ##################
 
 module nut(nut_type = M3_nut, exploded = 0)
 {
@@ -184,6 +186,7 @@ module nyloc(nut_type = M3_nyloc, exploded = 0)
 			}
 }
 
+//!nut_trap(depth=10);
 module nut_trap(nut_type = M3_nut, depth = nut_clearance_diameter(M3_nut))
 {
 	// align this with a surface and subtract from a solid to create a nut trap
@@ -191,6 +194,7 @@ module nut_trap(nut_type = M3_nut, depth = nut_clearance_diameter(M3_nut))
 		cube([depth + ff, nut_flat_clearance_diameter(nut_type), nut_clearance_height(nut_type)]);		
 }
 
+!nut_recess();
 module nut_recess(nut_type = M3_nut)
 {
 	cylinder(	r = nut_clearance_radius(nut_type),
@@ -198,8 +202,9 @@ module nut_recess(nut_type = M3_nut)
 				$fn = 6);
 }
 
-////////////
-// Washers
+// #####################
+// ##     Washers     ##
+// #####################
 
 module washer(washer_type = M3_washer)
 {
@@ -213,8 +218,9 @@ module washer(washer_type = M3_washer)
 }
 
 
-////////////
-// Studs
+// ###################
+// ##     Studs     ##
+// ###################
 
 module stud(stud_type = M3_stud, length = 20, nyloc = true, exploded = 0)
 {
@@ -226,8 +232,9 @@ module stud(stud_type = M3_stud, length = 20, nyloc = true, exploded = 0)
 		nyloc(nut_type = stud_nyloc(stud_type), nyloc = true, exploded = exploded);
 }
 
-////////////
-// BOM
+// #################
+// ##     BOM     ##
+// #################
 
 module BOM(quantity, vitamin, description = "undefined")
 {
@@ -259,7 +266,7 @@ module BOM_stud(quantity = 1, stud_type = M3_stud, length = 25, description = "u
 	BOM(quantity, vitamin, description);
 }
 
-//fasteners_help();
+fasteners_help();
 module fasteners_help()
 {
 	formatHelp_simple(
@@ -270,40 +277,76 @@ module fasteners_help()
 				name="screw",
 				description=[
 					"Render a standard screw type",
-					List("screw type", "screw_type", "Screw descriptor (e.g.: M2_cap_screw)"),
-					Number("length", "Length of screw shaft"),
-					Boolean("washer", "Render with/without washer (default: false)"),
-					Number("exploded", "Exploded view offset (default: 0)"),
-					String("colour", "HTML colour name (default: dimgray)")
+					Indent(List("screw type", "screw_type", "Screw descriptor (default: M3_cap_screw)")),
+					Indent(Number("length", "Length of screw shaft (default: 20)")),
+					Indent(Boolean("washer", "Render with/without washer (default: false)")),
+					Indent(Number("exploded", "Exploded view offset (default: 0)")),
+					Indent(String("colour", "HTML colour name (default: dimgray)"))
 				],
-				parameters="screw_type, length, washer, exploded, colour"
+				parameters="screw_type = M3_cap_screw, length = 20, washer = false, exploded = 0, colour = \"dimgray\""
 			),
 			new_member(
 				name="screw_clearance_hole",
 				description=[
-					"Render a standard screw hole (for differencing from another solid)",
-					List("screw type", "screw_type", "Screw descriptor (e.g.: M2_cap_screw)"),
-					Number("depth", "Hole depth")
+					"Render a (subtractive) standard screw hole.",
+					"Use in conjunction with screw_clearance_hole() to create a flush screw head",
+					Indent(List("screw type", "screw_type", "Screw descriptor (default: M3_cap_screw)")),
+					Indent(Number("depth", "Hole depth"))
 				],
-				parameters="screw_type, depth"
+				parameters="screw_type = M3_cap_screw, depth"
 			),
 			new_member(
 				name="screw_head_clearance_hole",
 				description=[
-					"Render a standard screw head hole (for differencing from another solid)",
-					"Typically used in conjunction with screw_clearance_hole() to create a flush screw head",
-					List("screw type", "screw_type", "Screw descriptor (e.g.: M2_cap_screw)")
+					"Render a (subtractive) standard screw head hole",
+					Indent(List("screw type", "screw_type", "Screw descriptor (default: M3_cap_screw)"))
 				],
-				parameters="screw_type"
+				parameters="screw_type = M3_cap_screw"
 			),
 			new_member(
 				name="self_tap_hole",
 				description=[
-					"Render a slightly narrower screw hole self-tapping screws (for differencing from another solid)",
-					List("thread type", "thread_type", "Thread descriptor (e.g.: No2)"),
-					Number("depth", "Hole depth")
+					"Render a slightly narrower (subtractive) screw hole self-tapping screws",
+					Indent(List("thread type", "thread_type", "Thread descriptor (default: No2)")),
+					Indent(Number("depth", "Hole depth (default: 10)")),
+					Indent(List("screw_type", "screw_type", "DEPRECATED: replaced by thread_type"))
 				],
-				parameters="thread_type, depth"
+				parameters="thread_type = No2, depth = 10"
+			),
+			new_member(
+				name="nut",
+				description=[
+					"Render a plain nut",
+					Indent(List("nut type", "nut_type", "Nut descriptor (default: M3_nut)")),
+					Indent(Number("exploded", "Exploded view offset (default: 0)"))
+				],
+				parameters="nut_type=M3_nut, exploded=0"
+			),
+			new_member(
+				name="nyloc_nut",
+				description=[
+					"Render a nyloc nut",
+					Indent(List("nut type", "nut_type", "Nut descriptor (default: M3_nyloc)")),
+					Indent(Number("exploded", "Exploded view offset (default: 0)"))
+				],
+				parameters="nut_type = M3_nyloc, exploded = 0"
+			),
+			new_member(
+				name="nut_trap",
+				parameters="nut_type = M3_nut, depth = nut_clearance_diameter(M3_nut)",
+				description=[
+					"Render a (subtractive) nut trap in the XY plane",
+					Indent(List("nut type", "nut_type", "Nut descriptor (default: M3_nut)")),
+					Indent(Number("depth", "Depth of cavity (default: nut clearance diameter of M3_nut)"))
+				]
+			),
+			new_member(
+				name="nut_recess",
+				parameters="nut_type = M3_nut",
+				description=[
+					"Render a hexagonal nut recess in the XY plane",
+					Indent(List("nut type", "nut_type", "Nut descriptor (default: M3_nut)"))
+				]
 			)
 		]
 	);

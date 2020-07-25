@@ -49,10 +49,10 @@ module poly_slot(r, h, w, d, center)
 //poly_d_cylinder(r = 1.6, h = 40);
 module poly_d_cylinder(r, h, d, center = false)
 {
-	r = r == undef ? d/2 : r;
+	rawR = r == undef ? d/2 : r;
 
 	n = sides(r);
-	r = corrected_radius(r,n);
+	r = corrected_radius(rawR,n);
 	cylinder(h = h, r = r, $fn = n, center = center);
 	translate([0, -r, 0])
 		cube([r, 2 * r, h]);
