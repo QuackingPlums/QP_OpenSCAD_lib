@@ -7,7 +7,12 @@
 // Non-primitive shapes
 //
 
+use <QP_OpenSCAD_lib/teardrops.scad>;				//teardrops_help();
 use <QP_OpenSCAD_lib/docSCAD.scad>; 					docSCAD_help();
+use <QP_OpenSCAD_lib/common.scad>;
+
+module shapes_help()
+	shapesHelp();
 
 shapesHelp();
 module shapesHelp()
@@ -52,10 +57,30 @@ module shapesHelp()
 	);
 }
 
-//Torus(50, 15);
-module Torus(R, r, $fn=0)
+//!Torus(50, 15, true);
+module Torus(R, r, teardrop=false, $fn=0)
 {
 	rotate_extrude()
 		translate([R, 0, 0])
-			circle(r);
+			if (teardrop)
+				Teardrop(r, true);
+			else
+				circle(r);
+}
+
+//
+!RoundedCylinder(h=30, r1=85, r2=85, r3=5, center=false);
+module RoundedCylinder(h = 1, r1 = 1, r2 = 1, r3 = 1, center = false)
+{
+	hull()
+	{
+		// bottom torus
+		position(
+			mirror=[0,0,1],
+			translate=[0,0,r3 - (center ? h/2 : 0)])
+			Torus(R=max(r1-r3, r3), r=r3, teardrop=true);
+		// top torus
+		translate([0,0,(center ? h/2 : h) - r3])
+			Torus(R=max(r2-r3, r3), r=r3);
+	}
 }
