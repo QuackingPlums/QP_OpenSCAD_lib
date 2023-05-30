@@ -2,6 +2,7 @@
 | Rounded corners are less prone to lifting than
 | sharp corners. They also look nicer.
 **************************************************/
+use <QP_OpenSCAD_lib/shapes.scad>;
 use <QP_OpenSCAD_lib/docSCAD.scad>;
 use <QP_OpenSCAD_lib/common.scad>;
 
@@ -257,7 +258,21 @@ module Rounded_cube(cube, corner_radius, teardrop = false)
 	}
 }
 
-
+// version that uses toroids to allow different radii on horizontal and vertical axes
+//!RoundedCube2(teardrop=true);
+module RoundedCube2(cube=[100, 75, 50], hradius=5, vradius=1.5, teardrop=false)
+{
+	x = cube[0];
+	y = cube[1];
+	z = cube[2];
+	hOffset = hradius+vradius;
+	vOffset = vradius;
+	
+	hull()
+		for (x=[hOffset, x-hOffset], y=[hOffset, y-hOffset], z=[vOffset, z-vOffset])
+			translate([x, y, z])
+					mirror([0, 0, 1]) Torus(R=hradius, r=vradius, teardrop=teardrop);
+}
 
 
 //**************
